@@ -14,35 +14,57 @@ public class Entreprise {
         private Long id;
 
         @NotNull
-        private String secteur_d_activitee;
-
-        @NotNull
-        private String metier;
-
-
-        @NotNull
         @Column(unique = true)
-        private String code;
+        private String nom;
 
         @NotNull
-        private String budget;
+        private String secteur_d_activité;
+
+        @NotNull
+        private String email;
+
+        @NotNull
+        private String pays;
+
+        @NotNull
+        private String region;
+
+        @NotNull
+        private String adresse;
+
+        @NotNull
+        private long tel;
 
         @NotNull
         private String type;
 
-        @NotNull
-        private float montant;
 
         @NotNull
-        private String delais;
+        private String nomDG;
+
 
         @NotNull
-        private String gouvernerat;
+        private long telDG;
 
-       /* @JsonIgnore
+
+        @NotNull
+        private String emailDG;
+
+
+        @NotNull
+        private String nomAdmin;
+
+
+        @NotNull
+        private long telAdmin;
+
+
+        @NotNull
+        private String emailAdmin;
+       @JsonIgnore
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "organisation_id", nullable = false)
-        private Organisation organisation;*/
+        private Organisation organisation;
 
         // Getters and Setters (Omitted for brevity)
 

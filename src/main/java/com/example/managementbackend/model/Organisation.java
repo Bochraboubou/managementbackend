@@ -25,6 +25,12 @@ public class Organisation {
         private String email;
 
         @NotNull
+        private String pays;
+
+        @NotNull
+        private String region;
+
+        @NotNull
         private String adresse;
 
         @NotNull
@@ -58,10 +64,10 @@ public class Organisation {
                 private String emailAdmin;
 
 
-      /*  @OneToMany(cascade = CascadeType.ALL,
+        @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,
                 mappedBy = "organisation")
-        private List<Entreprise> entreprises = new ArrayList<>();*/
+        private List<Entreprise> entreprises = new ArrayList<>();
 
         @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,

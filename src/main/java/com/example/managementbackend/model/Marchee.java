@@ -4,19 +4,21 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
+@Table(name = "marchee")
 public class Marchee {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private String secteur_d_activitee;
+    private String secteurD_activitee;
 
     @NotNull
     private String metier;
-
 
     @NotNull
     @Column(unique = true)
@@ -32,15 +34,19 @@ public class Marchee {
     private float montant;
 
     @NotNull
-    private String delais;
+    private long delais;
 
-    @NotNull
-    private String gouvernerat;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organisation_id", nullable = false)
     private Organisation org;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "marchee")
+    private List<BondeCommande> bondes = new ArrayList<>();
+
 
     // Getters and Setters (Omitted for brevity)
 
