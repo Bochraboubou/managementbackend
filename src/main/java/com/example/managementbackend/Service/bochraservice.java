@@ -1,2 +1,4 @@
-package com.example.managementbackend.Service;public class bochraservice {
+package com.example.managementbackend.Service;
+
+public class bochraservice {
 }
