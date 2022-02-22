@@ -45,12 +45,22 @@ public class EntrepriseController {
         }
 
         return entrepriseRepo.findById(organId).map(entreprise -> {
-            entreprise.setCode(entrepriseRequest.getCode());
             entreprise.setNom(entrepriseRequest.getNom());
-            entreprise.setMail(entrepriseRequest.getMail());
-            entreprise.setTel(entrepriseRequest.getTel());
+            entreprise.setCode(entrepriseRequest.getCode());
+            entreprise.setSecteur_d_activité(entrepriseRequest.getSecteur_d_activité());
+            entreprise.setEmail(entrepriseRequest.getEmail());
+            entreprise.setPays(entrepriseRequest.getPays());
+            entreprise.setRegion(entrepriseRequest.getRegion());
             entreprise.setAdresse(entrepriseRequest.getAdresse());
-            entreprise.setGouvernerat(entrepriseRequest.getGouvernerat());
+            entreprise.setTel(entrepriseRequest.getTel());
+            entreprise.setType(entrepriseRequest.getType());
+            entreprise.setNomDG(entrepriseRequest.getNomDG());
+            entreprise.setTelDG(entrepriseRequest.getTelDG());
+            entreprise.setEmailDG(entrepriseRequest.getEmailDG());
+            entreprise.setNomAdmin(entrepriseRequest.getNomAdmin());
+            entreprise.setTelAdmin(entrepriseRequest.getTelAdmin());
+            entreprise.setEmailAdmin(entrepriseRequest.getEmailAdmin());
+
             return entrepriseRepo.save(entreprise);
         }).orElseThrow(() -> new ResourceNotFoundException("entrepriseId " + entrepId+ "not found"));
     }

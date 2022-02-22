@@ -33,11 +33,23 @@ public class OrganisationController {
     public Organisation updateOrganisation(@PathVariable Long organId, @Valid @RequestBody Organisation organisationRequest) {
         return organisationRepo.findById(organId).map(organisation -> {
             organisation.setNom(organisationRequest.getNom());
+            organisation.setCode(organisationRequest.getCode());
+            organisation.setSecteur_d_activité(organisationRequest.getSecteur_d_activité());
             organisation.setEmail(organisationRequest.getEmail());
+            organisation.setPays(organisationRequest.getPays());
+            organisation.setRegion(organisationRequest.getRegion());
             organisation.setAdresse(organisationRequest.getAdresse());
             organisation.setTel(organisationRequest.getTel());
-            organisation.setM_d_oeuvre(organisationRequest.getM_d_oeuvre());
-            organisation.setM_d_oeuvrage(organisationRequest.getM_d_oeuvrage());
+            organisation.setType(organisationRequest.getType());
+            organisation.setNomDG(organisationRequest.getNomDG());
+            organisation.setTelDG(organisationRequest.getTelDG());
+            organisation.setEmailDG(organisationRequest.getEmailDG());
+            organisation.setNomAdmin(organisationRequest.getNomAdmin());
+            organisation.setTelAdmin(organisationRequest.getTelAdmin());
+            organisation.setEmailAdmin(organisationRequest.getEmailAdmin());
+
+
+
             return organisationRepo.save(organisation);
         }).orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
     }

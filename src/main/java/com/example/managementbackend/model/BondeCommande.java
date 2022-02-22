@@ -6,7 +6,7 @@ import com.sun.istack.NotNull;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "entreprise")
+@Table(name = "bondecommande")
 public class BondeCommande {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
