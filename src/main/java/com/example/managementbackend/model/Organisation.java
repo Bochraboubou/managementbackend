@@ -23,7 +23,7 @@ public class Organisation {
         private String code;
 
         @NotNull
-        private String secteur_d_activité;
+        private String secteur_d_activite;
 
         @NotNull
         private String email;
@@ -81,10 +81,10 @@ public class Organisation {
         // Getters and Setters (Omitted for brevity)
 
 
-        public Organisation(String nom, String code, String secteur_d_activité, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, String nomAdmin, long telAdmin, String emailAdmin, List<Entreprise> entreprises, List<Marchee> marchees) {
+        public Organisation(String nom, String code, String secteur_d_activite, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, String nomAdmin, long telAdmin, String emailAdmin, List<Entreprise> entreprises, List<Marchee> marchees) {
                 this.nom = nom;
                 this.code = code;
-                this.secteur_d_activité = secteur_d_activité;
+                this.secteur_d_activite = secteur_d_activite;
                 this.email = email;
                 this.pays = pays;
                 this.region = region;
@@ -129,12 +129,12 @@ public class Organisation {
                 this.nom = nom;
         }
 
-        public String getSecteur_d_activité() {
-                return secteur_d_activité;
+        public String getSecteur_d_activite() {
+                return secteur_d_activite;
         }
 
-        public void setSecteur_d_activité(String secteur_d_activité) {
-                this.secteur_d_activité = secteur_d_activité;
+        public void setSecteur_d_activite(String secteur_d_activite) {
+                this.secteur_d_activite = secteur_d_activite;
         }
 
         public String getEmail() {

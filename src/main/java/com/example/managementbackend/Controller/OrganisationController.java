@@ -34,7 +34,7 @@ public class OrganisationController {
         return organisationRepo.findById(organId).map(organisation -> {
             organisation.setNom(organisationRequest.getNom());
             organisation.setCode(organisationRequest.getCode());
-            organisation.setSecteur_d_activité(organisationRequest.getSecteur_d_activité());
+            organisation.setSecteur_d_activite(organisationRequest.getSecteur_d_activite());
             organisation.setEmail(organisationRequest.getEmail());
             organisation.setPays(organisationRequest.getPays());
             organisation.setRegion(organisationRequest.getRegion());
