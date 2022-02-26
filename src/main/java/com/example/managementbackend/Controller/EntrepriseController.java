@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
@@ -22,9 +23,8 @@ public class EntrepriseController {
     private OrganisationRepository organisationRepo;
 
     @GetMapping("/organisations/{organId}/entreprises")
-    public Page<Entreprise> getAllEntreprisesByOrganId(@PathVariable(value = "organId") Long organId,
-                                                       Pageable pageable) {
-        return entrepriseRepo.findByOrganisationId(organId, pageable);
+    public List<Entreprise> getAllEntreprisesByOrganId(@PathVariable(value = "organId") Long organId) {
+        return entrepriseRepo.findByOrganisationId(organId);
     }
 
     @PostMapping("/organisations/{organId}/entreprises")

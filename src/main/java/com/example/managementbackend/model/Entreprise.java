@@ -66,10 +66,14 @@ public class Entreprise {
 
         @NotNull
         private String emailAdmin;
+
         @JsonIgnore
         @ManyToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "organisation_id", nullable = false)
         private Organisation organisation;
+
+        @OneToOne(mappedBy = "entreprise")
+        private BondeCommande bonde_commande;
 
         // Getters and Setters (Omitted for brevity)
 

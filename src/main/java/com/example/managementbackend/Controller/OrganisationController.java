@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/admin")
 @RestController
@@ -22,6 +23,11 @@ public class OrganisationController {
     @GetMapping("/organisations")
     public List<Organisation> getAll() {
         return organisationRepo.findAll();
+    }
+
+    @GetMapping("/oneorganisations/{organId}")
+    public Optional<Organisation> getOrganById(@PathVariable Long organId) {
+        return organisationRepo.findById(organId).map(organisation -> organisationRepo.findById(organId)).orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
     }
 
     @PostMapping("/organisations")
@@ -56,7 +62,7 @@ public class OrganisationController {
 
 
     @DeleteMapping("/organisations/{organId}")
-    public ResponseEntity<?> deletePost(@PathVariable Long organId) {
+    public ResponseEntity<?> deleteOrganisation(@PathVariable Long organId) {
         return organisationRepo.findById(organId).map(organisation -> {
             organisationRepo.delete(organisation);
             return ResponseEntity.ok().build();

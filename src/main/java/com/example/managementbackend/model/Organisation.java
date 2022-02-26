@@ -105,14 +105,6 @@ public class Organisation {
 
         }
 
-        public String getCode() {
-                return code;
-        }
-
-        public void setCode(String code) {
-                this.code = code;
-        }
-
         public Long getId() {
                 return id;
         }
@@ -127,6 +119,14 @@ public class Organisation {
 
         public void setNom(String nom) {
                 this.nom = nom;
+        }
+
+        public String getCode() {
+                return code;
+        }
+
+        public void setCode(String code) {
+                this.code = code;
         }
 
         public String getSecteur_d_activite() {
