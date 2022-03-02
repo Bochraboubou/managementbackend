@@ -15,7 +15,7 @@ public class Marchee {
     private Long id;
 
     @NotNull
-    private String secteurD_activitee;
+    private String secteurd_activitee;
 
     @NotNull
     private String metier;
@@ -55,8 +55,8 @@ public class Marchee {
     // Getters and Setters
 
 
-    public Marchee(String secteurD_activitee, String metier, String code, String designiation, String budget, String type, float montant, long delais, Organisation org, List<BondeCommande> bondes) {
-        this.secteurD_activitee = secteurD_activitee;
+    public Marchee(String secteurd_activitee, String metier, String code, String designiation, String budget, String type, float montant, long delais, Organisation org, List<BondeCommande> bondes) {
+        this.secteurd_activitee = secteurd_activitee;
         this.metier = metier;
         this.code = code;
         this.designiation = designiation;
@@ -88,12 +88,12 @@ public class Marchee {
         this.id = id;
     }
 
-    public String getSecteurD_activitee() {
-        return secteurD_activitee;
+    public String getSecteurd_activitee() {
+        return secteurd_activitee;
     }
 
-    public void setSecteurD_activitee(String secteurD_activitee) {
-        this.secteurD_activitee = secteurD_activitee;
+    public void setSecteurd_activitee(String secteurD_activitee) {
+        this.secteurd_activitee = secteurD_activitee;
     }
 
     public String getMetier() {

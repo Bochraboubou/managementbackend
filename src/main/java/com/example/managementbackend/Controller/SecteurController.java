@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/admin")
 @RestController
@@ -21,6 +22,11 @@ public class SecteurController {
     @GetMapping("/secteurs")
     public List<Secteur> getAll() {
         return secteurRepo.findAll();
+    }
+
+    @GetMapping("/secteurbynom/{nomSecteur}")
+    public Optional<Secteur> getSecteurbyNom(@PathVariable String nomSecteur) {
+        return secteurRepo.findByNomSecteur(nomSecteur).map(secteur -> secteurRepo.findByNomSecteur(nomSecteur)).orElseThrow(() -> new ResourceNotFoundException("nomSecteur " + nomSecteur+ " not found"));
     }
 
     @PostMapping("/secteurs")

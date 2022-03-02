@@ -7,12 +7,14 @@ import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Marchee;
 import com.example.managementbackend.model.Metier;
+import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/admin")
 @RestController
@@ -45,6 +47,11 @@ public class MarcheeController {
             marcheeRepo.delete(marchee);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("marchee not found with id " + marcheeId+ " and organisationId " + organId));
+    }
+
+    @GetMapping("/marcheebycode/{codeMarchee}")
+    public Optional<Marchee> getMarcheebyCode(@PathVariable String codeMarchee) {
+        return marcheeRepo.findByCode(codeMarchee).map(marchee -> marcheeRepo.findByCode(codeMarchee)).orElseThrow(() -> new ResourceNotFoundException("codeMarchee " + codeMarchee+ " not found"));
     }
 }
 
