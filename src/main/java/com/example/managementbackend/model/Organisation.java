@@ -1,10 +1,12 @@
 package com.example.managementbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Entity
 @Table(name = "organisation")
 
@@ -72,6 +74,7 @@ public class Organisation {
                 mappedBy = "organisation")
         private List<Entreprise> entreprises = new ArrayList<>();
 
+        @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
         @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,
                 mappedBy = "org")
