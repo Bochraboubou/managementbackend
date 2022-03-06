@@ -29,6 +29,11 @@ public class SecteurController {
         return secteurRepo.findByNomSecteur(nomSecteur).map(secteur -> secteurRepo.findByNomSecteur(nomSecteur)).orElseThrow(() -> new ResourceNotFoundException("nomSecteur " + nomSecteur+ " not found"));
     }
 
+    @GetMapping("/secteurbymetiers/{idmetier}")
+    public Optional<Secteur> getSecteurbymetiers(@PathVariable long idmetier) {
+        return secteurRepo.findByMetiersId(idmetier).map(secteur -> secteurRepo.findByMetiersId(idmetier)).orElseThrow(() -> new ResourceNotFoundException("idmetier " + idmetier+ " not found"));
+    }
+
     @PostMapping("/secteurs")
     public Secteur createSecteur(@Valid @RequestBody Secteur secteur) {
         return secteurRepo.save(secteur);

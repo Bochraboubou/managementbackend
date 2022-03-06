@@ -1,15 +1,10 @@
 package com.example.managementbackend.Controller;
 
-import com.example.managementbackend.Repository.EntrepriseRepository;
 import com.example.managementbackend.Repository.MetierRepository;
-import com.example.managementbackend.Repository.OrganisationRepository;
 import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
-import com.example.managementbackend.model.Entreprise;
 import com.example.managementbackend.model.Metier;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,6 +24,10 @@ public class MetierController {
     public List<Metier> getAllMetiersBySecteurId(@PathVariable(value = "secteurId") Long secteurId) {
         return metierRepo.findBySecteurId(secteurId);
     }
+    @GetMapping("/secteurs/metiers")
+    public List<Metier> getAllMetiers() {
+        return metierRepo.findAll();
+    }
 
     @PostMapping("/secteurs/{secteurId}/metiers")
     public Metier createMetier(@PathVariable (value = "secteurId") Long secteurId,
@@ -40,14 +39,22 @@ public class MetierController {
     }
 
 
-    @DeleteMapping("/secteurs/{secteurId}/metiers/{metierId}")
-    public ResponseEntity<?> deleteMetier(@PathVariable (value = "secteurId") Long secteurId,
-                                              @PathVariable (value = "metierId") Long metierId) {
-        return metierRepo.findByIdAndSecteurId(metierId, secteurId).map(metier -> {
+    @DeleteMapping("/metiers/{metierId}")
+    public ResponseEntity<?> deleteMetier(@PathVariable (value = "metierId") Long metierId) {
+
+        return metierRepo.findById(metierId).map(metier -> {
+            metierRepo.delete(metier);
+            return ResponseEntity.ok().build();
+        }).orElseThrow(() -> new ResourceNotFoundException("organId " + metierId + " not found"));
+    }
+
+      /*  return metierRepo.findByIdAndSecteurId(metierId, secteurId).map(metier -> {
             metierRepo.delete(metier);
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("metier not found with id " + metierId+ " and secteurId " + secteurId));
     }
+
+       */
 }
 
 

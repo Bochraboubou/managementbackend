@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "article")
@@ -30,11 +32,16 @@ public class Article {
     @JoinColumn(name = "metier_id", nullable = false)
     private Metier metier;
 
-    public Article(String code, String designation, String unitee, Metier metier) {
+    @OneToMany(mappedBy = "article")
+    private List<ArticleUtilisee> bcassociation = new ArrayList<ArticleUtilisee>();
+
+
+    public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation) {
         this.code = code;
         this.designation = designation;
         this.unitee = unitee;
         this.metier = metier;
+        this.bcassociation = bcassociation;
     }
 
     public Article() {
@@ -79,5 +86,13 @@ public class Article {
 
     public void setMetier(Metier metier) {
         this.metier = metier;
+    }
+
+    public List<ArticleUtilisee> getBcassociation() {
+        return bcassociation;
+    }
+
+    public void setBcassociation(List<ArticleUtilisee> bcassociation) {
+        this.bcassociation = bcassociation;
     }
 }

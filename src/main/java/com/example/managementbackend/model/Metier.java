@@ -28,8 +28,20 @@ public class Metier {
             mappedBy = "metier")
     private List<Article> articles = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "metier")
+    private List<Marchee> marchees = new ArrayList<>();
+
     public Metier() {
 
+    }
+
+    public Metier(Long id, String nomMetier, Secteur secteur, List<Article> articles) {
+        this.id = id;
+        this.nomMetier = nomMetier;
+        this.secteur = secteur;
+        this.articles = articles;
     }
 
     public Long getId() {

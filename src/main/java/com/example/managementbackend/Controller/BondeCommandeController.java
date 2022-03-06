@@ -23,11 +23,17 @@ public class BondeCommandeController {
     private MarcheeRepository marcheeRepo;
 
     @Autowired
-    private EntrepriseRepository entrepRepo;
+    private OrganisationRepository organisationRepo;
+
 
     @GetMapping("/marchees/{marcheeId}/bondescommandes")
     public List<BondeCommande> getAllbcsBymarcheeId(@PathVariable(value = "marcheeId") Long marcheeId) {
         return bcRepo.findByMarcheeId(marcheeId);
+    }
+
+    @GetMapping("/bondescommandes")
+    public List<BondeCommande> getAllbcs() {
+        return bcRepo.findAll();
     }
 
     @PostMapping("/marchees/{marcheeId}/bondescommandes/{entrepId}")
@@ -35,7 +41,7 @@ public class BondeCommandeController {
                                @Valid @RequestBody BondeCommande bondecommande) {
         return marcheeRepo.findById(marcheeId).map(marchee -> {
             bondecommande.setMarchee(marchee);
-            return entrepRepo.findById(entrepId).map(entreprise -> {
+            return organisationRepo.findById(entrepId).map(entreprise -> {
                 bondecommande.setEntreprise(entreprise);
                 return bcRepo.save(bondecommande);
             }).orElseThrow(() -> new ResourceNotFoundException("entrepriseId " + entrepId + " not found"));

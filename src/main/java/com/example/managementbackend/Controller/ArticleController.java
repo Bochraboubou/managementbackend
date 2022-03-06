@@ -6,12 +6,14 @@ import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.Metier;
+import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/admin")
 @RestController
@@ -22,9 +24,19 @@ public class ArticleController {
     @Autowired
     private MetierRepository metierRepo;
 
-    @GetMapping("/metiers/{metierrId}/articles")
+    @GetMapping("/articles")
+    public List<Article> getAllArticles() {
+        return articleRepo.findAll();
+    }
+
+    @GetMapping("/metiers/{metierId}/articles")
     public List<Article> getAllArticlesByMetierId(@PathVariable(value = "metierId") Long metierId) {
         return articleRepo.findByMetierId(metierId);
+    }
+
+    @GetMapping("/articlesbycode/{code}")
+    public Optional<Article> getArticlebyArticleUtilisee(@PathVariable String code) {
+        return articleRepo.findByCode(code).map(article -> articleRepo.findByCode(code)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found"));
     }
 
     @PostMapping("/metiers/{metierId}/articles")
