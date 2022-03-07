@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.managementbackend.Service.OrganisationService;
 
 
 import javax.validation.Valid;
@@ -18,56 +19,39 @@ import java.util.Optional;
 @RestController
 public class OrganisationController {
     @Autowired
+    private OrganisationService organisationService;
     private OrganisationRepository organisationRepo;
 
     @GetMapping("/organisations")
     public List<Organisation> getAll() {
-        return organisationRepo.findAll();
+        return organisationService.getAll();
     }
 
     @GetMapping("/oneorganisations/{organId}")
     public Optional<Organisation> getOrganById(@PathVariable Long organId) {
-        return organisationRepo.findById(organId).map(organisation -> organisationRepo.findById(organId)).orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
+        return organisationService.getOrganById(organId);
+    }
+
+    @GetMapping("/organisationbyCode/{codeOrgan}")
+    public Optional<Organisation> getOrganByCode(@PathVariable String codeOrgan) {
+        return organisationService.getByCode(codeOrgan);
     }
 
     @PostMapping("/organisations")
     public Organisation createOrganisation(@Valid @RequestBody Organisation organisation) {
-        return organisationRepo.save(organisation);
+        return organisationService.createOrganisation(organisation);
     }
 
     @PutMapping("/organisations/{organId}")
     public Organisation updateOrganisation(@PathVariable Long organId, @Valid @RequestBody Organisation organisationRequest) {
-        return organisationRepo.findById(organId).map(organisation -> {
-            organisation.setNom(organisationRequest.getNom());
-            organisation.setCode(organisationRequest.getCode());
-            organisation.setSecteur_d_activite(organisationRequest.getSecteur_d_activite());
-            organisation.setEmail(organisationRequest.getEmail());
-            organisation.setPays(organisationRequest.getPays());
-            organisation.setRegion(organisationRequest.getRegion());
-            organisation.setAdresse(organisationRequest.getAdresse());
-            organisation.setTel(organisationRequest.getTel());
-            organisation.setType(organisationRequest.getType());
-            organisation.setNomDG(organisationRequest.getNomDG());
-            organisation.setTelDG(organisationRequest.getTelDG());
-            organisation.setEmailDG(organisationRequest.getEmailDG());
-            organisation.setNomAdmin(organisationRequest.getNomAdmin());
-            organisation.setTelAdmin(organisationRequest.getTelAdmin());
-            organisation.setEmailAdmin(organisationRequest.getEmailAdmin());
-
-
-
-            return organisationRepo.save(organisation);
-        }).orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
+        return organisationService.updateOrganisation(organId,organisationRequest);
     }
-
-
     @DeleteMapping("/organisations/{organId}")
     public ResponseEntity<?> deleteOrganisation(@PathVariable Long organId) {
-        return organisationRepo.findById(organId).map(organisation -> {
-            organisationRepo.delete(organisation);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
+       return organisationService.deleteOrganisation(organId);
     }
+
+
 
 
     //methodes pour l'entreprise

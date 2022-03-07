@@ -9,6 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface OrganisationRepository extends JpaRepository<Organisation, Long> {
+    Optional<Organisation> findByCode(String Code);
    /*
     List<Organisation> findBySuporganId(long suporganId);
 

@@ -2,6 +2,7 @@ package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
 import com.example.managementbackend.Repository.SecteurRepository;
+import com.example.managementbackend.Service.SecteurService;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Organisation;
 import com.example.managementbackend.model.Secteur;
@@ -17,44 +18,42 @@ import java.util.Optional;
 @RestController
 public class SecteurController {
     @Autowired
-    private SecteurRepository secteurRepo;
+    private SecteurService secteurService;
 
     @GetMapping("/secteurs")
     public List<Secteur> getAll() {
-        return secteurRepo.findAll();
+        return secteurService.getAll();
     }
 
     @GetMapping("/secteurbynom/{nomSecteur}")
     public Optional<Secteur> getSecteurbyNom(@PathVariable String nomSecteur) {
-        return secteurRepo.findByNomSecteur(nomSecteur).map(secteur -> secteurRepo.findByNomSecteur(nomSecteur)).orElseThrow(() -> new ResourceNotFoundException("nomSecteur " + nomSecteur+ " not found"));
+        return secteurService.getSecteurbyNom(nomSecteur);
+    }
+
+    @GetMapping("/secteurbyId/{isSecteur}")
+    public Optional<Secteur> getSecteurbyId(@PathVariable long idSecteur) {
+        return secteurService.getSecteurbyId(idSecteur);
     }
 
     @GetMapping("/secteurbymetiers/{idmetier}")
     public Optional<Secteur> getSecteurbymetiers(@PathVariable long idmetier) {
-        return secteurRepo.findByMetiersId(idmetier).map(secteur -> secteurRepo.findByMetiersId(idmetier)).orElseThrow(() -> new ResourceNotFoundException("idmetier " + idmetier+ " not found"));
+        return secteurService.getSecteurbymetiers(idmetier);
     }
 
     @PostMapping("/secteurs")
     public Secteur createSecteur(@Valid @RequestBody Secteur secteur) {
-        return secteurRepo.save(secteur);
+        return secteurService.createSecteur(secteur);
     }
 
     @PutMapping("/secteurs/{secteurId}")
     public Secteur updateSecteur(@PathVariable Long secteurId, @Valid @RequestBody Secteur secteurRequest) {
-        return secteurRepo.findById(secteurId).map(secteur -> {
-            secteur.setNomSecteur(secteurRequest.getNomSecteur());
-
-            return secteurRepo.save(secteur);
-        }).orElseThrow(() -> new ResourceNotFoundException("secteurId " + secteurId + " not found"));
+        return secteurService.updateSecteur(secteurId,secteurRequest);
     }
 
 
     @DeleteMapping("/secteurs/{secteurId}")
     public ResponseEntity<?> deleteSecteur(@PathVariable Long secteurId) {
-        return secteurRepo.findById(secteurId).map(secteur -> {
-            secteurRepo.delete(secteur);
-            return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("organId " + secteurId + " not found"));
+        return secteurService.deleteSecteur(secteurId);
     }
 }
 
