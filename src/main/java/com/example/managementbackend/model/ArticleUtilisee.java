@@ -8,21 +8,21 @@ import javax.persistence.*;
 @Entity
 @Table(name = "articleutilisee")
 public class ArticleUtilisee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @NotNull
-    @Column(unique = true)
-    private String code;
+    @EmbeddedId
+    private AticleUtiliseeId id;
 
-    @NotNull
-    private String designation;
+    @JsonIgnore
+    @ManyToOne
+    @MapsId("bondecommande_id") //This is the name of attr in EmployerDeliveryAgentPK class
+    @JoinColumn(name = "bondecommande_id")
+    private BondeCommande bondecommande;
 
-
-    @NotNull
-    private String unitee;
-
+    @JsonIgnore
+    @ManyToOne
+    @MapsId("article_id")
+    @JoinColumn(name = "article_id")
+    private Article article;
 
     @NotNull
     private float prix;
@@ -30,54 +30,51 @@ public class ArticleUtilisee {
 
     @NotNull
     private long quantitee;
-    @JsonIgnore
+   /* @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bc_id", nullable = false)
     private BondeCommande bondecommande;
+    */
 
-    public ArticleUtilisee(String code, String designation, String unitee, float prix, long quantitee, BondeCommande bondecommande) {
-        this.code = code;
-        this.designation = designation;
-        this.unitee = unitee;
+
+    public ArticleUtilisee(BondeCommande bondecommande, Article article, float prix, long quantitee) {
+        // create primary key
+        this.id = new AticleUtiliseeId(bondecommande.getId(), article.getId());
+
+        // initialize attributes
+        this.bondecommande = bondecommande;
+        this.article = article;
         this.prix = prix;
         this.quantitee = quantitee;
-        this.bondecommande = bondecommande;
     }
 
     public ArticleUtilisee() {
 
     }
 
-    public Long getId() {
+
+    public AticleUtiliseeId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(AticleUtiliseeId id) {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public BondeCommande getBondecommande() {
+        return bondecommande;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setBondecommande(BondeCommande bondecommande) {
+        this.bondecommande = bondecommande;
     }
 
-    public String getDesignation() {
-        return designation;
+    public Article getArticle() {
+        return article;
     }
 
-    public void setDesignation(String designation) {
-        this.designation = designation;
-    }
-
-    public String getUnitee() {
-        return unitee;
-    }
-
-    public void setUnitee(String unitee) {
-        this.unitee = unitee;
+    public void setArticle(Article article) {
+        this.article = article;
     }
 
     public float getPrix() {
@@ -96,11 +93,5 @@ public class ArticleUtilisee {
         this.quantitee = quantitee;
     }
 
-    public BondeCommande getBondecommande() {
-        return bondecommande;
-    }
 
-    public void setBondecommande(BondeCommande bondecommande) {
-        this.bondecommande = bondecommande;
-    }
 }

@@ -2,10 +2,14 @@ package com.example.managementbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "bondecommande")
@@ -24,48 +28,45 @@ public class BondeCommande {
     @NotNull
     private long delais;
 
-    @OneToOne(cascade = CascadeType.ALL, optional = false)
+   /* @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "id_entreprise")
-    private Entreprise entreprise;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organisation_id", nullable = false)*/
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "id_entreprise", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+    private Organisation entreprise;
+
+   /* @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "bondecommande")
     private List<ArticleUtilisee> articlesutilisees = new ArrayList<>();
+    */
+
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "marchee_id", nullable = false)
     private Marchee marchee;
 
-    public BondeCommande(long numeros, float montant, long delais, Entreprise entreprise, List<ArticleUtilisee> articlesutilisees, Marchee marchee) {
+    @OneToMany(mappedBy = "bondecommande")
+    private List<ArticleUtilisee> articlesassociation = new ArrayList<ArticleUtilisee>();
+
+
+    public BondeCommande(long numeros, float montant, long delais, Organisation entreprise, Marchee marchee, List<ArticleUtilisee> articlesassociation) {
         this.numeros = numeros;
         this.montant = montant;
         this.delais = delais;
         this.entreprise = entreprise;
-        this.articlesutilisees = articlesutilisees;
         this.marchee = marchee;
+        this.articlesassociation = articlesassociation;
     }
 
     public BondeCommande() {
 
-    }
-
-    public Entreprise getEntreprise() {
-        return entreprise;
-    }
-
-    // Getters and Setters
-
-
-
-
-    public long getNumeros() {
-        return numeros;
-    }
-
-    public void setNumeros(long numeros) {
-        this.numeros = numeros;
     }
 
     public Long getId() {
@@ -74,6 +75,14 @@ public class BondeCommande {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getNumeros() {
+        return numeros;
+    }
+
+    public void setNumeros(long numeros) {
+        this.numeros = numeros;
     }
 
     public float getMontant() {
@@ -92,17 +101,12 @@ public class BondeCommande {
         this.delais = delais;
     }
 
-    public void setEntreprise(Entreprise entreprise) {
+    public Organisation getEntreprise() {
+        return entreprise;
+    }
+
+    public void setEntreprise(Organisation entreprise) {
         this.entreprise = entreprise;
-    }
-
-
-    public List<ArticleUtilisee> getArticlesutilisees() {
-        return articlesutilisees;
-    }
-
-    public void setArticlesutilisees(List<ArticleUtilisee> articlesutilisees) {
-        this.articlesutilisees = articlesutilisees;
     }
 
     public Marchee getMarchee() {
@@ -111,5 +115,13 @@ public class BondeCommande {
 
     public void setMarchee(Marchee marchee) {
         this.marchee = marchee;
+    }
+
+    public List<ArticleUtilisee> getArticlesassociation() {
+        return articlesassociation;
+    }
+
+    public void setArticlesassociation(List<ArticleUtilisee> articlesassociation) {
+        this.articlesassociation = articlesassociation;
     }
 }

@@ -15,12 +15,6 @@ public class Marchee {
     private Long id;
 
     @NotNull
-    private String secteurd_activitee;
-
-    @NotNull
-    private String metier;
-
-    @NotNull
     @Column(unique = true)
     private String code;
 
@@ -51,13 +45,16 @@ public class Marchee {
             mappedBy = "marchee")
     private List<BondeCommande> bondes = new ArrayList<>();
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "metier_id", nullable = false)
+    private Metier metier;
+
 
     // Getters and Setters
 
 
-    public Marchee(String secteurd_activitee, String metier, String code, String designiation, String budget, String type, float montant, long delais, Organisation org, List<BondeCommande> bondes) {
-        this.secteurd_activitee = secteurd_activitee;
-        this.metier = metier;
+    public Marchee(String code, String designiation, String budget, String type, float montant, long delais, Organisation org, List<BondeCommande> bondes, Metier metier) {
         this.code = code;
         this.designiation = designiation;
         this.budget = budget;
@@ -66,18 +63,11 @@ public class Marchee {
         this.delais = delais;
         this.org = org;
         this.bondes = bondes;
+        this.metier = metier;
     }
 
     public Marchee() {
 
-    }
-
-    public String getDesigniation() {
-        return designiation;
-    }
-
-    public void setDesigniation(String designiation) {
-        this.designiation = designiation;
     }
 
     public Long getId() {
@@ -88,28 +78,20 @@ public class Marchee {
         this.id = id;
     }
 
-    public String getSecteurd_activitee() {
-        return secteurd_activitee;
-    }
-
-    public void setSecteurd_activitee(String secteurD_activitee) {
-        this.secteurd_activitee = secteurD_activitee;
-    }
-
-    public String getMetier() {
-        return metier;
-    }
-
-    public void setMetier(String metier) {
-        this.metier = metier;
-    }
-
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getDesigniation() {
+        return designiation;
+    }
+
+    public void setDesigniation(String designiation) {
+        this.designiation = designiation;
     }
 
     public String getBudget() {
@@ -158,5 +140,13 @@ public class Marchee {
 
     public void setBondes(List<BondeCommande> bondes) {
         this.bondes = bondes;
+    }
+
+    public Metier getMetier() {
+        return metier;
+    }
+
+    public void setMetier(Metier metier) {
+        this.metier = metier;
     }
 }
