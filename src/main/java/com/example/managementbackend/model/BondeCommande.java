@@ -18,7 +18,7 @@ public class BondeCommande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+
     @NotNull
     private long numeros;
 

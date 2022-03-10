@@ -58,6 +58,16 @@ public class Organisation {
         @NotNull
         private String emailDG;
 
+        @NotNull
+        private String nomAdmin;
+
+
+        @NotNull
+        private long telAdmin;
+
+
+        @NotNull private String emailAdmin;
+
 
      /*   @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,
@@ -77,11 +87,10 @@ public class Organisation {
                 mappedBy = "org")
         private List<Marchee> marchees = new ArrayList<>();
 
-
         // Getters and Setters (Omitted for brevity)
 
 
-        public Organisation(String nom, String code, String secteur_d_activite, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, List<Marchee> marchees) {
+        public Organisation(String nom, String code, String secteur_d_activite, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, String nomAdmin, long telAdmin, String emailAdmin, List<Marchee> marchees) {
                 this.nom = nom;
                 this.code = code;
                 this.secteur_d_activite = secteur_d_activite;
@@ -94,6 +103,9 @@ public class Organisation {
                 this.nomDG = nomDG;
                 this.telDG = telDG;
                 this.emailDG = emailDG;
+                this.nomAdmin = nomAdmin;
+                this.telAdmin = telAdmin;
+                this.emailAdmin = emailAdmin;
                 this.marchees = marchees;
         }
 
@@ -211,6 +223,30 @@ public class Organisation {
 
         public void setMarchees(List<Marchee> marchees) {
                 this.marchees = marchees;
+        }
+
+        public String getNomAdmin() {
+                return nomAdmin;
+        }
+
+        public void setNomAdmin(String nomAdmin) {
+                this.nomAdmin = nomAdmin;
+        }
+
+        public long getTelAdmin() {
+                return telAdmin;
+        }
+
+        public void setTelAdmin(long telAdmin) {
+                this.telAdmin = telAdmin;
+        }
+
+        public String getEmailAdmin() {
+                return emailAdmin;
+        }
+
+        public void setEmailAdmin(String emailAdmin) {
+                this.emailAdmin = emailAdmin;
         }
 }
 
