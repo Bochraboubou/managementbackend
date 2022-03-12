@@ -34,8 +34,13 @@ public class ArticleController {
     }
 
     @GetMapping("/articlesbycode/{code}")
-    public Optional<Article> getArticlebyArticleUtilisee(@PathVariable String code) {
-        return getArticlebyArticleUtilisee(code);
+    public Optional<Article> getArticlebyCode(@PathVariable String code) {
+        return articleService.getArticlebyCode(code);
+    }
+
+    @GetMapping("/articlesbycode/{code}/metier/{metierId}")
+    public Optional<Article> getArticlebyCodeandMetierId(@PathVariable(value = "code") String code,@PathVariable(value = "metierId") long metierId) {
+        return articleService.getArticlebyCodeandMetier(code,metierId);
     }
 
     @PostMapping("/metiers/{metierId}/articles")
