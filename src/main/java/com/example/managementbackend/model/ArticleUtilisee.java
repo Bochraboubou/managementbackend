@@ -1,5 +1,6 @@
 package com.example.managementbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 
@@ -10,7 +11,7 @@ import javax.persistence.*;
 public class ArticleUtilisee {
 
     @EmbeddedId
-    private AticleUtiliseeId id;
+    private  AticleUtiliseeId id;
 
     @JsonIgnore
     @ManyToOne

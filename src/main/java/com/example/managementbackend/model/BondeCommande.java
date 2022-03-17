@@ -1,6 +1,7 @@
 package com.example.managementbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -18,7 +19,7 @@ public class BondeCommande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+
     @NotNull
     private long numeros;
 
@@ -52,6 +53,7 @@ public class BondeCommande {
     @JoinColumn(name = "marchee_id", nullable = false)
     private Marchee marchee;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "bondecommande")
     private List<ArticleUtilisee> articlesassociation = new ArrayList<ArticleUtilisee>();
 

@@ -46,6 +46,9 @@ public class OrganisationService {
             organisation.setNomDG(organisationRequest.getNomDG());
             organisation.setTelDG(organisationRequest.getTelDG());
             organisation.setEmailDG(organisationRequest.getEmailDG());
+            organisation.setNomAdmin(organisationRequest.getNomAdmin());
+            organisation.setTelAdmin(organisationRequest.getTelAdmin());
+            organisation.setEmailAdmin(organisationRequest.getEmailAdmin());
 
 
             return organisationRepo.save(organisation);
