@@ -23,7 +23,11 @@ public class Organisation {
 
         @NotNull
         @Column(unique = true)
+        private String code_prive;
+        @NotNull
+        @Column(unique = true)
         private String code;
+
 
         @NotNull
         private String secteur_d_activite;
@@ -58,6 +62,13 @@ public class Organisation {
         @NotNull
         private String emailDG;
 
+        @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+        @OneToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY,
+                mappedBy = "organisation")
+
+        private List<User> users;
+
 
      /*   @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,
@@ -81,9 +92,11 @@ public class Organisation {
         // Getters and Setters (Omitted for brevity)
 
 
-        public Organisation(String nom, String code, String secteur_d_activite, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, List<Marchee> marchees) {
+        public Organisation(String nom, String code_prive, String code, String secteur_d_activite, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, List<User> users, List<Marchee> marchees) {
+
                 this.nom = nom;
-                this.code = code;
+                this.code_prive = code_prive;
+                this.code= code;
                 this.secteur_d_activite = secteur_d_activite;
                 this.email = email;
                 this.pays = pays;
@@ -94,6 +107,7 @@ public class Organisation {
                 this.nomDG = nomDG;
                 this.telDG = telDG;
                 this.emailDG = emailDG;
+                this.users = users;
                 this.marchees = marchees;
         }
 
@@ -109,6 +123,31 @@ public class Organisation {
                 this.id = id;
         }
 
+        public String getCode_prive() {
+                return code_prive;
+        }
+
+        public void setCode_prive(String code_prive) {
+                this.code_prive = code_prive;
+        }
+
+        public String getCode() {
+                return code;
+        }
+
+        public void setCode_confirmation(String code) {
+                this.code= code;
+        }
+
+        public List<User> getUsers() {
+                return users;
+        }
+
+        public void setUsers(List<User> users) {
+                this.users = users;
+        }
+
+
         public String getNom() {
                 return nom;
         }
@@ -117,13 +156,7 @@ public class Organisation {
                 this.nom = nom;
         }
 
-        public String getCode() {
-                return code;
-        }
 
-        public void setCode(String code) {
-                this.code = code;
-        }
 
         public String getSecteur_d_activite() {
                 return secteur_d_activite;

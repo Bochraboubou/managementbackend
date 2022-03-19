@@ -1,11 +1,9 @@
 package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
-import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Organisation;
+import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.managementbackend.Service.OrganisationService;
@@ -52,6 +50,11 @@ public class OrganisationController {
     }
 
 
+
+    @GetMapping("/organisationByUser/{idUser}")
+    public Optional<Organisation> getOrganisationUser(@PathVariable long idUser) {
+        return organisationService.getOrganisationByUser(idUser);
+    }
 
 
     //methodes pour l'entreprise

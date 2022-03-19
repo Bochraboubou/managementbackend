@@ -6,12 +6,17 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+//@Service
 public interface UserService {
-    User saveUser(User user);
+    User saveUser(Long organId ,Long roleId, User user);
     Role saveRole (Role role );
     void addRoleToUser( String userName, String roleName);
-    User getUser( String username);
+    User getUserByUsername( String username);
     List<User> getUsers();
-    public  User find(String username);
+     User find(String username);
+
+    User fetchUserByUserNameandPassword(String username, String password);
+
+
+    User fetchUserByEmail(String tempMail);
 }

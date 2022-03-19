@@ -30,7 +30,9 @@ public class SecteurService {
     }
 
     public Optional<Secteur> getSecteurbymetiers(long idmetier) {
-        return secteurRepo.findByMetiersId(idmetier).map(secteur -> secteurRepo.findByMetiersId(idmetier)).orElseThrow(() -> new ResourceNotFoundException("idmetier " + idmetier+ " not found"));
+        return secteurRepo.findByMetiersId(idmetier).map(secteur
+                -> secteurRepo.findByMetiersId(idmetier)).orElseThrow(()
+                -> new ResourceNotFoundException("idmetier " + idmetier+ " not found"));
     }
 
     public Secteur createSecteur(Secteur secteur) {

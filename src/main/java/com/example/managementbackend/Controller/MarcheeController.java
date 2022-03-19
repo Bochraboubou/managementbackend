@@ -30,7 +30,8 @@ public class MarcheeController {
     }
 
     @PostMapping("/organisations/{organId}/marchees/{metierId}")
-    public Marchee createMarchee(@PathVariable (value = "organId") Long organId,@PathVariable (value = "metierId") long metierId,
+    public Marchee createMarchee
+            (@PathVariable (value = "organId") Long organId,@PathVariable (value = "metierId") long metierId,
                                @Valid @RequestBody Marchee marchee) {
         return marcheeService.create(organId,metierId,marchee);
     }

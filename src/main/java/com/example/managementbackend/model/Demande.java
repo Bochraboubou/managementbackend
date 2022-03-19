@@ -4,10 +4,12 @@ package com.example.managementbackend.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.web.multipart.MultipartFile;
 
-
+import org.springframework.web.multipart.MultipartFile;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.File;
 
 @Entity
 @AllArgsConstructor
@@ -42,7 +44,7 @@ public class Demande {
     private String adresse;
 
     @NotNull
-    private long tel;
+    private long telOrg;
 
     @NotNull
     private String type;
@@ -69,4 +71,8 @@ public class Demande {
 
     @com.sun.istack.NotNull
     private String emailAdmin;
+
+    private String  document;
+    private String logo;
+
 }

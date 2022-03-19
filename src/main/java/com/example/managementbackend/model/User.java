@@ -1,6 +1,7 @@
 package com.example.managementbackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,17 +33,33 @@ public class User {
     @Size(max = 20)
     private String username;
 
-    private String status;
+    private String name;
 
     @Email
     private String email;
+
     @NotBlank
     @Size(max = 120)
     private String password;
 
     @ManyToMany(fetch = EAGER)
-    private Collection<Role> roles= new ArrayList<>();
-    /*@ManyToMany(fetch = FetchType.LAZY)
+
+    private List<Role> roles= new ArrayList<>();
+
+
+
+
+
+
+
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "organisation_id", nullable = false)
+    private Organisation organisation;
+
+
+
+      /* @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
