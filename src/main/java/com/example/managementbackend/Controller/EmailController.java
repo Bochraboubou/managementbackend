@@ -4,11 +4,10 @@ import com.example.managementbackend.Repository.MailRepository;
 import com.example.managementbackend.Service.EmailService;
 import com.example.managementbackend.model.Email;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("/api")
 public class EmailController {
     @Autowired
     MailRepository mailRepository;
@@ -22,5 +21,13 @@ public class EmailController {
         emailService.sendEmail(mail);
         mailRepository.save(mail);
         return "message envoyeeee ...";
+    }
+    @PostMapping("/sendEmail")
+    public Email  send1(@RequestBody Email mail)
+    {
+
+        mailRepository.save(mail);
+       // System.out.println("message envoyeeee ...");
+        return    emailService.sendEmail(mail);
     }
 }

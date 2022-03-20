@@ -14,7 +14,7 @@ public class EmailService {
     @Autowired
     MailRepository mailRepository;
 
-    public  void sendEmail(Email mail)
+    public  Email sendEmail(Email mail)
     {String toEmail=mail.getDestinataire();
         String subject=mail.getObjet();
         String body=mail.getMessage();
@@ -24,9 +24,9 @@ public class EmailService {
         message.setSubject(subject);
         message.setText(body);
         javaMailSender.send(message);
-        System.out.println("mail send successfully.....");
+        //System.out.println("mail send successfully.....");
 
-
+return mailRepository.save(mail);
     }
 
     // random

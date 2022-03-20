@@ -13,9 +13,11 @@ public class ProspectService {
     ProspectRepository prospectRepository;
 
     public Prospect findUser(String email, String code){
-      return prospectRepository.findByEmailAndCode(email,code);
+
+        return prospectRepository.findByEmailAndCode(email,code);
     }
     public Prospect saveNewUser( Prospect prospect){
+
         return prospectRepository.save(prospect);
     }
     public List<Prospect> getAllNewUsers(){

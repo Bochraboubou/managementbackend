@@ -1,6 +1,8 @@
 package com.example.managementbackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,6 +16,8 @@ import java.io.File;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude (value= JsonInclude.Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Data
 public class Demande {
     @Id
@@ -73,6 +77,7 @@ public class Demande {
     private String emailAdmin;
 
     private String  document;
-    private String logo;
+    private byte[] logo;
+    private String filename;
 
 }
