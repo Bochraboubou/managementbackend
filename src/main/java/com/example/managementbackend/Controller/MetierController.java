@@ -35,6 +35,12 @@ public class MetierController {
         return metierService.getMetierbyNom(nomMetier);
     }
 
+
+    @GetMapping("/metierbyid/{id}")
+    public Optional<Metier> getMetierbyId(@PathVariable long id) {
+        return metierService.getMetierbyId(id);
+    }
+
     @PostMapping("/secteurs/{secteurId}/metiers")
     public Metier createMetier(@PathVariable (value = "secteurId") Long secteurId,
                                        @Valid @RequestBody Metier metier) {

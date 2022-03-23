@@ -40,6 +40,10 @@ public class MetierService {
         return metierRepo.findByNomMetier(nomMetier).map(metier -> metierRepo.findByNomMetier(nomMetier)).orElseThrow(() -> new ResourceNotFoundException("nommetier " + nomMetier+ " not found"));
     }
 
+    public Optional<Metier> getMetierbyId(long id) {
+        return metierRepo.findById(id).map(metier -> metierRepo.findById(id)).orElseThrow(() -> new ResourceNotFoundException("idmetier " + id+ " not found"));
+    }
+
 
     public ResponseEntity<?> delete(Long metierId) {
 
