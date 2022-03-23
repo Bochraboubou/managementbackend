@@ -4,12 +4,14 @@ import com.example.managementbackend.Repository.MetierRepository;
 import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Metier;
+import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MetierService {
@@ -32,6 +34,10 @@ public class MetierService {
             metier.setSecteur(secteur);
             return metierRepo.save(metier);
         }).orElseThrow(() -> new ResourceNotFoundException("secteurId " + secteurId + " not found"));
+    }
+
+    public Optional<Metier> getMetierbyNom(String nomMetier) {
+        return metierRepo.findByNomMetier(nomMetier).map(metier -> metierRepo.findByNomMetier(nomMetier)).orElseThrow(() -> new ResourceNotFoundException("nommetier " + nomMetier+ " not found"));
     }
 
 

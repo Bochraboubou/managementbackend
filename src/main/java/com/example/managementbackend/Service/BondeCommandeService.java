@@ -4,6 +4,7 @@ import com.example.managementbackend.Repository.BondeCommandeRepository;
 import com.example.managementbackend.Repository.MarcheeRepository;
 import com.example.managementbackend.Repository.OrganisationRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
+import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.BondeCommande;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 public class BondeCommandeService {
     @Autowired
@@ -30,6 +33,10 @@ public class BondeCommandeService {
 
     public List<BondeCommande> getAll() {
         return bcRepo.findAll();
+    }
+
+    public Optional<BondeCommande> getBCbyCode(String code) {
+        return bcRepo.findByCodebc(code).map(bondeCommande -> bcRepo.findByCodebc(code)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found"));
     }
 
     public BondeCommande create(Long marcheeId,Long entrepId, BondeCommande bondecommande) {
