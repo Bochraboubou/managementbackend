@@ -33,15 +33,23 @@ public class Metier {
             mappedBy = "metier")
     private List<Marchee> marchees = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "metier")
+    private List<Type> types = new ArrayList<>();
+
+
+
     public Metier() {
 
     }
 
-    public Metier(Long id, String nomMetier, Secteur secteur, List<Article> articles) {
-        this.id = id;
+    public Metier(String nomMetier, Secteur secteur, List<Article> articles, List<Marchee> marchees, List<Type> types) {
         this.nomMetier = nomMetier;
         this.secteur = secteur;
         this.articles = articles;
+        this.marchees = marchees;
+        this.types = types;
     }
 
     public Long getId() {
