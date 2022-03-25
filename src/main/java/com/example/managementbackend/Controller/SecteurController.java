@@ -30,7 +30,7 @@ public class SecteurController {
         return secteurService.getSecteurbyNom(nomSecteur);
     }
 
-    @GetMapping("/secteurbyId/{isSecteur}")
+    @GetMapping("/secteurbyId/{idSecteur}")
     public Optional<Secteur> getSecteurbyId(@PathVariable long idSecteur) {
         return secteurService.getSecteurbyId(idSecteur);
     }

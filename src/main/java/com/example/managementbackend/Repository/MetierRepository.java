@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface MetierRepository extends JpaRepository<Metier, Long> {
     List<Metier> findBySecteurId(long SecteurId);
     Optional<Metier> findByIdAndSecteurId(long id, long SecteurId);
+    Optional<Metier> findByNomMetier(String nomMetier);
 }

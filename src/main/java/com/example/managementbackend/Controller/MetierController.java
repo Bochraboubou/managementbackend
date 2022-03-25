@@ -5,12 +5,14 @@ import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.Service.MetierService;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Metier;
+import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/admin")
 @RestController
@@ -26,6 +28,17 @@ public class MetierController {
     @GetMapping("/secteurs/metiers")
     public List<Metier> getAllMetiers() {
         return metierService.getAll();
+    }
+
+    @GetMapping("/metierbynom/{nomMetier}")
+    public Optional<Metier> getMetierbyNom(@PathVariable String nomMetier) {
+        return metierService.getMetierbyNom(nomMetier);
+    }
+
+
+    @GetMapping("/metierbyid/{id}")
+    public Optional<Metier> getMetierbyId(@PathVariable long id) {
+        return metierService.getMetierbyId(id);
     }
 
     @PostMapping("/secteurs/{secteurId}/metiers")

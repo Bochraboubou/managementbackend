@@ -3,6 +3,7 @@ package com.example.managementbackend.Controller;
 import com.example.managementbackend.Repository.*;
 import com.example.managementbackend.Service.BondeCommandeService;
 import com.example.managementbackend.exception.ResourceNotFoundException;
+import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.BondeCommande;
 import com.example.managementbackend.model.Marchee;
 import com.example.managementbackend.model.Metier;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/admin")
 @RestController
@@ -31,6 +33,12 @@ public class BondeCommandeController {
     public List<BondeCommande> getAllbcs() {
         return bondeCommandeService.getAll();
     }
+
+    @GetMapping("/bcsbycode/{code}")
+    public Optional<BondeCommande> getBCbyCode(@PathVariable String code) {
+        return bondeCommandeService.getBCbyCode(code);
+    }
+
 
     @PostMapping("/marchees/{marcheeId}/bondescommandes/{entrepId}")
     public BondeCommande createBondeCommande(@PathVariable (value = "marcheeId") Long marcheeId,@PathVariable (value = "entrepId") Long entrepId,

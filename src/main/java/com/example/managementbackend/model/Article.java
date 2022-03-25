@@ -37,13 +37,19 @@ public class Article {
     @OneToMany(mappedBy = "article")
     private List<ArticleUtilisee> bcassociation = new ArrayList<ArticleUtilisee>();
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id", nullable = false)
+    private Type type;
 
-    public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation) {
+
+    public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation, Type type) {
         this.code = code;
         this.designation = designation;
         this.unitee = unitee;
         this.metier = metier;
         this.bcassociation = bcassociation;
+        this.type = type;
     }
 
     public Article() {
