@@ -43,10 +43,10 @@ public class ArticleController {
         return articleService.getArticlebyCodeandMetier(code,metierId);
     }
 
-    @PostMapping("/metiers/{metierId}/articles")
-    public Article createArticle(@PathVariable (value = "metierId") Long metierId,
+    @PostMapping("/metier/{metierId}/type/{typeId}/article")
+    public Article createArticle(@PathVariable (value = "metierId") Long metierId,@PathVariable (value = "typeId") Long typeId,
                                @Valid @RequestBody Article article) {
-        return articleService.save(metierId,article);
+        return articleService.save(metierId,article,typeId);
     }
 
 

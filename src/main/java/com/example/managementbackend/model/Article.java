@@ -72,6 +72,14 @@ public class Article {
         this.code = code;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
     public String getDesignation() {
         return designation;
     }
@@ -103,4 +111,5 @@ public class Article {
     public void setBcassociation(List<ArticleUtilisee> bcassociation) {
         this.bcassociation = bcassociation;
     }
+
 }

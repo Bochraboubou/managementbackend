@@ -2,6 +2,7 @@ package com.example.managementbackend.Service;
 
 import com.example.managementbackend.Repository.ArticleRepository;
 import com.example.managementbackend.Repository.MetierRepository;
+import com.example.managementbackend.Repository.TypeRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Article;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class ArticleService {
 
     @Autowired
     private MetierRepository metierRepo;
+
+    @Autowired
+    private TypeRepository typeRepo;
 
     public List<Article> getAll() {
         return articleRepo.findAll();
@@ -33,10 +37,15 @@ public class ArticleService {
         return articleRepo.findByCodeAndMetierId(code,metierId).map(article -> articleRepo.findByCodeAndMetierId(code,metierId)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found ou idMetier "+ metierId+"not found "));
     }
 
-    public Article save(Long metierId, Article article) {
+    public Article save(Long metierId, Article article,long typeId) {
         return metierRepo.findById(metierId).map(metier -> {
             article.setMetier(metier);
-            return articleRepo.save(article);
+            return typeRepo.findById(typeId).map(type -> {
+                article.setType(type);
+                return articleRepo.save(article);
+            }).orElseThrow(() -> new ResourceNotFoundException("typeId " + typeId + " not found"));
+
+
         }).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId + " not found"));
     }
 
