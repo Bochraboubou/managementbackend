@@ -2,11 +2,10 @@ package com.example.managementbackend.Service;
 
 import com.example.managementbackend.Repository.DemandeRepository;
 import com.example.managementbackend.model.Demande;
-import com.example.managementbackend.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,7 +17,9 @@ public class DemandeService {
     DemandeRepository demandeRepository;
     //save
     public Demande  saveDemande (Demande d ) {
-        log.info("saving user  {}to the data base ", d.getNom());
+        MultipartFile file = null;
+        log.info("saving demande {}to the data base ", d.getNom());
+        //d.setDocumentpath("/Downloads/uploads/"+file.getOriginalFilename());
         return  demandeRepository.save(d);
     }
     //getAll
@@ -61,8 +62,9 @@ public class DemandeService {
         demande1.setTelDG(demande.getTelDG());
         demande1.setSecteur_d_activite(demande.getSecteur_d_activite());
         demande1.setRegion(demande.getRegion());
-        demande1.setDocument(demande.getDocument());
-        demande1.setLogo(demande.getLogo());
+        demande1.setDocumentpath(demande.getDocumentpath());
+        demande1.setFileName(demande.getFileName());
+        demande1.setDemandeStatus(demande.isDemandeStatus());
          demandeRepository.save(demande1);
     }
 }

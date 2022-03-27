@@ -17,17 +17,20 @@ public class ProsoectController {
     ProspectService prospectService;
     @GetMapping("/findProspect/{email}")
     public Prospect getInformation(@PathVariable String email){
-
-        return prospectRepository.findByEmail(email);
+        return prospectService.findByEmail(email);
     }
     @PostMapping("/saveprospect")
     public  Prospect save(@RequestBody Prospect prospect){
+
         return prospectService.saveNewUser(prospect);
     }
     @GetMapping("/allPros")
     public List<Prospect> getAll(){
         return prospectRepository.findAll();
     }
-
+    @GetMapping("/byEmailAndCode/{email}/code/{code}")
+     Prospect troverByEmailAndCode(@PathVariable String email,@PathVariable String code  ){
+      return prospectService.findUser(email,code)  ;
+       }
 
 }

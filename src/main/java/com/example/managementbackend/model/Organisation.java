@@ -3,6 +3,9 @@ package com.example.managementbackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,7 +13,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "organisation")
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class Organisation {
 
         @Id
@@ -21,9 +26,7 @@ public class Organisation {
         @Column(unique = true)
         private String nom;
 
-        @NotNull
-        @Column(unique = true)
-        private String code_prive;
+
         @NotNull
         @Column(unique = true)
         private String code;
@@ -61,7 +64,22 @@ public class Organisation {
 
         @NotNull
         private String emailDG;
+        @com.sun.istack.NotNull
+        private String nomAdmin;
 
+
+        @com.sun.istack.NotNull
+        private long telAdmin;
+
+
+        @com.sun.istack.NotNull
+        private String emailAdmin;
+
+        private String  document;
+        private String logo;
+
+
+        @JsonIgnore
         @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
         @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,
@@ -90,12 +108,12 @@ public class Organisation {
 
 
         // Getters and Setters (Omitted for brevity)
+/*
 
-
-        public Organisation(String nom, String code_prive, String code, String secteur_d_activite, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, List<User> users, List<Marchee> marchees) {
+        public Organisation(String nom,  String code, String secteur_d_activite, String email, String pays, String region, String adresse, long tel, String type, String nomDG, long telDG, String emailDG, List<User> users, List<Marchee> marchees) {
 
                 this.nom = nom;
-                this.code_prive = code_prive;
+
                 this.code= code;
                 this.secteur_d_activite = secteur_d_activite;
                 this.email = email;
@@ -123,13 +141,7 @@ public class Organisation {
                 this.id = id;
         }
 
-        public String getCode_prive() {
-                return code_prive;
-        }
 
-        public void setCode_prive(String code_prive) {
-                this.code_prive = code_prive;
-        }
 
         public String getCode() {
                 return code;
@@ -245,5 +257,7 @@ public class Organisation {
         public void setMarchees(List<Marchee> marchees) {
                 this.marchees = marchees;
         }
+        */
+
 }
 

@@ -44,7 +44,7 @@ public class OrganisationService {
 
             //ona a pas le droit de changer le code de confirmation donner par le" cpm"
             //organisation.setCode_confirmation(organisationRequest.getCode_confirmation());
-            organisation.setCode_prive(organisationRequest.getCode_prive());
+
             organisation.setSecteur_d_activite(organisationRequest.getSecteur_d_activite());
             organisation.setEmail(organisationRequest.getEmail());
             organisation.setPays(organisationRequest.getPays());

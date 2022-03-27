@@ -24,4 +24,7 @@ public class ProspectService {
         return prospectRepository.findAll();
 
     }
-}
+    public Prospect findByEmail(String email)
+    {
+        return prospectRepository.findByEmail(email);
+    }}

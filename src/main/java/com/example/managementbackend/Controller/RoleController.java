@@ -1,6 +1,7 @@
 package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Repository.RoleRepository;
+import com.example.managementbackend.Service.RoleService;
 import com.example.managementbackend.Service.UserService;
 import com.example.managementbackend.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +18,14 @@ public class RoleController {
 
     @Autowired
     UserService userService;
-
+@Autowired
+    RoleService roleService;
     @Autowired
     RoleRepository roleRepository;
+
     @PostMapping("/role/save")
     public Role saveRole(@RequestBody Role role){
-return userService.saveRole(role);
+         return userService.saveRole(role);
 
     }
     @GetMapping("/roles")
@@ -38,5 +41,17 @@ return userService.saveRole(role);
     @PutMapping("/put/{rolename}")
     public Role  fetch(@PathVariable String rolename ){
        return  roleRepository.findByName(rolename);
+    }
+
+
+    @GetMapping("/getRoleUser/{id}")
+    public List <Role> TrouverRoleUser(@PathVariable Long id){
+        return roleService.findRole(id);
+    }
+
+    //////////////////////
+    @GetMapping("/listeRoles/{id}")
+    public List<Role>fff(@PathVariable Long id){
+      return  roleRepository.findByUsersId(id);
     }
 }

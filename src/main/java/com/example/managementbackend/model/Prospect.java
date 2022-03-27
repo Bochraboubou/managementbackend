@@ -11,7 +11,6 @@ import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Data
 public class Prospect {
     @Id
@@ -19,5 +18,14 @@ public class Prospect {
     private Long id;
     private String email;
     private String code;
+    private Long id_org;
+    private Long id_role;
 
+    public Prospect(Long id, String email, String code, Long id_org, Long id_role) {
+        this.id = id;
+        this.email = email;
+        this.code = code;
+        this.id_org = id_org;
+        this.id_role = id_role;
+    }
 }

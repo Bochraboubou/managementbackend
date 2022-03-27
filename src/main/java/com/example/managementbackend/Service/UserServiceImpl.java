@@ -4,14 +4,13 @@ import com.example.managementbackend.Repository.OrganisationRepository;
 import com.example.managementbackend.Repository.RoleRepository;
 import com.example.managementbackend.Repository.UserRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
-import com.example.managementbackend.model.Marchee;
-import com.example.managementbackend.model.Organisation;
 import com.example.managementbackend.model.Role;
 import com.example.managementbackend.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 //import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -59,6 +58,7 @@ public class UserServiceImpl  implements UserService{
         return roleRepository.save(role);
     }
 
+
     @Override
     public void addRoleToUser(String username, String roleName) {
         log.info("adding role {} to  user {}  ", roleName,username);
@@ -68,6 +68,7 @@ public class UserServiceImpl  implements UserService{
         log.info("step one ");
         u.getRoles().add(r);
     }
+
 
     @Override
     public User getUserByUsername (String username) {
@@ -100,6 +101,54 @@ public class UserServiceImpl  implements UserService{
     }
 
 
-//get organisation by user
+// get user by id organisation ::
+    @Override
+    public List<User> findUser( Long id ){
+
+    return userRepository.findByOrganisationId(id);
+    }
+  @Override
+ public Optional<User> findUserById(Long id ){
+   return userRepository.findById(id);
+  }
+
+  //Simple user
+
+
+    @Override
+    public User premierFois(Long organId ,User user) {
+        log.info("saving user  {}to the data base ", user.getUsername());
+        return organRepo.findById(organId).map(organisation -> {
+
+                user.setOrganisation(organisation);
+
+
+                // user.setRoles(roles);
+                return userRepository.save(user);
+            }).orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
+
+    }
+    @Override
+    public List <User> trouverEmployer(Long idOrg ){
+
+        List <User>liste=userRepository.findByOrganisationId(idOrg);
+        List <User>listfinale=new ArrayList<>();
+      for(User u:liste){
+        List<Role>rolesUser=new ArrayList<>();
+        Long iduser=u.getId();
+        rolesUser=roleRepository.findRoleByUsersId(iduser);
+        for(Role r:rolesUser){
+            if(r.getId()==7){
+                listfinale.add(u);
+            }
+
+        }
+
+    }
+
+    return listfinale;
+    }
+
+
 
 }

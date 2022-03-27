@@ -4,16 +4,22 @@ import com.example.managementbackend.Repository.DemandeRepository;
 import com.example.managementbackend.Service.DemandeService;
 import com.example.managementbackend.model.Demande;
 import com.example.managementbackend.model.Response;
-import com.example.managementbackend.model.User;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.json.JsonParseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
+import javax.servlet.ServletContext;
+import javax.validation.Valid;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 
 @RestController
@@ -23,17 +29,19 @@ public class DemandeController {
     DemandeRepository demandeRepository;
     @Autowired
     DemandeService demandeService;
+   @Autowired  ServletContext context ;
 
 
 
 
 
 
-    @PostMapping("/saveDemandefile")
+
+   /* @PostMapping("/saveDemandefile")
 public ResponseEntity<Response> saveDmandeAndImage(@RequestParam("file") MultipartFile file,@RequestParam String  user) throws IOException {
         Demande demande = new ObjectMapper().readValue(user, Demande.class);
-        demande.setLogo(file.getBytes());
-        demande.setFilename(file.getOriginalFilename());
+
+
         Demande dbDemande = demandeService.saveDemande(demande);
         if (dbDemande != null) {
             return new ResponseEntity<>(new Response("demande is successfully saved "), HttpStatus.OK);
@@ -41,7 +49,7 @@ public ResponseEntity<Response> saveDmandeAndImage(@RequestParam("file") Multipa
             return new ResponseEntity<>(new Response(" demande not saved "), HttpStatus.BAD_REQUEST);
         }
 
-    }
+    }*/
 
     @GetMapping("/demandes")
     public List<Demande> listeDemandes(){
@@ -84,8 +92,101 @@ public ResponseEntity<Response> saveDmandeAndImage(@RequestParam("file") Multipa
      */
 
     //another methode
-    @PutMapping("demande/{id}")
-    public  void modifier(@PathVariable Long id,@RequestBody Demande demande){
+    @PutMapping("/demande/{id}")
+    public  void modifier(@PathVariable Long id, @Valid @RequestBody Demande demande){
         demandeService.updateDemande(demande ,id);
     }
+
+
+/*
+
+// image
+    @PostMapping("/demandenew")
+    public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile file,
+                                                   @RequestParam("demande") String demande) throws JsonParseException, JsonMappingException , Exception
+    {
+        System.out.println("Ok .............");
+       Demande demande1 = new ObjectMapper().readValue(demande, Demande.class);
+        boolean isExit = new File(context.getRealPath("/Images/")).exists();
+        if (!isExit)
+        {
+            new File (context.getRealPath("/Images/")).mkdir();
+            System.out.println("mk dir.............");
+        }
+        String filename = file.getOriginalFilename();
+        String newFileName = FilenameUtils.getBaseName(filename)+"."+FilenameUtils.getExtension(filename);
+        File serverFile = new File (context.getRealPath("/Images/"+File.separator+newFileName));
+        try
+        {
+            System.out.println("Image");
+            FileUtils.writeByteArrayToFile(serverFile,file.getBytes());
+
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+
+
+        demande1.setFileName(newFileName);
+        Demande art = demandeService.saveDemande(demande1);
+        if (art != null)
+        {
+            return new ResponseEntity<Response>(new Response (""),HttpStatus.OK);
+        }
+        else
+        {
+            return new ResponseEntity<Response>(new Response ("Article not saved"),HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
+
+*/
+
+
+
+@PostMapping("/demandenew")
+public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile file,
+                                             @RequestParam("demande") String demande) throws JsonParseException, JsonMappingException , Exception
+{
+    System.out.println("Ok .............");
+    Demande demande1 = new ObjectMapper().readValue(demande, Demande.class);
+    boolean isExit = new File(context.getRealPath("/Images/")).exists();
+    if (!isExit)
+    {
+        new File (context.getRealPath("/Images/")).mkdir();
+        System.out.println("mk dir.............");
+    }
+    String filename = file.getOriginalFilename();
+    String newFileName = FilenameUtils.getBaseName(filename)+"."+FilenameUtils.getExtension(filename);
+    File serverFile = new File (context.getRealPath("/Images/"+File.separator+newFileName));
+    try
+    {
+        System.out.println("Image");
+        FileUtils.writeByteArrayToFile(serverFile,file.getBytes());
+
+    }catch(Exception e) {
+        e.printStackTrace();
+    }
+
+
+    demande1.setFileName(newFileName);
+    Demande art = demandeService.saveDemande(demande1);
+    if (art != null)
+    {
+        return new ResponseEntity<Response>(new Response (""),HttpStatus.OK);
+    }
+    else
+    {
+        return new ResponseEntity<Response>(new Response ("Article not saved"),HttpStatus.BAD_REQUEST);
+    }
+}
+
+ @GetMapping(path="/Imgdemande/{id}")
+    public byte[] getPhoto(@PathVariable("id") Long id) throws Exception{
+
+        Demande demande  = demandeRepository.findById(id).get();
+        return Files.readAllBytes(Paths.get(context.getRealPath("/Images/")+demande.getFileName()));
+    }
+
+
 }

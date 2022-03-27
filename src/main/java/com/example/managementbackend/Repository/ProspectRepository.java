@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ProspectRepository extends JpaRepository<Prospect,Long> {
      public Prospect findByEmailAndCode(String email, String code);
 public Prospect findByEmail(String email);
+
 }

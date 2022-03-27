@@ -4,19 +4,16 @@ import com.example.managementbackend.Repository.OrganisationRepository;
 import com.example.managementbackend.Repository.ProspectRepository;
 import com.example.managementbackend.Repository.UserRepository;
 import com.example.managementbackend.Service.UserService;
-import com.example.managementbackend.model.Organisation;
 import com.example.managementbackend.model.Prospect;
 import com.example.managementbackend.model.User;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
-import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -43,6 +40,13 @@ public class UserController {
         return userRepository.save(user);
 
     }
+    // find userById
+    @GetMapping("/getById/{id}")
+    public Optional<User> getById(@PathVariable Long id ){
+
+        return userService.findUserById(id);
+
+    }
 
 
 
@@ -58,6 +62,7 @@ public class UserController {
        userService.addRoleToUser(username,rolename);
     }
 // --------------------my first code mercredi   123
+    //save pour admin
 @PostMapping("/registerUser/{organId}/role/{roleId}")
 public User registerUser( @PathVariable (value = "organId") Long organId,@PathVariable  (value = "roleId") Long roleId, @Valid @RequestBody User user) throws Exception {
     String emmail = user.getEmail();
@@ -94,8 +99,56 @@ public User registerUser( @PathVariable (value = "organId") Long organId,@PathVa
         return userObj;
     }
 
+    //save pour un simple utulisateur
+    @PostMapping("/registerSimpleUser/{organId}/role/{roleId}")
+    public User registerSimpleUser( @PathVariable (value = "organId") Long organId,@PathVariable  (value = "roleId") Long roleId, @Valid @RequestBody User user) throws Exception {
+        String emmail = user.getEmail();
+        if (emmail != null && !"".equals(emmail)) {
+            User userObj = userRepository.findByEmail(emmail);
+            Prospect userObj2= prospectRepository.findByEmail(emmail);
+            if (userObj != null) {
+                throw new Exception("User with " + emmail + "is already exist");
+            }
+            if (userObj2 != null) {
+                throw new Exception("User with " + emmail + " a fait une demande");
+            }
+        }
+
+        User userObj = null;
+        userObj = userService.saveUser(organId,roleId,user);
+        return userObj;
+    }
+
+@GetMapping("/getOrganiation/{id}")
+public List <User> finduserByOrganisation(@PathVariable Long id ){
+        return userService.findUser(id);
+
+}
+    @GetMapping("/findbyEmail/{email}")
+ public User trouverParEmail(@PathVariable String email){
+        return userRepository.findByEmail(email);
+}
 
 
+
+    @GetMapping("/findbyRole/{roleid}")
+    public List<User> trouverParEmail(@PathVariable Long  roleid){
+
+        return userRepository.findByRolesId(roleid);
+    }
+
+    @GetMapping("/trouverEmployee/{orgID}")
+    public List<User> findEmployee(@PathVariable Long  orgID){
+
+        return userService.trouverEmployer(orgID);
+    }
+
+
+
+
+
+    // the first one
+    //dont drop
 
     /*@GetMapping("/f/{mail}")
     public User findUser(@PathVariable(name = "mail") String mail) throws Exception {
@@ -126,4 +179,10 @@ public User registerUser( @PathVariable (value = "organId") Long organId,@PathVa
 
      */
 
+
+    //save Simple User
+    @PostMapping("/premierFois/{organId}")
+    public User PremierAjout( @PathVariable (value = "organId") Long organId,@RequestBody  User user ){
+        return  userService.premierFois(organId,user);
+    }
 }

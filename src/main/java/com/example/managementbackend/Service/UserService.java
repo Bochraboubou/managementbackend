@@ -2,9 +2,9 @@ package com.example.managementbackend.Service;
 
 import com.example.managementbackend.model.Role;
 import com.example.managementbackend.model.User;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 //@Service
 public interface UserService {
@@ -17,6 +17,12 @@ public interface UserService {
 
     User fetchUserByUserNameandPassword(String username, String password);
 
+  List <User> findUser(Long id );
+   Optional<User> findUserById(Long id);
 
     User fetchUserByEmail(String tempMail);
+    public User premierFois(Long organId ,User user);
+
+
+    public List <User> trouverEmployer(Long id );
 }

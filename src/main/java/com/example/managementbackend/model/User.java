@@ -2,6 +2,7 @@ package com.example.managementbackend.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,7 +18,7 @@ import java.util.List;
 import static javax.persistence.FetchType.EAGER;
 
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 @Data
 @Entity
 @Table(	name = "user",
@@ -25,6 +26,7 @@ import static javax.persistence.FetchType.EAGER;
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")
         })
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,29 +43,33 @@ public class User {
     @NotBlank
     @Size(max = 120)
     private String password;
-
-    @ManyToMany(fetch = EAGER)
-
-    private List<Role> roles= new ArrayList<>();
-
-
-
-
-
-
-
+    private  String role;
     @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToMany
+    @JoinTable( name = "T_Users_Roles_Associations",
+            joinColumns = @JoinColumn( name = "idUser" ),
+            inverseJoinColumns = @JoinColumn( name = "idRole" ) )
+    private List<Role> roles = new ArrayList<>();
+    @JsonIgnore
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name = "organisation_id", nullable = false)
     private Organisation organisation;
 
-
-
-      /* @ManyToMany(fetch = FetchType.LAZY)
+    /* @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(	name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles = new ArrayList<>();
 */
 
+    public User(Long id, String username, String name, String email, String password, String role, List<Role> roles, Organisation organisation) {
+        this.id = id;
+        this.username = username;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.role =role;
+        this.roles = roles;
+        this.organisation = organisation;
+    }
 }
