@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface TypeRepository extends JpaRepository<Type, Long> {
     List<Type> findByMetierId(long MetierId);
     Optional<Type> findByTypeLib(String typeLib);
+    Optional<Type> findByArticlesId(long articlesId);
 }

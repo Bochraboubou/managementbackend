@@ -32,6 +32,11 @@ public class TypeController {
         return typeService.geTypebyLib(typeLib);
     }
 
+    @GetMapping("/typebyArticle/{articleId}")
+    public Optional<Type> getTypebyArticleId(@PathVariable long articleId) {
+        return typeService.geTypebyArticle(articleId);
+    }
+
 
 
 

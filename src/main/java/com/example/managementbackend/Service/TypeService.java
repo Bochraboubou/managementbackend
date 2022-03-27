@@ -31,6 +31,9 @@ public class TypeService {
         return typeRepo.findByTypeLib(typeLib).map(type -> typeRepo.findByTypeLib(typeLib)).orElseThrow(() -> new ResourceNotFoundException("typeLib " + typeLib+ " not found"));
     }
 
+    public Optional<Type> geTypebyArticle(long articleId) {
+        return typeRepo.findByArticlesId(articleId).map(type -> typeRepo.findByArticlesId(articleId)).orElseThrow(() -> new ResourceNotFoundException("ArticleId " + articleId+ " not found"));
+    }
 
 
     public Optional<Type> getTypebyId(long idType) {

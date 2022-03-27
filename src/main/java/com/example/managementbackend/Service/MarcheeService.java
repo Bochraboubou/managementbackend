@@ -51,4 +51,9 @@ public class MarcheeService {
     public Optional<Marchee> getMarcheebyCodeandOrganisation(String codeMarchee,long organId) {
         return marcheeRepo.findByCodeAndOrgId(codeMarchee,organId).map(marchee -> marcheeRepo.findByCodeAndOrgId(codeMarchee,organId)).orElseThrow(() -> new ResourceNotFoundException("codeMarchee " + codeMarchee+ " not found or idOrgan "+organId+" not found"));
     }
+
+
+    public Optional<Marchee> getMarcheebyMetierandOrganisation(long metierId,long organId) {
+        return marcheeRepo.findByMetierIdAndOrgId(metierId,organId).map(marchee -> marcheeRepo.findByMetierIdAndOrgId(metierId,organId)).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId+ " not found or idOrgan "+organId+" not found"));
+    }
 }
