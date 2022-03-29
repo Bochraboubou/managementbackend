@@ -37,6 +37,11 @@ public class OrganisationController {
         return organisationService.getByCode(codeOrgan);
     }
 
+    @GetMapping("/organisationbyBonDeCommande/{bonDeCommandeId}")
+    public Optional<Organisation> getOrganByBonDeCommandeId(@PathVariable long bonDeCommandeId) {
+        return organisationService.getByBonDeCommande(bonDeCommandeId);
+    }
+
     @PostMapping("/organisations")
     public Organisation createOrganisation(@Valid @RequestBody Organisation organisation) {
         return organisationService.createOrganisation(organisation);

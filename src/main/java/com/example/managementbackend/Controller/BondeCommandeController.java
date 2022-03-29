@@ -24,7 +24,7 @@ public class BondeCommandeController {
 
 
 
-    @GetMapping("/marchees/{marcheeId}/bondescommandes")
+    @GetMapping("/marchee/{marcheeId}/bondescommandes")
     public List<BondeCommande> getAllbcsBymarcheeId(@PathVariable(value = "marcheeId") Long marcheeId) {
         return bondeCommandeService.getAllbcsBymarcheeId(marcheeId);
     }

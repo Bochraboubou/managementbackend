@@ -28,6 +28,10 @@ public class OrganisationService {
         return organisationRepo.findByCode(codeOrgan).map(organisation -> organisationRepo.findByCode(codeOrgan)).orElseThrow(() -> new ResourceNotFoundException("codeOrgan " + codeOrgan + " not found"));
     }
 
+    public Optional<Organisation> getByBonDeCommande(long bonDeCommandeId) {
+        return organisationRepo.findByBonDeCommandesId(bonDeCommandeId).map(organisation -> organisationRepo.findByBonDeCommandesId(bonDeCommandeId)).orElseThrow(() -> new ResourceNotFoundException("bonDeCommandeId " + bonDeCommandeId+ " not found"));
+    }
+
     public Organisation createOrganisation(Organisation organisation) {
         return organisationRepo.save(organisation);
     }

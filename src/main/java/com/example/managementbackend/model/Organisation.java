@@ -68,6 +68,11 @@ public class Organisation {
 
         @NotNull private String emailAdmin;
 
+        @OneToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY,
+                mappedBy = "entreprise")
+        private List<BondeCommande> bonDeCommandes = new ArrayList<>();
+
 
      /*   @OneToMany(cascade = CascadeType.ALL,
                 fetch = FetchType.LAZY,

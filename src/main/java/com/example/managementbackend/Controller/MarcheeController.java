@@ -52,7 +52,7 @@ public class MarcheeController {
     }
 
     @GetMapping("/marcheebyMetier/{metierId}/andOrgan/{organId}")
-    public Optional<Marchee> getMarcheebyMetierIdandOrganId(@PathVariable (value = "metierId") long metierId,@PathVariable (value = "organId") long organId) {
+    public Optional<Marchee[]> getMarcheebyMetierIdandOrganId(@PathVariable (value = "metierId") long metierId,@PathVariable (value = "organId") long organId) {
         return marcheeService.getMarcheebyMetierandOrganisation(metierId,organId);
     }
 }
