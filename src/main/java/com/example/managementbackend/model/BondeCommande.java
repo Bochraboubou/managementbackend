@@ -1,6 +1,7 @@
 package com.example.managementbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
@@ -18,9 +19,9 @@ public class BondeCommande {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true)
+
     @NotNull
-    private long numeros;
+    private String codebc;
 
     @NotNull
     private float montant;
@@ -52,12 +53,12 @@ public class BondeCommande {
     @JoinColumn(name = "marchee_id", nullable = false)
     private Marchee marchee;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "bondecommande")
     private List<ArticleUtilisee> articlesassociation = new ArrayList<ArticleUtilisee>();
 
-
-    public BondeCommande(long numeros, float montant, long delais, Organisation entreprise, Marchee marchee, List<ArticleUtilisee> articlesassociation) {
-        this.numeros = numeros;
+    public BondeCommande(String codebc, float montant, long delais, Organisation entreprise, Marchee marchee, List<ArticleUtilisee> articlesassociation) {
+        this.codebc = codebc;
         this.montant = montant;
         this.delais = delais;
         this.entreprise = entreprise;
@@ -77,12 +78,12 @@ public class BondeCommande {
         this.id = id;
     }
 
-    public long getNumeros() {
-        return numeros;
+    public String getCodebc() {
+        return codebc;
     }
 
-    public void setNumeros(long numeros) {
-        this.numeros = numeros;
+    public void setCodebc(String codebc) {
+        this.codebc = codebc;
     }
 
     public float getMontant() {

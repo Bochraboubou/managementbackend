@@ -1,6 +1,7 @@
 package com.example.managementbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -32,16 +33,23 @@ public class Article {
     @JoinColumn(name = "metier_id", nullable = false)
     private Metier metier;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "article")
     private List<ArticleUtilisee> bcassociation = new ArrayList<ArticleUtilisee>();
 
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "type_id", nullable = false)
+    private Type type;
 
-    public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation) {
+
+    public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation, Type type) {
         this.code = code;
         this.designation = designation;
         this.unitee = unitee;
         this.metier = metier;
         this.bcassociation = bcassociation;
+        this.type = type;
     }
 
     public Article() {

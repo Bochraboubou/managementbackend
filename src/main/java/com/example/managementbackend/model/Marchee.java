@@ -15,7 +15,6 @@ public class Marchee {
     private Long id;
 
     @NotNull
-    @Column(unique = true)
     private String code;
 
     @NotNull
@@ -27,6 +26,9 @@ public class Marchee {
 
     @NotNull
     private String type;
+
+    @NotNull
+    private String unitee;
 
     @NotNull
     private float montant;
@@ -54,11 +56,12 @@ public class Marchee {
     // Getters and Setters
 
 
-    public Marchee(String code, String designiation, String budget, String type, float montant, long delais, Organisation org, List<BondeCommande> bondes, Metier metier) {
+    public Marchee(String code, String designiation, String budget, String type, String unitee, float montant, long delais, Organisation org, List<BondeCommande> bondes, Metier metier) {
         this.code = code;
         this.designiation = designiation;
         this.budget = budget;
         this.type = type;
+        this.unitee = unitee;
         this.montant = montant;
         this.delais = delais;
         this.org = org;
@@ -148,5 +151,13 @@ public class Marchee {
 
     public void setMetier(Metier metier) {
         this.metier = metier;
+    }
+
+    public String getUnitee() {
+        return unitee;
+    }
+
+    public void setUnitee(String unitee) {
+        this.unitee = unitee;
     }
 }

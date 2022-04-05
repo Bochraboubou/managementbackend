@@ -29,6 +29,10 @@ public class ArticleService {
         return articleRepo.findByCode(code).map(article -> articleRepo.findByCode(code)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found"));
     }
 
+    public Optional<Article> getArticlebyCodeandMetier(String code,long metierId) {
+        return articleRepo.findByCodeAndMetierId(code,metierId).map(article -> articleRepo.findByCodeAndMetierId(code,metierId)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found ou idMetier "+ metierId+"not found "));
+    }
+
     public Article save(Long metierId, Article article) {
         return metierRepo.findById(metierId).map(metier -> {
             article.setMetier(metier);

@@ -1,5 +1,6 @@
 package com.example.managementbackend.Repository;
 
+import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.BondeCommande;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -12,5 +13,6 @@ public interface BondeCommandeRepository extends JpaRepository<BondeCommande, Lo
 
     List<BondeCommande> findByMarcheeId(long marcheeId);
     Optional<BondeCommande> findByIdAndMarcheeId(long id, long marcheeId);
+    Optional<BondeCommande> findByCodebc(String Codebc);
 
 }

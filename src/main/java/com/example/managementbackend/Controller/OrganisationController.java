@@ -30,10 +30,7 @@ public class OrganisationController {
         return organisationService.getOrganById(organId);
     }
 
-    @GetMapping("/organisationbyCode/{codeOrgan}")
-    public Optional<Organisation> getOrganByCode(@PathVariable String codeOrgan) {
-        return organisationService.getByCode(codeOrgan);
-    }
+
 
     @PostMapping("/organisations")
     public Organisation createOrganisation(@Valid @RequestBody Organisation organisation) {
@@ -51,15 +48,22 @@ public class OrganisationController {
 
 
 
+
+
+    @GetMapping("/organisationbyCode/{codeOrgan}")
+    public Optional<Organisation> getOrganByCode(@PathVariable String codeOrgan) {
+        return organisationService.getByCode(codeOrgan);
+    }
+
+
     @GetMapping("/organisationByUser/{idUser}")
     public Optional<Organisation> getOrganisationUser(@PathVariable long idUser) {
         return organisationService.getOrganisationByUser(idUser);
     }
 
 
+
     //methodes pour l'entreprise
-
-
 
 /*    @GetMapping("/organisations/{organId}/entreprises")
     public List<Organisation> getAllEntreprisesByOrganId(@PathVariable(value = "organId") Long organId) {
