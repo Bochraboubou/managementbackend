@@ -34,23 +34,6 @@ public class DemandeController {
 
 
 
-
-
-
-   /* @PostMapping("/saveDemandefile")
-public ResponseEntity<Response> saveDmandeAndImage(@RequestParam("file") MultipartFile file,@RequestParam String  user) throws IOException {
-        Demande demande = new ObjectMapper().readValue(user, Demande.class);
-
-
-        Demande dbDemande = demandeService.saveDemande(demande);
-        if (dbDemande != null) {
-            return new ResponseEntity<>(new Response("demande is successfully saved "), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(new Response(" demande not saved "), HttpStatus.BAD_REQUEST);
-        }
-
-    }*/
-
     @GetMapping("/demandes")
     public List<Demande> listeDemandes(){
        return demandeService.getDemandes();
@@ -96,52 +79,6 @@ public ResponseEntity<Response> saveDmandeAndImage(@RequestParam("file") Multipa
     public  void modifier(@PathVariable Long id, @Valid @RequestBody Demande demande){
         demandeService.updateDemande(demande ,id);
     }
-
-
-/*
-
-// image
-    @PostMapping("/demandenew")
-    public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile file,
-                                                   @RequestParam("demande") String demande) throws JsonParseException, JsonMappingException , Exception
-    {
-        System.out.println("Ok .............");
-       Demande demande1 = new ObjectMapper().readValue(demande, Demande.class);
-        boolean isExit = new File(context.getRealPath("/Images/")).exists();
-        if (!isExit)
-        {
-            new File (context.getRealPath("/Images/")).mkdir();
-            System.out.println("mk dir.............");
-        }
-        String filename = file.getOriginalFilename();
-        String newFileName = FilenameUtils.getBaseName(filename)+"."+FilenameUtils.getExtension(filename);
-        File serverFile = new File (context.getRealPath("/Images/"+File.separator+newFileName));
-        try
-        {
-            System.out.println("Image");
-            FileUtils.writeByteArrayToFile(serverFile,file.getBytes());
-
-        }catch(Exception e) {
-            e.printStackTrace();
-        }
-
-
-        demande1.setFileName(newFileName);
-        Demande art = demandeService.saveDemande(demande1);
-        if (art != null)
-        {
-            return new ResponseEntity<Response>(new Response (""),HttpStatus.OK);
-        }
-        else
-        {
-            return new ResponseEntity<Response>(new Response ("Article not saved"),HttpStatus.BAD_REQUEST);
-        }
-    }
-
-
-
-*/
-
 
 
 @PostMapping("/demandenew")

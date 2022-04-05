@@ -23,6 +23,9 @@ public interface UserService {
     User fetchUserByEmail(String tempMail);
     public User premierFois(Long organId ,User user);
 
-
+    public void Delete(Long id);
     public List <User> trouverEmployer(Long id );
+    public User addRole( String username, String role);
+    public User updateUser(User user, Long id );
+    public void DeleteAll();
 }

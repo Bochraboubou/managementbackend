@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -43,7 +44,7 @@ public class RoleController {
        return  roleRepository.findByName(rolename);
     }
 
-
+//
     @GetMapping("/getRoleUser/{id}")
     public List <Role> TrouverRoleUser(@PathVariable Long id){
         return roleService.findRole(id);
@@ -53,5 +54,21 @@ public class RoleController {
     @GetMapping("/listeRoles/{id}")
     public List<Role>fff(@PathVariable Long id){
       return  roleRepository.findByUsersId(id);
+    }
+
+    //trouver les roles sauf adminMyCPM et Simple
+    @GetMapping("/getRolesSoufAdminEtSimple")
+    public List<Role>soufAdminETSimple(){
+        int x=1;
+        List<Role>liste1=roleService.getAll();
+        List<Role>liste2=new ArrayList<>();
+        for(Role r :liste1){
+            if(r.getName().equals("SIMPLE")||r.getName().equals("ADMIN-CPM")){
+                x=x+1;
+            }else {
+               liste2.add(r);
+            }
+        }
+        return liste2;
     }
 }
