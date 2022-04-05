@@ -1,11 +1,9 @@
 package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
-import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Organisation;
+import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.example.managementbackend.Service.OrganisationService;
@@ -32,10 +30,7 @@ public class OrganisationController {
         return organisationService.getOrganById(organId);
     }
 
-    @GetMapping("/organisationbyCode/{codeOrgan}")
-    public Optional<Organisation> getOrganByCode(@PathVariable String codeOrgan) {
-        return organisationService.getByCode(codeOrgan);
-    }
+
 
     @PostMapping("/organisations")
     public Organisation createOrganisation(@Valid @RequestBody Organisation organisation) {
@@ -54,9 +49,21 @@ public class OrganisationController {
 
 
 
+
+    @GetMapping("/organisationbyCode/{codeOrgan}")
+    public Optional<Organisation> getOrganByCode(@PathVariable String codeOrgan) {
+        return organisationService.getByCode(codeOrgan);
+    }
+
+
+    @GetMapping("/organisationByUser/{idUser}")
+    public Optional<Organisation> getOrganisationUser(@PathVariable long idUser) {
+        return organisationService.getOrganisationByUser(idUser);
+    }
+
+
+
     //methodes pour l'entreprise
-
-
 
 /*    @GetMapping("/organisations/{organId}/entreprises")
     public List<Organisation> getAllEntreprisesByOrganId(@PathVariable(value = "organId") Long organId) {

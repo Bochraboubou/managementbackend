@@ -23,6 +23,7 @@ public class MarcheeService {
     private MetierRepository metierRepo;
 
     public List<Marchee> getAllMarcheesByOrganId(Long organId) {
+
         return marcheeRepo.findByOrgId(organId);
     }
 
