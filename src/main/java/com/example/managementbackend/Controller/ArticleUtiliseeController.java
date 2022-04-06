@@ -32,12 +32,12 @@ public class ArticleUtiliseeController {
 
 
 
-    @GetMapping("/bondescommandes/{bcId}/articlesutilisees")
+    @GetMapping("/bondecommande/{bcId}/articlesutilisees")
     public List<ArticleUtilisee> getAllArticlesutiliseesByBcId(@PathVariable(value = "bcId") long bcId) {
         return articleUtiliseeService.getAllArticlesutiliseesByBcId(bcId);
     }
 
-    @GetMapping("/bondescommandes/{bcId}/articlesutilisees/{artId}")
+    @GetMapping("/bondecommande/{bcId}/articlesutilisees/{artId}")
     public Optional<ArticleUtilisee> getArticleUtiliseeByBcIdandArtId(@PathVariable Long bcId,@PathVariable Long artId) {
         return articleUtiliseeService.getArticleUtiliseeByBcIdandArtId(bcId,artId);
     }

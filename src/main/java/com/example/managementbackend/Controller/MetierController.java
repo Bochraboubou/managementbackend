@@ -5,6 +5,7 @@ import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.Service.MetierService;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Metier;
+import com.example.managementbackend.model.Organisation;
 import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -45,6 +46,11 @@ public class MetierController {
     public Metier createMetier(@PathVariable (value = "secteurId") Long secteurId,
                                        @Valid @RequestBody Metier metier) {
         return metierService.create(secteurId,metier);
+    }
+
+    @PutMapping("/metierEdit/{metierId}")
+    public Metier updateMetier(@PathVariable Long metierId, @Valid @RequestBody Metier metierRequest) {
+        return metierService.updateMetier(metierId,metierRequest);
     }
 
 

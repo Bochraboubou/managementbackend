@@ -2,6 +2,8 @@ package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Repository.*;
 import com.example.managementbackend.Service.BondeCommandeService;
+import com.example.managementbackend.dto.ArticleR;
+import com.example.managementbackend.dto.BondeCommandeJoin;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.BondeCommande;
@@ -23,6 +25,15 @@ public class BondeCommandeController {
     private BondeCommandeService bondeCommandeService;
 
 
+    @GetMapping("/AllbondeCommandesJoin/{marcheeId}")
+    public List<BondeCommandeJoin> getAllBondeCommandesJoin(@PathVariable long marcheeId){
+        return bondeCommandeService.getAllBondeCommandesJoin(marcheeId);
+    }
+
+    @GetMapping("/bondeCommandesJoin/{bcId}")
+    public Optional<BondeCommandeJoin> getBondeCommandesJoin(@PathVariable long bcId){
+        return bondeCommandeService.getBondeCommandesJoin(bcId);
+    }
 
     @GetMapping("/marchee/{marcheeId}/bondescommandes")
     public List<BondeCommande> getAllbcsBymarcheeId(@PathVariable(value = "marcheeId") Long marcheeId) {
@@ -39,6 +50,11 @@ public class BondeCommandeController {
         return bondeCommandeService.getBCbyCode(code);
     }
 
+    @GetMapping("/bcsbyid/{id}")
+    public Optional<BondeCommande> getBCbyId(@PathVariable long id) {
+        return bondeCommandeService.getBCbyId(id);
+    }
+
 
     @PostMapping("/marchees/{marcheeId}/bondescommandes/{entrepId}")
     public BondeCommande createBondeCommande(@PathVariable (value = "marcheeId") Long marcheeId,@PathVariable (value = "entrepId") Long entrepId,
@@ -52,6 +68,8 @@ public class BondeCommandeController {
                                           @PathVariable (value = "bcId") Long bcId) {
         return bondeCommandeService.delete(marcheeId, bcId);
     }
+
+
 
 }
 

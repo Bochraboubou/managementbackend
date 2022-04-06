@@ -1,6 +1,7 @@
 package com.example.managementbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -41,6 +42,7 @@ public class Marchee {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organisation_id", nullable = false)
     private Organisation org;
+
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,

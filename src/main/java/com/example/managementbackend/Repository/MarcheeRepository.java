@@ -15,4 +15,5 @@ public interface MarcheeRepository extends JpaRepository<Marchee, Long> {
     Optional<Marchee> findByCodeAndOrgId(String code,long orgId);
     Optional<Marchee[]> findByMetierIdAndOrgId(long metierId,long orgId);
 
+
 }

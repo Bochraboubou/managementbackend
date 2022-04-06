@@ -2,6 +2,7 @@ package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Service.MetierService;
 import com.example.managementbackend.Service.TypeService;
+import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.Metier;
 import com.example.managementbackend.model.Type;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,12 @@ public class TypeController {
     public Type createMetier(@PathVariable (value = "metierId") Long metierId,
                                @Valid @RequestBody Type type) {
         return typeService.create(metierId,type);
+    }
+
+
+    @PutMapping("/editType/{typeId}")
+    public Type updateType(@PathVariable Long typeId, @Valid @RequestBody Type typeRequest) {
+        return typeService.updateType(typeId,typeRequest);
     }
 
 

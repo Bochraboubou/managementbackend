@@ -4,6 +4,7 @@ import com.example.managementbackend.Repository.MetierRepository;
 import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.Repository.TypeRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
+import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.Metier;
 import com.example.managementbackend.model.Secteur;
 import com.example.managementbackend.model.Type;
@@ -52,10 +53,12 @@ public class TypeService {
         }).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId + " not found"));
     }
 
-
-
-
-
+    public Type updateType(Long typeId, Type typeRequest) {
+        return typeRepo.findById(typeId).map(type -> {
+            type.setTypeLib(typeRequest.getTypeLib());
+            return typeRepo.save(type);
+        }).orElseThrow(() -> new ResourceNotFoundException("typeId " + typeId + " not found"));
+    }
 
     public ResponseEntity<?> deleteType(Long typeId) {
         return typeRepo.findById(typeId).map(type -> {

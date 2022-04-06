@@ -38,6 +38,11 @@ public class ArticleController {
         return articleService.getArticlebyCode(code);
     }
 
+    @GetMapping("/articlesbyid/{id}")
+    public Optional<Article> getArticlebyId(@PathVariable long id) {
+        return articleService.getArticlebyId(id);
+    }
+
     @GetMapping("/articlesbycode/{code}/metier/{metierId}")
     public Optional<Article> getArticlebyCodeandMetierId(@PathVariable(value = "code") String code,@PathVariable(value = "metierId") long metierId) {
         return articleService.getArticlebyCodeandMetier(code,metierId);
@@ -48,6 +53,18 @@ public class ArticleController {
                                @Valid @RequestBody Article article) {
         return articleService.save(metierId,article,typeId);
     }
+
+    @PutMapping("/editArticle/{articleId}")
+    public Article updateMetier(@PathVariable Long articleId, @Valid @RequestBody Article articleRequest) {
+        return articleService.updateArticle(articleId,articleRequest);
+    }
+
+    @DeleteMapping("/articles/{articleId}")
+    public ResponseEntity<?> deleteArticle(@PathVariable (value = "articleId") Long articleId) {
+
+        return articleService.delete(articleId);
+    }
+
 
 
 

@@ -31,16 +31,13 @@ public class ArticleUtilisee {
 
     @NotNull
     private long quantitee;
-   /* @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bc_id", nullable = false)
-    private BondeCommande bondecommande;
-    */
+
 
 
     public ArticleUtilisee(BondeCommande bondecommande, Article article, float prix, long quantitee) {
         // create primary key
         this.id = new AticleUtiliseeId(bondecommande.getId(), article.getId());
+
 
         // initialize attributes
         this.bondecommande = bondecommande;

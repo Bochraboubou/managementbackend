@@ -4,6 +4,7 @@ import com.example.managementbackend.Repository.MetierRepository;
 import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Metier;
+import com.example.managementbackend.model.Organisation;
 import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,13 +45,20 @@ public class MetierService {
         return metierRepo.findById(id).map(metier -> metierRepo.findById(id)).orElseThrow(() -> new ResourceNotFoundException("idmetier " + id+ " not found"));
     }
 
+    public Metier updateMetier(Long metierId, Metier metierRequest) {
+        return metierRepo.findById(metierId).map(metier -> {
+            metier.setNomMetier(metierRequest.getNomMetier());
+            return metierRepo.save(metier);
+        }).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId + " not found"));
+    }
+
 
     public ResponseEntity<?> delete(Long metierId) {
 
         return metierRepo.findById(metierId).map(metier -> {
             metierRepo.delete(metier);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException("organId " + metierId + " not found"));
+        }).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId + " not found"));
     }
 
       /*  return metierRepo.findByIdAndSecteurId(metierId, secteurId).map(metier -> {

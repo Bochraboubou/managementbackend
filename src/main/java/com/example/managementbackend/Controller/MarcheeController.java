@@ -55,6 +55,7 @@ public class MarcheeController {
     public Optional<Marchee[]> getMarcheebyMetierIdandOrganId(@PathVariable (value = "metierId") long metierId,@PathVariable (value = "organId") long organId) {
         return marcheeService.getMarcheebyMetierandOrganisation(metierId,organId);
     }
+
 }
 
 
