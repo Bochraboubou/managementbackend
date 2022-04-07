@@ -3,6 +3,8 @@ package com.example.managementbackend.Service;
 import com.example.managementbackend.Repository.BondeCommandeRepository;
 import com.example.managementbackend.Repository.MarcheeRepository;
 import com.example.managementbackend.Repository.OrganisationRepository;
+import com.example.managementbackend.dto.ArticleR;
+import com.example.managementbackend.dto.BondeCommandeJoin;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.BondeCommande;
@@ -26,6 +28,14 @@ public class BondeCommandeService {
     @Autowired
     private OrganisationRepository organisationRepo;
 
+    public List<BondeCommandeJoin> getAllBondeCommandesJoin(long marcheeId){
+        return bcRepo.getAllBondesCommandesJoin(marcheeId);
+    }
+
+
+    public Optional<BondeCommandeJoin> getBondeCommandesJoin(long bcId){
+        return bcRepo.getBondesCommandesJoin(bcId).map(bondeCommandeJoin -> bcRepo.getBondesCommandesJoin(bcId)).orElseThrow(() -> new ResourceNotFoundException("bonDeCommandeId " + bcId+ " not found"));
+    }
 
     public List<BondeCommande> getAllbcsBymarcheeId(Long marcheeId) {
         return bcRepo.findByMarcheeId(marcheeId);
@@ -37,6 +47,11 @@ public class BondeCommandeService {
 
     public Optional<BondeCommande> getBCbyCode(String code) {
         return bcRepo.findByCodebc(code).map(bondeCommande -> bcRepo.findByCodebc(code)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found"));
+    }
+
+
+    public Optional<BondeCommande> getBCbyId(long id) {
+        return bcRepo.findById(id).map(bondeCommande -> bcRepo.findById(id)).orElseThrow(() -> new ResourceNotFoundException("idBC " + id+ " not found"));
     }
 
     public BondeCommande create(Long marcheeId,Long entrepId, BondeCommande bondecommande) {
@@ -58,4 +73,5 @@ public class BondeCommandeService {
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("bonde commande not found with id " + bcId+ " and marcheeId " + marcheeId));
     }
+
 }

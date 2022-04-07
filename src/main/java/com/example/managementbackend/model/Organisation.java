@@ -75,9 +75,17 @@ public class Organisation {
 
         @com.sun.istack.NotNull
         private String emailAdmin;
-
+  
         private String  document;
         private String logo;
+
+
+
+        @OneToMany(cascade = CascadeType.ALL,
+                fetch = FetchType.LAZY,
+                mappedBy = "entreprise")
+        private List<BondeCommande> bonDeCommandes = new ArrayList<>();
+      
 
 
         @JsonIgnore

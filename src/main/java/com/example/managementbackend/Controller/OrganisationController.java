@@ -1,6 +1,8 @@
 package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
+import com.example.managementbackend.dto.BondeCommandeJoin;
+import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Organisation;
 import com.example.managementbackend.model.Secteur;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +20,6 @@ import java.util.Optional;
 public class OrganisationController {
     @Autowired
     private OrganisationService organisationService;
-    private OrganisationRepository organisationRepo;
 
     @GetMapping("/organisations")
     public List<Organisation> getAll() {
@@ -31,6 +32,11 @@ public class OrganisationController {
     }
 
 
+
+    @GetMapping("/organisationbyBonDeCommande/{bonDeCommandeId}")
+    public Optional<Organisation> getOrganByBonDeCommandeId(@PathVariable long bonDeCommandeId) {
+        return organisationService.getByBonDeCommande(bonDeCommandeId);
+    }
 
     @PostMapping("/organisations")
     public Organisation createOrganisation(@Valid @RequestBody Organisation organisation) {

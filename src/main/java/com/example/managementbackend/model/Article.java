@@ -42,7 +42,6 @@ public class Article {
     @JoinColumn(name = "type_id", nullable = false)
     private Type type;
 
-
     public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation, Type type) {
         this.code = code;
         this.designation = designation;
@@ -70,6 +69,14 @@ public class Article {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
     }
 
     public String getDesignation() {
@@ -103,4 +110,5 @@ public class Article {
     public void setBcassociation(List<ArticleUtilisee> bcassociation) {
         this.bcassociation = bcassociation;
     }
+
 }
