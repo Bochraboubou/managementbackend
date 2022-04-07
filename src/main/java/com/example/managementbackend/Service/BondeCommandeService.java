@@ -49,6 +49,7 @@ public class BondeCommandeService {
         return bcRepo.findByCodebc(code).map(bondeCommande -> bcRepo.findByCodebc(code)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found"));
     }
 
+
     public Optional<BondeCommande> getBCbyId(long id) {
         return bcRepo.findById(id).map(bondeCommande -> bcRepo.findById(id)).orElseThrow(() -> new ResourceNotFoundException("idBC " + id+ " not found"));
     }

@@ -50,6 +50,7 @@ public class BondeCommandeController {
         return bondeCommandeService.getBCbyCode(code);
     }
 
+
     @GetMapping("/bcsbyid/{id}")
     public Optional<BondeCommande> getBCbyId(@PathVariable long id) {
         return bondeCommandeService.getBCbyId(id);

@@ -45,13 +45,13 @@ public class MetierService {
         return metierRepo.findById(id).map(metier -> metierRepo.findById(id)).orElseThrow(() -> new ResourceNotFoundException("idmetier " + id+ " not found"));
     }
 
+
     public Metier updateMetier(Long metierId, Metier metierRequest) {
         return metierRepo.findById(metierId).map(metier -> {
             metier.setNomMetier(metierRequest.getNomMetier());
             return metierRepo.save(metier);
         }).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId + " not found"));
     }
-
 
     public ResponseEntity<?> delete(Long metierId) {
 

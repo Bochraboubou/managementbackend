@@ -1,32 +1,38 @@
 package com.example.managementbackend.Service;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
+
 import com.example.managementbackend.dto.BondeCommandeJoin;
+import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Organisation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class OrganisationService {
     @Autowired
     private OrganisationRepository organisationRepo;
+    @Autowired
+    SecteurRepository secteurRepo;
 
     public List<Organisation> getAll() {
         return organisationRepo.findAll();
     }
 
     public Optional<Organisation> getOrganById(Long organId) {
-        return organisationRepo.findById(organId).map(organisation -> organisationRepo.findById(organId)).orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
+        return organisationRepo.findById(organId).map(organisation ->
+                organisationRepo.findById(organId)).
+                orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
     }
 
     public Optional<Organisation> getByCode(String codeOrgan) {
-        return organisationRepo.findByCode(codeOrgan).map(organisation -> organisationRepo.findByCode(codeOrgan)).orElseThrow(() -> new ResourceNotFoundException("codeOrgan " + codeOrgan + " not found"));
+        return organisationRepo.findByCode(codeOrgan).map(organisation ->
+                organisationRepo.findByCode(codeOrgan)).orElseThrow(() ->
+                new ResourceNotFoundException("codeOrgan " + codeOrgan + " not found"));
     }
 
     public Optional<Organisation> getByBonDeCommande(long bonDeCommandeId) {
@@ -34,13 +40,17 @@ public class OrganisationService {
     }
 
     public Organisation createOrganisation(Organisation organisation) {
+
         return organisationRepo.save(organisation);
     }
 
-    public Organisation updateOrganisation(Long organId,Organisation organisationRequest) {
+    public Organisation updateOrganisation(Long organId, Organisation organisationRequest) {
         return organisationRepo.findById(organId).map(organisation -> {
             organisation.setNom(organisationRequest.getNom());
-            organisation.setCode(organisationRequest.getCode());
+
+            //ona a pas le droit de changer le code de confirmation donner par le" cpm"
+            //organisation.setCode_confirmation(organisationRequest.getCode_confirmation());
+
             organisation.setSecteur_d_activite(organisationRequest.getSecteur_d_activite());
             organisation.setEmail(organisationRequest.getEmail());
             organisation.setPays(organisationRequest.getPays());
@@ -51,9 +61,13 @@ public class OrganisationService {
             organisation.setNomDG(organisationRequest.getNomDG());
             organisation.setTelDG(organisationRequest.getTelDG());
             organisation.setEmailDG(organisationRequest.getEmailDG());
+
+            organisation.setUsers(organisationRequest.getUsers());
+
             organisation.setNomAdmin(organisationRequest.getNomAdmin());
             organisation.setTelAdmin(organisationRequest.getTelAdmin());
             organisation.setEmailAdmin(organisationRequest.getEmailAdmin());
+
 
 
             return organisationRepo.save(organisation);
@@ -61,7 +75,6 @@ public class OrganisationService {
     }
 
 
-    @DeleteMapping("/organisations/{organId}")
     public ResponseEntity<?> deleteOrganisation(Long organId) {
         return organisationRepo.findById(organId).map(organisation -> {
             organisationRepo.delete(organisation);
@@ -71,5 +84,12 @@ public class OrganisationService {
 
 
 
+
+
+    public Optional<Organisation> getOrganisationByUser(long idUser) {
+        return organisationRepo.findByUsersId(idUser).map(organisation
+                -> organisationRepo.findByUsersId(idUser)).orElseThrow(()
+                -> new ResourceNotFoundException("idUser " + idUser+ " not found"));
+    }
 
 }
