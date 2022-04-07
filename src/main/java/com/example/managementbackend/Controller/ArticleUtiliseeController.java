@@ -37,6 +37,11 @@ public class ArticleUtiliseeController {
         return articleUtiliseeService.getAllArticlesutiliseesByBcId(bcId);
     }
 
+    @GetMapping("/article/{articleId}/articlesutilisees")
+    public List<ArticleUtilisee> getAllArticlesutiliseesByArticleId(@PathVariable(value = "articleId") long articleId) {
+        return articleUtiliseeService.getAllArticlesutiliseesByArticleId(articleId);
+    }
+
     @GetMapping("/bondecommande/{bcId}/articlesutilisees/{artId}")
     public Optional<ArticleUtilisee> getArticleUtiliseeByBcIdandArtId(@PathVariable Long bcId,@PathVariable Long artId) {
         return articleUtiliseeService.getArticleUtiliseeByBcIdandArtId(bcId,artId);

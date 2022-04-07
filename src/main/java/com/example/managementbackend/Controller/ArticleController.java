@@ -33,6 +33,11 @@ public class ArticleController {
         return articleService.getAllArticlesByMetier(metierId);
     }
 
+    @GetMapping("/type/{typeId}/articles")
+    public List<Article> getAllArticlesByTypeId(@PathVariable(value = "typeId") Long typeId) {
+        return articleService.getAllArticlesByType(typeId);
+    }
+
     @GetMapping("/articlesbycode/{code}")
     public Optional<Article> getArticlebyCode(@PathVariable String code) {
         return articleService.getArticlebyCode(code);

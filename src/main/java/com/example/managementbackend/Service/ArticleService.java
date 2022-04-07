@@ -31,6 +31,10 @@ public class ArticleService {
         return articleRepo.findByMetierId(metierId);
     }
 
+    public List<Article> getAllArticlesByType(Long typeId) {
+        return articleRepo.findByTypeId(typeId);
+    }
+
     public Optional<Article> getArticlebyCode(String code) {
         return articleRepo.findByCode(code).map(article -> articleRepo.findByCode(code)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found"));
     }

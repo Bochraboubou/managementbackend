@@ -17,6 +17,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     Optional<Article> findByIdAndMetierId(long id, long metierId);
     Optional<Article> findByCode(String Code);
     Optional<Article> findByCodeAndMetierId(String code, long metierId);
+    List<Article> findByTypeId(long typeId);
 
 
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,au.prix,au.quantitee,t.id,t.typeLib) FROM Article a JOIN a.bcassociation au join a.type t where au.id.bondecommande_id = :bcId")

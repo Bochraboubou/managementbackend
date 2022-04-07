@@ -14,5 +14,6 @@ import java.util.Optional;
 public interface ArticleUtiliseeRepository extends JpaRepository<ArticleUtilisee, AticleUtiliseeId> {
     List<ArticleUtilisee> findAllByBondecommandeId(long bondecommandeId);
     Optional<ArticleUtilisee> findByBondecommandeIdAndArticleId(long bondecommandeId, long articleId);
+    List<ArticleUtilisee> findAllByArticleId(long articleId);
 
 }
