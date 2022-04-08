@@ -15,7 +15,7 @@ public class ArticleUtilisee {
 
     @JsonIgnore
     @ManyToOne
-    @MapsId("bondecommande_id") //This is the name of attr in EmployerDeliveryAgentPK class
+    @MapsId("bondecommande_id") //This is the name of attr in Article utiliseePK class
     @JoinColumn(name = "bondecommande_id")
     private BondeCommande bondecommande;
 

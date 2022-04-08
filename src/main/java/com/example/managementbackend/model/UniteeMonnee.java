@@ -1,8 +1,14 @@
 package com.example.managementbackend.model;
 
 import com.sun.istack.NotNull;
+import lombok.*;
 
 import javax.persistence.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "unitee")
 public class UniteeMonnee {

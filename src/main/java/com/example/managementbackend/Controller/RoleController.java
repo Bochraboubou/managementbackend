@@ -19,7 +19,7 @@ public class RoleController {
 
     @Autowired
     UserService userService;
-@Autowired
+    @Autowired
     RoleService roleService;
     @Autowired
     RoleRepository roleRepository;
