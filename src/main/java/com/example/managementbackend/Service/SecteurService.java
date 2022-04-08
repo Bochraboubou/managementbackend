@@ -25,8 +25,8 @@ public class SecteurService {
         return secteurRepo.findByNomSecteur(nomSecteur).map(secteur -> secteurRepo.findByNomSecteur(nomSecteur)).orElseThrow(() -> new ResourceNotFoundException("nomSecteur " + nomSecteur+ " not found"));
     }
 
-    public Optional<Secteur> getSecteurbyId(long isSecteur) {
-        return secteurRepo.findById(isSecteur).map(secteur -> secteurRepo.findById(isSecteur)).orElseThrow(() -> new ResourceNotFoundException("idSecteur " + isSecteur+ " not found"));
+    public Optional<Secteur> getSecteurbyId(long idSecteur) {
+        return secteurRepo.findById(idSecteur).map(secteur -> secteurRepo.findById(idSecteur)).orElseThrow(() -> new ResourceNotFoundException("idSecteur " + idSecteur+ " not found"));
     }
 
     public Optional<Secteur> getSecteurbymetiers(long idmetier) {

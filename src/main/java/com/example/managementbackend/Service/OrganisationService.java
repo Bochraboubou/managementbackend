@@ -1,6 +1,8 @@
 package com.example.managementbackend.Service;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
+
+import com.example.managementbackend.dto.BondeCommandeJoin;
 import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Organisation;
@@ -33,8 +35,15 @@ public class OrganisationService {
                 new ResourceNotFoundException("codeOrgan " + codeOrgan + " not found"));
     }
 
+
     public Optional<Organisation> getOrganisationByCode(String codeOrgan) {
         return organisationRepo.findByCode(codeOrgan);
+    }
+
+
+
+    public Optional<Organisation> getByBonDeCommande(long bonDeCommandeId) {
+        return organisationRepo.findByBonDeCommandesId(bonDeCommandeId).map(organisation -> organisationRepo.findByBonDeCommandesId(bonDeCommandeId)).orElseThrow(() -> new ResourceNotFoundException("bonDeCommandeId " + bonDeCommandeId+ " not found"));
     }
 
 
@@ -91,8 +100,15 @@ public class OrganisationService {
                 -> new ResourceNotFoundException("idUser " + idUser+ " not found"));
     }
 
+
     public Optional<Organisation>trouverParNom(String nom)
     {return organisationRepo.findByNom(nom);
 
     }
+
+    public Optional<Organisation> getByUserName(String userName) {
+        return organisationRepo.findByUsersUsername(userName).map(organisation -> organisationRepo.findByUsersUsername(userName)).orElseThrow(() -> new ResourceNotFoundException("userName " + userName+ " not found"));
+    }
+
+
 }

@@ -33,9 +33,19 @@ public class ArticleController {
         return articleService.getAllArticlesByMetier(metierId);
     }
 
+    @GetMapping("/type/{typeId}/articles")
+    public List<Article> getAllArticlesByTypeId(@PathVariable(value = "typeId") Long typeId) {
+        return articleService.getAllArticlesByType(typeId);
+    }
+
     @GetMapping("/articlesbycode/{code}")
     public Optional<Article> getArticlebyCode(@PathVariable String code) {
         return articleService.getArticlebyCode(code);
+    }
+
+    @GetMapping("/articlesbyid/{id}")
+    public Optional<Article> getArticlebyId(@PathVariable long id) {
+        return articleService.getArticlebyId(id);
     }
 
     @GetMapping("/articlesbycode/{code}/metier/{metierId}")
@@ -43,11 +53,23 @@ public class ArticleController {
         return articleService.getArticlebyCodeandMetier(code,metierId);
     }
 
-    @PostMapping("/metiers/{metierId}/articles")
-    public Article createArticle(@PathVariable (value = "metierId") Long metierId,
+    @PostMapping("/metier/{metierId}/type/{typeId}/article")
+    public Article createArticle(@PathVariable (value = "metierId") Long metierId,@PathVariable (value = "typeId") Long typeId,
                                @Valid @RequestBody Article article) {
-        return articleService.save(metierId,article);
+        return articleService.save(metierId,article,typeId);
     }
+
+    @PutMapping("/editArticle/{articleId}")
+    public Article updateMetier(@PathVariable Long articleId, @Valid @RequestBody Article articleRequest) {
+        return articleService.updateArticle(articleId,articleRequest);
+    }
+
+    @DeleteMapping("/articles/{articleId}")
+    public ResponseEntity<?> deleteArticle(@PathVariable (value = "articleId") Long articleId) {
+
+        return articleService.delete(articleId);
+    }
+
 
 
 

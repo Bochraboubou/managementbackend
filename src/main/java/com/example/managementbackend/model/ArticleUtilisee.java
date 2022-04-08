@@ -15,7 +15,7 @@ public class ArticleUtilisee {
 
     @JsonIgnore
     @ManyToOne
-    @MapsId("bondecommande_id") //This is the name of attr in EmployerDeliveryAgentPK class
+    @MapsId("bondecommande_id") //This is the name of attr in Article utiliseePK class
     @JoinColumn(name = "bondecommande_id")
     private BondeCommande bondecommande;
 
@@ -31,16 +31,13 @@ public class ArticleUtilisee {
 
     @NotNull
     private long quantitee;
-   /* @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bc_id", nullable = false)
-    private BondeCommande bondecommande;
-    */
+
 
 
     public ArticleUtilisee(BondeCommande bondecommande, Article article, float prix, long quantitee) {
         // create primary key
         this.id = new AticleUtiliseeId(bondecommande.getId(), article.getId());
+
 
         // initialize attributes
         this.bondecommande = bondecommande;
