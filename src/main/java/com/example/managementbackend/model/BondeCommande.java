@@ -57,6 +57,11 @@ public class BondeCommande {
     @OneToMany(mappedBy = "bondecommande")
     private List<ArticleUtilisee> articlesassociation = new ArrayList<ArticleUtilisee>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "bonDeCommande")
+    private List<Attachement> attachements = new ArrayList<>();
+
     public BondeCommande(String codebc, float montant, long delais, Organisation entreprise, Marchee marchee, List<ArticleUtilisee> articlesassociation) {
         this.codebc = codebc;
         this.montant = montant;

@@ -38,6 +38,10 @@ public class ArticleUtiliseeService {
         return articleUtiliseeRepo.findAllByBondecommandeId(bcId);
     }
 
+    public List<ArticleUtilisee> getAllArticlesutiliseesByArticleId(long articleId) {
+        return articleUtiliseeRepo.findAllByArticleId(articleId);
+    }
+
 
     public Optional<ArticleUtilisee> getArticleUtiliseeByBcIdandArtId(Long bcId, Long artId) {
         return articleUtiliseeRepo.findByBondecommandeIdAndArticleId(bcId,artId).map(articleUtilisee -> articleUtiliseeRepo.findByBondecommandeIdAndArticleId(bcId,artId)).orElseThrow(() -> new ResourceNotFoundException("bcId " + bcId + " not found or articleId "+ artId +" not found" ));
