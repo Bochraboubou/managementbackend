@@ -18,5 +18,5 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
 
     */
    Optional<Organisation> findByUsersId(Long  userId );
-
+    Optional<Organisation> findByNom(String nom );
 }

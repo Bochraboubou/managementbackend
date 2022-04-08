@@ -27,11 +27,16 @@ public class OrganisationService {
                 orElseThrow(() -> new ResourceNotFoundException("organId " + organId + " not found"));
     }
 
-    public Optional<Organisation> getByCode(String codeOrgan) {
+   public Optional<Organisation> getByCode(String codeOrgan) {
         return organisationRepo.findByCode(codeOrgan).map(organisation ->
                 organisationRepo.findByCode(codeOrgan)).orElseThrow(() ->
                 new ResourceNotFoundException("codeOrgan " + codeOrgan + " not found"));
     }
+
+    public Optional<Organisation> getOrganisationByCode(String codeOrgan) {
+        return organisationRepo.findByCode(codeOrgan);
+    }
+
 
     public Organisation createOrganisation(Organisation organisation) {
 
@@ -84,5 +89,10 @@ public class OrganisationService {
         return organisationRepo.findByUsersId(idUser).map(organisation
                 -> organisationRepo.findByUsersId(idUser)).orElseThrow(()
                 -> new ResourceNotFoundException("idUser " + idUser+ " not found"));
+    }
+
+    public Optional<Organisation>trouverParNom(String nom)
+    {return organisationRepo.findByNom(nom);
+
     }
 }

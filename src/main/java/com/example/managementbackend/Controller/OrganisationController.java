@@ -56,12 +56,20 @@ public class OrganisationController {
     }
 
 
+    @GetMapping("/orgbyCode/{codeOrgan}")
+    public Optional<Organisation> getOrganByCodeNOUR(@PathVariable String codeOrgan) {
+        return organisationService.getOrganisationByCode(codeOrgan);
+    }
+
     @GetMapping("/organisationByUser/{idUser}")
     public Optional<Organisation> getOrganisationUser(@PathVariable long idUser) {
         return organisationService.getOrganisationByUser(idUser);
     }
 
-
+    @GetMapping("/organisationByNom/{nom}")
+    public Optional<Organisation> getOrganisationByNom(@PathVariable String nom) {
+        return organisationService.trouverParNom(nom);
+    }
 
     //methodes pour l'entreprise
 

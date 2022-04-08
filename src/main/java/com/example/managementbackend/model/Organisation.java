@@ -77,7 +77,7 @@ public class Organisation {
         private String emailAdmin;
 
         private String  document;
-        private String logo;
+        private String filename;
 
 
         @JsonIgnore
