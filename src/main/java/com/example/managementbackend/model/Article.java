@@ -42,6 +42,10 @@ public class Article {
     @JoinColumn(name = "type_id", nullable = false)
     private Type type;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "article")
+    private List<ArticleRealisee> articlesAttachees = new ArrayList<ArticleRealisee>();
+
     public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation, Type type) {
         this.code = code;
         this.designation = designation;
