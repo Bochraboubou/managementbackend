@@ -49,8 +49,6 @@ public class Demande {
 
     @NotNull
     private String type;
-
-
     @NotNull
     private String nomDG;
 

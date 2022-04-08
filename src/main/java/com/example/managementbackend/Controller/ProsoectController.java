@@ -28,6 +28,7 @@ public class ProsoectController {
     public List<Prospect> getAll(){
         return prospectRepository.findAll();
     }
+
     @GetMapping("/byEmailAndCode/{email}/code/{code}")
      Prospect troverByEmailAndCode(@PathVariable String email,@PathVariable String code  ){
       return prospectService.findUser(email,code)  ;
