@@ -15,13 +15,15 @@ import java.util.Optional;
 @Repository
 public interface OrganisationRepository extends JpaRepository<Organisation, Long> {
     Optional<Organisation> findByCode(String Code);
+
     Optional<Organisation> findByBonDeCommandesId(long bonDeCommandeId);
 
-   Optional<Organisation> findByUsersId(Long  userId );
+    Optional<Organisation> findByUsersId(Long userId);
 
-    Optional<Organisation> findByNom(String nom );
+    Optional<Organisation> findByNom(String nom);
 
-   Optional<Organisation> findByUsersUsername(String userName );
+    Optional<Organisation> findByUsersUsername(String userName);
+}
 
 
 

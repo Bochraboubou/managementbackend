@@ -47,6 +47,12 @@ public class MarcheeController {
     public Optional<Marchee> getMarcheebyCode(@PathVariable String codeMarchee) {
         return marcheeService.getMarcheebyCode(codeMarchee);
     }
+
+    @GetMapping("/marcheebyId/{idMarchee}")
+    public Optional<Marchee> getMarcheebyId(@PathVariable long idMarchee) {
+        return marcheeService.getMarcheebyId(idMarchee);
+    }
+
     @GetMapping("/marcheebycode/{codeMarchee}/andOrgan/{organId}")
     public Optional<Marchee> getMarcheebyCodeandOrganId(@PathVariable (value = "codeMarchee") String codeMarchee,@PathVariable (value = "organId") long organId) {
         return marcheeService.getMarcheebyCodeandOrganisation(codeMarchee,organId);

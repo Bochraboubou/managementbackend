@@ -29,6 +29,8 @@ public class ArticleR {
 
     private long quantitee;
 
+    private long quantiteeRealisee;
+
     private  long idType;
 
     private  String typeLib;
@@ -38,6 +40,27 @@ public class ArticleR {
         this.code = code;
         this.designation = designation;
         this.unitee = unitee;
+        this.idType = idType;
+        this.typeLib = typeLib;
+    }
+
+    public ArticleR(Long id, String code, String designation, String unitee, float prix, long quantitee, long idType, String typeLib) {
+        this.id = id;
+        this.code = code;
+        this.designation = designation;
+        this.unitee = unitee;
+        this.prix = prix;
+        this.quantitee = quantitee;
+        this.idType = idType;
+        this.typeLib = typeLib;
+    }
+
+    public ArticleR(Long id, String code, String designation, String unitee, long quantiteeRealisee, long idType, String typeLib) {
+        this.id = id;
+        this.code = code;
+        this.designation = designation;
+        this.unitee = unitee;
+        this.quantiteeRealisee = quantiteeRealisee;
         this.idType = idType;
         this.typeLib = typeLib;
     }
