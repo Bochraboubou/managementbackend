@@ -17,4 +17,5 @@ public interface ArticleUtiliseeRepository extends JpaRepository<ArticleUtilisee
     List<ArticleUtilisee> findAllByArticleId(long articleId);
    ArticleUtilisee findByBondecommandeId(Long id);
 
+
 }

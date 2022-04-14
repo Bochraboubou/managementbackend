@@ -79,6 +79,7 @@ public class OrganisationController {
     public Optional<Organisation> getOrganByUserName(@PathVariable String userName) {
         return organisationService.getByUserName(userName);
 
+<<<<<<< HEAD
     }
 
 
@@ -90,6 +91,21 @@ public class OrganisationController {
     public List<Organisation> getAllEntreprisesByOrganId(@PathVariable(value = "organId") Long organId) {
         return organisationRepo.findBySuporganId(organId);
 */
+=======
+
+    @GetMapping("/organisationByNom/{nom}")
+    public Optional<Organisation> getOrganisationByNom(@PathVariable String nom) {
+        return organisationService.trouverParNom(nom);
+    }
+
+  
+
+    @GetMapping("/organisationbyUserName/{userName}")
+    public Optional<Organisation> getOrganByUserName(@PathVariable String userName) {
+        return organisationService.getByUserName(userName);
+
+    }
+>>>>>>> 743fcaf72ca57cca99cdde922323cd36952ab06e
 
 
 }
