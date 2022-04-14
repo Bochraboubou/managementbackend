@@ -18,11 +18,16 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
 
     Optional<Organisation> findByBonDeCommandesId(long bonDeCommandeId);
 
-    Optional<Organisation> findByUsersId(Long userId);
 
-    Optional<Organisation> findByNom(String nom);
+   Optional<Organisation> findByUsersId(Long  userId );
 
-    Optional<Organisation> findByUsersUsername(String userName);
+   Optional<Organisation> findByUsersUsername(String userName );
+
+    Optional<Organisation> findByNom(String nom );
+
+
+
+
 }
 
 

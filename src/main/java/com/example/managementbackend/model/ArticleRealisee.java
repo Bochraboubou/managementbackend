@@ -1,6 +1,6 @@
 package com.example.managementbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,11 +14,13 @@ public class ArticleRealisee {
     @EmbeddedId
     private  ArticleRealiseeId id;
 
+
     @JsonIgnore
     @ManyToOne
     @MapsId("attachement_id") //This is the name of attr in Article realiseePK class
     @JoinColumn(name = "attachement_id")
     private Attachement attachement;
+
 
     @JsonIgnore
     @ManyToOne
@@ -28,6 +30,9 @@ public class ArticleRealisee {
 
     @NotNull
     private long quantiteeRealisee;
+
+
+
 
     public ArticleRealisee(Attachement attachement, Article article, long quantiteeRealisee) {
         // create primary key
@@ -42,4 +47,7 @@ public class ArticleRealisee {
     public ArticleRealisee() {
 
     }
+
+
+
 }

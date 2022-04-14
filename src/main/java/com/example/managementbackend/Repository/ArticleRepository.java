@@ -23,6 +23,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findByTypeId(long typeId);
 
 
+
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,au.prix,au.quantitee,t.id,t.typeLib) FROM Article a JOIN a.bcassociation au join a.type t where au.id.bondecommande_id = :bcId")
     public List<ArticleR> getArticlesUtilisees(@Param("bcId") long bcId);
 
@@ -33,6 +34,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Metier m join  m.articles a join a.type t where m.id = :metierId")
     public List<ArticleR> getArticlesJoinsByMetier(long metierId);
 
+
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and at.attachement.dateAttachement between :date1 and :date2 group by a")
     public List<ArticleR> getArticlesRealiseesByBCbyPeriode(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2);
 
@@ -42,4 +44,5 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId group by a")
     public List<ArticleR> getArticlesRealiseesGlobalbyBC(@Param("bcId") long bcId);
+
 }

@@ -15,6 +15,7 @@ public interface ArticleUtiliseeRepository extends JpaRepository<ArticleUtilisee
     List<ArticleUtilisee> findAllByBondecommandeId(long bondecommandeId);
     Optional<ArticleUtilisee> findByBondecommandeIdAndArticleId(long bondecommandeId, long articleId);
     List<ArticleUtilisee> findAllByArticleId(long articleId);
+   ArticleUtilisee findByBondecommandeId(Long id);
 
 
 }

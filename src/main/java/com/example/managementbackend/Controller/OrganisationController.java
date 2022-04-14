@@ -20,7 +20,10 @@ import java.util.Optional;
 public class OrganisationController {
     @Autowired
     private OrganisationService organisationService;
-
+    @GetMapping("/organisationByNom/{nom}")
+    public Optional<Organisation> getOrganisationByNom(@PathVariable String nom) {
+        return organisationService.trouverParNom(nom);
+    }
     @GetMapping("/organisations")
     public List<Organisation> getAll() {
         return organisationService.getAll();
@@ -67,11 +70,28 @@ public class OrganisationController {
         return organisationService.getOrganisationByCode(codeOrgan);
     }
 
+
     @GetMapping("/organisationByUser/{idUser}")
     public Optional<Organisation> getOrganisationUser(@PathVariable long idUser) {
         return organisationService.getOrganisationByUser(idUser);
     }
+    @GetMapping("/organisationbyUserName/{userName}")
+    public Optional<Organisation> getOrganByUserName(@PathVariable String userName) {
+        return organisationService.getByUserName(userName);
 
+<<<<<<< HEAD
+    }
+
+
+
+
+    //methodes pour l'entreprise
+
+/*    @GetMapping("/organisations/{organId}/entreprises")
+    public List<Organisation> getAllEntreprisesByOrganId(@PathVariable(value = "organId") Long organId) {
+        return organisationRepo.findBySuporganId(organId);
+*/
+=======
 
     @GetMapping("/organisationByNom/{nom}")
     public Optional<Organisation> getOrganisationByNom(@PathVariable String nom) {
@@ -85,6 +105,7 @@ public class OrganisationController {
         return organisationService.getByUserName(userName);
 
     }
+>>>>>>> 743fcaf72ca57cca99cdde922323cd36952ab06e
 
 
 }

@@ -30,7 +30,7 @@ public class ArticleUtiliseeController {
         return articleUtiliseeService.getAll();
     }
 
-
+//get article utulisé bu Bon de commande  id
 
     @GetMapping("/bondecommande/{bcId}/articlesutilisees")
     public List<ArticleUtilisee> getAllArticlesutiliseesByBcId(@PathVariable(value = "bcId") long bcId) {
@@ -48,12 +48,13 @@ public class ArticleUtiliseeController {
     }
 
 
-
-
     @PostMapping("/bondescommande/{bcId}/article/{articleid}/articlesutilisee")
     public ArticleUtilisee createArticleUtilisee(@PathVariable (value = "bcId") Long bcId, @PathVariable (value = "articleid") Long articleid,
                                  @Valid @RequestBody ArticleUtilisee articleutilisee) {
         return articleUtiliseeService.create(bcId, articleid, articleutilisee);
     }
-
+    @GetMapping("/bc/{bcId}")
+    public ArticleUtilisee getArticleUtiliseeByBCid(@PathVariable (value = "bcId") Long bcId) {
+        return articleUtiliseeService.getArticlesUtulisee(bcId);
+    }
 }
