@@ -16,11 +16,11 @@ import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-    List<Article> findByMetierId(long metierId);
-    Optional<Article> findByIdAndMetierId(long id, long metierId);
+    //Optional<Article> findByIdAndMetierId(long id, long metierId);
     Optional<Article> findByCode(String Code);
-    Optional<Article> findByCodeAndMetierId(String code, long metierId);
+    Optional<Article> findByCodeAndType_MetierId(String code, long metierId);
     List<Article> findByTypeId(long typeId);
+    List<Article> findByType_MetierId(long metierId);
 
 
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,au.prix,au.quantitee,t.id,t.typeLib) FROM Article a JOIN a.bcassociation au join a.type t where au.id.bondecommande_id = :bcId")
@@ -30,7 +30,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Article  a join a.type t")
     public List<ArticleR> getAllArticlesJoins();
 
-    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Metier m join  m.articles a join a.type t where m.id = :metierId")
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Article a join  a.type t join t.metier m where m.id= :metierId")
     public List<ArticleR> getArticlesJoinsByMetier(long metierId);
 
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and at.attachement.dateAttachement between :date1 and :date2 group by a")

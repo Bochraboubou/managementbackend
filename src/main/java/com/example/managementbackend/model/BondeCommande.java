@@ -3,15 +3,20 @@ package com.example.managementbackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "bondecommande")
 public class BondeCommande {
@@ -29,6 +34,11 @@ public class BondeCommande {
     @NotNull
     private long delais;
 
+
+    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate dateDebutTraveaux;
+
    /* @OneToOne(cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "id_entreprise")
     @JsonIgnore
@@ -40,6 +50,7 @@ public class BondeCommande {
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnore
     private Organisation entreprise;
+
 
    /* @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
@@ -54,7 +65,7 @@ public class BondeCommande {
     private Marchee marchee;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "bondecommande")
+    @OneToMany(mappedBy = "bondecommande",cascade = CascadeType.REMOVE)
     private List<ArticleUtilisee> articlesassociation = new ArrayList<ArticleUtilisee>();
 
     @OneToMany(cascade = CascadeType.ALL,
@@ -62,72 +73,21 @@ public class BondeCommande {
             mappedBy = "bonDeCommande")
     private List<Attachement> attachements = new ArrayList<>();
 
-    public BondeCommande(String codebc, float montant, long delais, Organisation entreprise, Marchee marchee, List<ArticleUtilisee> articlesassociation) {
+
+    public BondeCommande(String codebc, float montant, long delais, LocalDate dateDebutTraveaux, Organisation entreprise, Marchee marchee, List<ArticleUtilisee> articlesassociation, List<Attachement> attachements) {
         this.codebc = codebc;
         this.montant = montant;
         this.delais = delais;
+        this.dateDebutTraveaux = dateDebutTraveaux;
         this.entreprise = entreprise;
         this.marchee = marchee;
         this.articlesassociation = articlesassociation;
+        this.attachements = attachements;
     }
 
     public BondeCommande() {
 
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCodebc() {
-        return codebc;
-    }
-
-    public void setCodebc(String codebc) {
-        this.codebc = codebc;
-    }
-
-    public float getMontant() {
-        return montant;
-    }
-
-    public void setMontant(float montant) {
-        this.montant = montant;
-    }
-
-    public long getDelais() {
-        return delais;
-    }
-
-    public void setDelais(long delais) {
-        this.delais = delais;
-    }
-
-    public Organisation getEntreprise() {
-        return entreprise;
-    }
-
-    public void setEntreprise(Organisation entreprise) {
-        this.entreprise = entreprise;
-    }
-
-    public Marchee getMarchee() {
-        return marchee;
-    }
-
-    public void setMarchee(Marchee marchee) {
-        this.marchee = marchee;
-    }
-
-    public List<ArticleUtilisee> getArticlesassociation() {
-        return articlesassociation;
-    }
-
-    public void setArticlesassociation(List<ArticleUtilisee> articlesassociation) {
-        this.articlesassociation = articlesassociation;
-    }
 }

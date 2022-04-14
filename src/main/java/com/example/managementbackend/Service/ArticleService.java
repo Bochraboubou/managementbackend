@@ -28,7 +28,7 @@ public class ArticleService {
     }
 
     public List<Article> getAllArticlesByMetier(Long metierId) {
-        return articleRepo.findByMetierId(metierId);
+        return articleRepo.findByType_MetierId(metierId);
     }
 
     public List<Article> getAllArticlesByType(Long typeId) {
@@ -44,19 +44,14 @@ public class ArticleService {
     }
 
     public Optional<Article> getArticlebyCodeandMetier(String code,long metierId) {
-        return articleRepo.findByCodeAndMetierId(code,metierId).map(article -> articleRepo.findByCodeAndMetierId(code,metierId)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found ou idMetier "+ metierId+"not found "));
+        return articleRepo.findByCodeAndType_MetierId(code,metierId).map(article -> articleRepo.findByCodeAndType_MetierId(code,metierId)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found ou idMetier "+ metierId+"not found "));
     }
 
-    public Article save(Long metierId, Article article,long typeId) {
-        return metierRepo.findById(metierId).map(metier -> {
-            article.setMetier(metier);
+    public Article save( Article article,long typeId) {
             return typeRepo.findById(typeId).map(type -> {
                 article.setType(type);
                 return articleRepo.save(article);
             }).orElseThrow(() -> new ResourceNotFoundException("typeId " + typeId + " not found"));
-
-
-        }).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId + " not found"));
     }
 
     public Article updateArticle(Long articleId, Article articleRequest) {
@@ -64,6 +59,7 @@ public class ArticleService {
             article.setCode(articleRequest.getCode());
             article.setDesignation(articleRequest.getDesignation());
             article.setUnitee(articleRequest.getUnitee());
+            article.setClasse((articleRequest.getClasse()));
             return articleRepo.save(article);
         }).orElseThrow(() -> new ResourceNotFoundException("articleId " + articleId + " not found"));
     }

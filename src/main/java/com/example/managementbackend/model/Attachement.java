@@ -33,7 +33,7 @@ public class Attachement {
     private LocalDate dateAttachement;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "attachement")
+    @OneToMany(mappedBy = "attachement",cascade = CascadeType.REMOVE)
     private List<ArticleRealisee> articlesAttachees = new ArrayList<ArticleRealisee>();
 
 
