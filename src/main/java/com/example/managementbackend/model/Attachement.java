@@ -29,7 +29,7 @@ public class Attachement {
     private String codeAttachement;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
     private LocalDate dateAttachement;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -41,4 +41,8 @@ public class Attachement {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bondecommande_id", nullable = false)
     private BondeCommande bonDeCommande;
+
+
+
+
 }

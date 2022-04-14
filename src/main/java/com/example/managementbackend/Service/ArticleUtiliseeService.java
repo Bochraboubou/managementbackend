@@ -63,5 +63,8 @@ public class ArticleUtiliseeService {
 
         }).orElseThrow(() -> new ResourceNotFoundException("bondecommandeId " + bcId + " not found"));
     }
+    public ArticleUtilisee getArticlesUtulisee(Long id){
+        return  articleUtiliseeRepo.findByBondecommandeId(id);
+    }
 
 }

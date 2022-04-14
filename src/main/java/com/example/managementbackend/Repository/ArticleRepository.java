@@ -20,6 +20,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findByTypeId(long typeId);
 
 
+
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,au.prix,au.quantitee,t.id,t.typeLib) FROM Article a JOIN a.bcassociation au join a.type t where au.id.bondecommande_id = :bcId")
     public List<ArticleR> getArticlesRealisees(@Param("bcId") long bcId);
 
@@ -29,4 +30,6 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Metier m join  m.articles a join a.type t where m.id = :metierId")
     public List<ArticleR> getArticlesJoinsByMetier(long metierId);
+
+
 }

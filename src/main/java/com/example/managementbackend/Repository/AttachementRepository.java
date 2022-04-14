@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AttachementRepository extends JpaRepository<Attachement, Long> {
+    public Attachement findByCodeAttachement(String code);
+
 }
