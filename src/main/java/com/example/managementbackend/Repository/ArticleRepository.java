@@ -16,11 +16,11 @@ import java.util.Optional;
 
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
-    List<Article> findByMetierId(long metierId);
-    Optional<Article> findByIdAndMetierId(long id, long metierId);
+    //Optional<Article> findByIdAndMetierId(long id, long metierId);
     Optional<Article> findByCode(String Code);
-    Optional<Article> findByCodeAndMetierId(String code, long metierId);
+    Optional<Article> findByCodeAndType_MetierId(String code, long metierId);
     List<Article> findByTypeId(long typeId);
+    List<Article> findByType_MetierId(long metierId);
 
 
 
@@ -31,7 +31,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Article  a join a.type t")
     public List<ArticleR> getAllArticlesJoins();
 
-    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Metier m join  m.articles a join a.type t where m.id = :metierId")
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Article a join  a.type t join t.metier m where m.id= :metierId")
     public List<ArticleR> getArticlesJoinsByMetier(long metierId);
 
 

@@ -42,6 +42,7 @@ public class ArticleRController {
         return articleRealiseeService.getArticlesRealiseesparPeriode(bcId,date1,date2);
     }
 
+
     @GetMapping("/articlesRealiseesJoinbydate/{bcId}/date/{dateA}")
     public List<ArticleR> getArticlesRealiseesbyDate(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
         return articleRealiseeService.getArticlesRealiseesbyDate(bcId,dateA);
