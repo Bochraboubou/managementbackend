@@ -24,6 +24,16 @@ public class MarcheeController {
     private MarcheeService marcheeService;
 
 
+    @GetMapping("/organisations/{organId}/marcheestypeProjet")
+    public List<Marchee> getAllMarcheestypeProjetByOrganId(@PathVariable(value = "organId") Long organId) {
+        return marcheeService.getAllMarcheestypeProjetByOrganId(organId);
+    }
+
+    @GetMapping("/organisations/{organId}/marcheestypeMC")
+    public List<Marchee> getAllMarcheestypeMCByOrganId(@PathVariable(value = "organId") Long organId) {
+        return marcheeService.getAllMarcheestypeMCByOrganId(organId);
+    }
+
     @GetMapping("/organisations/{organId}/marchees")
     public List<Marchee> getAllMarcheesByOrganId(@PathVariable(value = "organId") Long organId) {
         return marcheeService.getAllMarcheesByOrganId(organId);
