@@ -27,6 +27,16 @@ public class MarcheeService {
         return marcheeRepo.findByOrgId(organId);
     }
 
+    public List<Marchee> getAllMarcheestypeProjetByOrganId(Long organId) {
+
+        return marcheeRepo.getAllMarcheeProjetbyOrg(organId);
+    }
+
+    public List<Marchee> getAllMarcheestypeMCByOrganId(Long organId) {
+
+        return marcheeRepo.getAllMarcheeMCbyOrg(organId);
+    }
+
     public Marchee create(Long organId,long metierId,Marchee marchee) {
         return organRepo.findById(organId).map(organisation -> {
             return metierRepo.findById(metierId).map(metier -> {

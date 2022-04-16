@@ -25,6 +25,8 @@ public class ArticleR {
 
     private String unitee;
 
+    private  String classe;
+
     private float prix;
 
     private long quantitee;
@@ -35,11 +37,12 @@ public class ArticleR {
 
     private  String typeLib;
 
-    public ArticleR(Long id, String code, String designation, String unitee, long idType, String typeLib) {
+    public ArticleR(Long id, String code, String designation, String unitee,String classe, long idType, String typeLib) {
         this.id = id;
         this.code = code;
         this.designation = designation;
         this.unitee = unitee;
+        this.classe=classe;
         this.idType = idType;
         this.typeLib = typeLib;
     }

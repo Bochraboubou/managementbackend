@@ -28,21 +28,32 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     public List<ArticleR> getArticlesUtilisees(@Param("bcId") long bcId);
 
 
-    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Article  a join a.type t")
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,a.classe,t.id,t.typeLib) FROM Article  a join a.type t")
     public List<ArticleR> getAllArticlesJoins();
 
-    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,t.id,t.typeLib) FROM Article a join  a.type t join t.metier m where m.id= :metierId")
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id,a.code,a.designation,a.unitee,a.classe, t.id,t.typeLib) FROM Article a join  a.type t join t.metier m where m.id= :metierId")
     public List<ArticleR> getArticlesJoinsByMetier(long metierId);
 
 
-    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and at.attachement.dateAttachement between :date1 and :date2 group by a")
-    public List<ArticleR> getArticlesRealiseesByBCbyPeriode(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2);
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='prestation' and at.attachement.dateAttachement between :date1 and :date2 group by a")
+    public List<ArticleR> getArticlesRealiseesPrestationByBCbyPeriode(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2);
 
 
-    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and at.attachement.dateAttachement = :dateA group by a")
-    public List<ArticleR> getArticlesRealiseesByBCbyDate(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA);
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='prestation' and at.attachement.dateAttachement = :dateA group by a")
+    public List<ArticleR> getArticlesRealiseesPrestationByBCbyDate(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA);
 
-    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId group by a")
-    public List<ArticleR> getArticlesRealiseesGlobalbyBC(@Param("bcId") long bcId);
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='prestation' group by a")
+    public List<ArticleR> getArticlesRealiseesPrestationGlobalbyBC(@Param("bcId") long bcId);
+
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='materielFournisseur' and at.attachement.dateAttachement between :date1 and :date2 group by a")
+    public List<ArticleR> getArticlesRealiseesMFByBCbyPeriode(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2);
+
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='materielFournisseur' and at.attachement.dateAttachement = :dateA group by a")
+    public List<ArticleR> getArticlesRealiseesMFByBCbyDate(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA);
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleR(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='materielFournisseur' group by a")
+    public List<ArticleR> getArticlesRealiseesMFGlobalbyBC(@Param("bcId") long bcId);
 
 }
