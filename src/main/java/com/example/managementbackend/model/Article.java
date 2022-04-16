@@ -46,11 +46,15 @@ public class Article {
     @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
     private List<ArticleRealisee> articlesAttachees = new ArrayList<ArticleRealisee>();
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
+    private List<OrdreDefinitif> articlesParOrdre = new ArrayList<OrdreDefinitif>();
+
     public Article() {
 
     }
 
-    public Article(String code, String designation, String unitee, String classe, List<ArticleUtilisee> bcassociation, Type type, List<ArticleRealisee> articlesAttachees) {
+    public Article(String code, String designation, String unitee, String classe, List<ArticleUtilisee> bcassociation, Type type, List<ArticleRealisee> articlesAttachees, List<OrdreDefinitif> articlesParOrdre) {
         this.code = code;
         this.designation = designation;
         this.unitee = unitee;
@@ -58,5 +62,6 @@ public class Article {
         this.bcassociation = bcassociation;
         this.type = type;
         this.articlesAttachees = articlesAttachees;
+        this.articlesParOrdre = articlesParOrdre;
     }
 }

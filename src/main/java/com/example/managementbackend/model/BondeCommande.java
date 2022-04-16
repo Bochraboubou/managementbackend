@@ -71,6 +71,13 @@ public class BondeCommande {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "bonDeCommande")
+    private List<OrdreDeTraveaux> ordresdeTraveaux = new ArrayList<>();
+
+
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "bonDeCommande")
     private List<Attachement> attachements = new ArrayList<>();
 
 
