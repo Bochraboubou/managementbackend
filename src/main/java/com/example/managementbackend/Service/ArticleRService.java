@@ -35,8 +35,7 @@ public class ArticleRService {
     public List<ArticleR> getArticlesRealiseesPrestationbyDate(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate dateA){
         return articleRepo.getArticlesRealiseesPrestationByBCbyDate(bcId,dateA);
     }
-    /////////ggttg
-
+    
     public List<ArticleR> getArticlesRealiseesPrestationGlobalbyBC(long bcId){
         return articleRepo.getArticlesRealiseesPrestationGlobalbyBC(bcId);
     }
