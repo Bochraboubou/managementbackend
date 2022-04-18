@@ -33,6 +33,13 @@ public class OrdreDeTraveaux {
     private LocalDate dateOrdre;
 
     @NotNull
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private LocalDate dateDebutOrdre;
+
+    @NotNull
+    private long delais;
+
+    @NotNull
     private float montant;
 
     @JsonIgnore
