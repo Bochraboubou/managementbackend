@@ -33,6 +33,13 @@ public class OrdreDeTraveaux {
     private LocalDate dateOrdre;
 
     @NotNull
+    @DateTimeFormat(pattern ="yyyy-MM-dd")
+    private LocalDate dateDebutOrdre;
+
+    @NotNull
+    private long delais;
+
+    @NotNull
     private float montant;
 
     @JsonIgnore
@@ -43,5 +50,12 @@ public class OrdreDeTraveaux {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "ordreDeTraveaux",cascade = CascadeType.REMOVE)
     private List<OrdreDefinitif> articlesParOrdre = new ArrayList<OrdreDefinitif>();
+
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "ordreTraveaux")
+    private List<AttachementMC> attachementsMC = new ArrayList<>();
+
 
 }

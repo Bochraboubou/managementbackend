@@ -51,9 +51,9 @@ public void   deleteAttachement( @PathVariable Long id){
 
 
 //optionnal
-@GetMapping("/byCode2/{code}")
-public Optional<Attachement> getAttachementByArticle2(@PathVariable  String code ){
-    return Optional.ofNullable(attachementService.FinAttachementByCode(code));
+    @GetMapping("/byCode2/{code}")
+    public Optional<Attachement> getAttachementByArticle2(@PathVariable  String code ){
+        return Optional.ofNullable(attachementService.FinAttachementByCode(code));
 }
 
     @PostMapping("/bondecommande/{bondeCommandeId}/attachement")

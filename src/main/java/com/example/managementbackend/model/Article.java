@@ -48,6 +48,10 @@ public class Article {
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
+    private List<ArticleRealiseeMC> articlesAttacheesMC = new ArrayList<ArticleRealiseeMC>();
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
     private List<OrdreDefinitif> articlesParOrdre = new ArrayList<OrdreDefinitif>();
 
     public Article() {
