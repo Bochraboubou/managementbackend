@@ -77,7 +77,7 @@ public class Organisation {
         private String emailAdmin;
   
         private String  document;
-        private String filename;
+        private String fileName;
 
 
 
