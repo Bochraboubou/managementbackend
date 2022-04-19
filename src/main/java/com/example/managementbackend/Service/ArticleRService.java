@@ -28,16 +28,28 @@ public class ArticleRService {
 
     public List<ArticleR> getArticlesJoinsbyMetier(long metierId){return articleRepo.getArticlesJoinsByMetier(metierId);}
 
-    public List<ArticleR> getArticlesRealiseesparPeriode(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date2){
-        return articleRepo.getArticlesRealiseesByBCbyPeriode(bcId,date1,date2);
+    public List<ArticleR> getArticlesRealiseesPrestationparPeriode(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date2){
+        return articleRepo.getArticlesRealiseesPrestationByBCbyPeriode(bcId,date1,date2);
     }
 
-    public List<ArticleR> getArticlesRealiseesbyDate(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate dateA){
-        return articleRepo.getArticlesRealiseesByBCbyDate(bcId,dateA);
+    public List<ArticleR> getArticlesRealiseesPrestationbyDate(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate dateA){
+        return articleRepo.getArticlesRealiseesPrestationByBCbyDate(bcId,dateA);
+    }
+    
+    public List<ArticleR> getArticlesRealiseesPrestationGlobalbyBC(long bcId){
+        return articleRepo.getArticlesRealiseesPrestationGlobalbyBC(bcId);
     }
 
-    public List<ArticleR> getArticlesRealiseesGlobalbyBC(long bcId){
-        return articleRepo.getArticlesRealiseesGlobalbyBC(bcId);
+    public List<ArticleR> getArticlesRealiseesMFparPeriode(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date2){
+        return articleRepo.getArticlesRealiseesMFByBCbyPeriode(bcId,date1,date2);
+    }
+
+    public List<ArticleR> getArticlesRealiseesMFbyDate(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate dateA){
+        return articleRepo.getArticlesRealiseesMFByBCbyDate(bcId,dateA);
+    }
+
+    public List<ArticleR> getArticlesRealiseesMFGlobalbyBC(long bcId){
+        return articleRepo.getArticlesRealiseesMFGlobalbyBC(bcId);
     }
 
 

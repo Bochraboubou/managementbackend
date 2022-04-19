@@ -19,30 +19,27 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "attachement")
-public class Attachement {
+@Table(name = "attachementMC")
+public class AttachementMC {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
-    private String codeAttachement;
+    private String codeAttachementMC;
 
     @NotNull
     @DateTimeFormat(pattern ="yyyy-MM-dd")
-    private LocalDate dateAttachement;
+    private LocalDate dateAttachementMC;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "attachement",cascade = CascadeType.REMOVE)
-    private List<ArticleRealisee> articlesAttachees = new ArrayList<ArticleRealisee>();
+    @OneToMany(mappedBy = "attachementMC",cascade = CascadeType.REMOVE)
+    private List<ArticleRealiseeMC> articlesAttacheesMC = new ArrayList<ArticleRealiseeMC>();
 
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "bondecommande_id", nullable = false)
-    private BondeCommande bonDeCommande;
-
-
-
+    @JoinColumn(name = "ordreTraveaux_id", nullable = false)
+    private OrdreDeTraveaux ordreTraveaux;
 
 }

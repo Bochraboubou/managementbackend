@@ -37,18 +37,35 @@ public class ArticleRController {
         return articleRealiseeService.getArticlesJoinsbyMetier(metierId);
     }
 
-    @GetMapping("/articlesRealiseesJoinParPeriode/{bcId}/{date1}/{date2}")
-    public List<ArticleR> getArticlesRealisees(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
-        return articleRealiseeService.getArticlesRealiseesparPeriode(bcId,date1,date2);
+    @GetMapping("/articlesRealiseesJoinParPeriode/prestation/{bcId}/{date1}/{date2}")
+    public List<ArticleR> getArticlesRealiseesPres(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
+        return articleRealiseeService.getArticlesRealiseesPrestationparPeriode(bcId,date1,date2);
     }
 
-    @GetMapping("/articlesRealiseesJoinbydate/{bcId}/date/{dateA}")
-    public List<ArticleR> getArticlesRealiseesbyDate(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
-        return articleRealiseeService.getArticlesRealiseesbyDate(bcId,dateA);
+
+    @GetMapping("/articlesRealiseesJoinbydate/prestation/{bcId}/date/{dateA}")
+    public List<ArticleR> getArticlesRealiseesPresbyDate(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
+        return articleRealiseeService.getArticlesRealiseesPrestationbyDate(bcId,dateA);
     }
 
-    @GetMapping("/articlesRealiseesJoinGlobalbyBC/{bcId}")
-    public List<ArticleR> getArticlesRealiseesGlobalby(@PathVariable(value = "bcId") long bcId){
-        return articleRealiseeService.getArticlesRealiseesGlobalbyBC(bcId);
+    @GetMapping("/articlesRealiseesJoinGlobalbyBC/prestation/{bcId}")
+    public List<ArticleR> getArticlesRealiseesPresGlobalby(@PathVariable(value = "bcId") long bcId){
+        return articleRealiseeService.getArticlesRealiseesPrestationGlobalbyBC(bcId);
+    }
+
+    @GetMapping("/articlesRealiseesJoinParPeriode/MF/{bcId}/{date1}/{date2}")
+    public List<ArticleR> getArticlesRealiseesMF(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
+        return articleRealiseeService.getArticlesRealiseesMFparPeriode(bcId,date1,date2);
+    }
+
+
+    @GetMapping("/articlesRealiseesJoinbydate/MF/{bcId}/date/{dateA}")
+    public List<ArticleR> getArticlesRealiseesMFbyDate(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
+        return articleRealiseeService.getArticlesRealiseesMFbyDate(bcId,dateA);
+    }
+
+    @GetMapping("/articlesRealiseesJoinGlobalbyBC/MF/{bcId}")
+    public List<ArticleR> getArticlesRealiseesMFGlobalby(@PathVariable(value = "bcId") long bcId){
+        return articleRealiseeService.getArticlesRealiseesMFGlobalbyBC(bcId);
     }
 }

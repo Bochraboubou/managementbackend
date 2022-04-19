@@ -54,9 +54,9 @@ public class ArticleController {
     }
 
     @PostMapping("/metier/{metierId}/type/{typeId}/article")
-    public Article createArticle(@PathVariable (value = "metierId") Long metierId,@PathVariable (value = "typeId") Long typeId,
+    public Article createArticle(@PathVariable (value = "typeId") Long typeId,
                                @Valid @RequestBody Article article) {
-        return articleService.save(metierId,article,typeId);
+        return articleService.save(article,typeId);
     }
 
     @PutMapping("/editArticle/{articleId}")

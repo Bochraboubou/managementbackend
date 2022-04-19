@@ -32,7 +32,10 @@ public class AttachemntService {
     @Autowired
     private AttachementRepository attachementRepo;
 
-@Autowired
+    @Autowired
+    private BondeCommandeRepository bondeCommandeRepo;
+
+    @Autowired
     BondeCommandeRepository bondeCommandeRepository;
 
 
@@ -77,8 +80,7 @@ public void DeleteAttachement(Long id ){
 
 
 
-    @Autowired
-    private BondeCommandeRepository bondeCommandeRepo;
+
 
     public Attachement create(Long bondeCommandeId, Attachement attachement) {
         return bondeCommandeRepo.findById(bondeCommandeId).map(bondeCommande -> {

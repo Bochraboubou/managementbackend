@@ -3,11 +3,14 @@ package com.example.managementbackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Getter
+@Setter
 @Entity
 @Table(name = "article")
 public class Article {
@@ -26,15 +29,12 @@ public class Article {
     @NotNull
     private String unitee;
 
+    @NotNull
+    private String classe;
 
-
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "metier_id", nullable = false)
-    private Metier metier;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "article")
+    @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
     private List<ArticleUtilisee> bcassociation = new ArrayList<ArticleUtilisee>();
 
     @JsonIgnore
@@ -43,76 +43,29 @@ public class Article {
     private Type type;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "article")
+    @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
     private List<ArticleRealisee> articlesAttachees = new ArrayList<ArticleRealisee>();
 
-    public Article(String code, String designation, String unitee, Metier metier, List<ArticleUtilisee> bcassociation, Type type) {
-        this.code = code;
-        this.designation = designation;
-        this.unitee = unitee;
-        this.metier = metier;
-        this.bcassociation = bcassociation;
-        this.type = type;
-    }
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
+    private List<ArticleRealiseeMC> articlesAttacheesMC = new ArrayList<ArticleRealiseeMC>();
+
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "article",cascade = CascadeType.REMOVE)
+    private List<OrdreDefinitif> articlesParOrdre = new ArrayList<OrdreDefinitif>();
 
     public Article() {
 
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
+    public Article(String code, String designation, String unitee, String classe, List<ArticleUtilisee> bcassociation, Type type, List<ArticleRealisee> articlesAttachees, List<OrdreDefinitif> articlesParOrdre) {
         this.code = code;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
-    }
-
-    public String getDesignation() {
-        return designation;
-    }
-
-    public void setDesignation(String designation) {
         this.designation = designation;
-    }
-
-    public String getUnitee() {
-        return unitee;
-    }
-
-    public void setUnitee(String unitee) {
         this.unitee = unitee;
-    }
-
-    public Metier getMetier() {
-        return metier;
-    }
-
-    public void setMetier(Metier metier) {
-        this.metier = metier;
-    }
-
-    public List<ArticleUtilisee> getBcassociation() {
-        return bcassociation;
-    }
-
-    public void setBcassociation(List<ArticleUtilisee> bcassociation) {
+        this.classe = classe;
         this.bcassociation = bcassociation;
+        this.type = type;
+        this.articlesAttachees = articlesAttachees;
+        this.articlesParOrdre = articlesParOrdre;
     }
-
 }

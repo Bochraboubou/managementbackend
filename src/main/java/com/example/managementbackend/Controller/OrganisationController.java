@@ -92,7 +92,6 @@ public class OrganisationController {
     public Optional<Organisation> getOrganByUserName(@PathVariable String userName) {
         return organisationService.getByUserName(userName);
 
-
     }
     @GetMapping("/organisationByNom/{nom}")
     public Optional<Organisation> getOrganisationByNom(@PathVariable String nom) {
@@ -170,44 +169,6 @@ public class OrganisationController {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //methodes pour l'entreprise
 
 /*    @GetMapping("/organisations/{organId}/entreprises")
@@ -219,6 +180,7 @@ public class OrganisationController {
 
 
   
+
 
 
 
