@@ -41,4 +41,9 @@ public class ArticleRealiseeService {
         }).orElseThrow(() -> new ResourceNotFoundException("attachementId " + attachementId + " not found"));
     }
 
+
+    // get liste of articles réalisee by id attachement
+    public List<ArticleRealisee> findListeARbyAttID(Long id ){
+        return articleRealiseeRepo.findByAttachementId(id);
+    }
 }

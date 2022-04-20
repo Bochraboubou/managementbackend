@@ -31,5 +31,8 @@ public class ArticleRealiseeController {
                                                  @Valid @RequestBody ArticleRealisee articleRealisee) {
         return articleRealiseeService.create(attachementId, articleid, articleRealisee);
     }
-
+    @GetMapping("/listeARByAttachId/{id}")
+    public List<ArticleRealisee>articRealiseeByAttId(@PathVariable Long id ){
+        return articleRealiseeService.findListeARbyAttID(id);
+    }
 }

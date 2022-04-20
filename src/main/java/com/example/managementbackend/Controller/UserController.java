@@ -4,6 +4,7 @@ import com.example.managementbackend.Repository.OrganisationRepository;
 import com.example.managementbackend.Repository.ProspectRepository;
 import com.example.managementbackend.Repository.UserRepository;
 import com.example.managementbackend.Service.UserService;
+import com.example.managementbackend.dto.organisationUserJoin;
 import com.example.managementbackend.model.Demande;
 import com.example.managementbackend.model.Prospect;
 import com.example.managementbackend.model.Response;
@@ -277,13 +278,23 @@ public List <User> finduserByOrganisation(@PathVariable Long id ){
         }
         else
         {
-            return new ResponseEntity<Response>(new Response ("Article not saved"),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<Response>(new Response ("USER not saved"),HttpStatus.BAD_REQUEST);
         }
     }
 
 
+    // find users of one organisation
+    @GetMapping("/mycpm/{code}")
+    public List<organisationUserJoin> findUsersOneOrg(@PathVariable String code ){
+       return  userRepository.getAdminMyCpm(code);
+    }
+// get all users with code organisation
 
 
+    @GetMapping("/allusersBYQuery")
+    public List<organisationUserJoin> findUsersOneOrg(){
+        return  userRepository.getAllUsers();
+    }
 
 
 
