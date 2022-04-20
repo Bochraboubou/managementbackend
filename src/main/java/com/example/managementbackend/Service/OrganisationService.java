@@ -9,6 +9,7 @@ import com.example.managementbackend.model.Organisation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +55,7 @@ public class OrganisationService {
 
 
     public Organisation createOrganisation(Organisation organisation) {
-
+        MultipartFile file = null;
         return organisationRepo.save(organisation);
     }
 

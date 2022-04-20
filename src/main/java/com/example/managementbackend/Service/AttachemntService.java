@@ -12,6 +12,9 @@ import com.example.managementbackend.model.Metier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.List;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 @Service
@@ -34,6 +38,18 @@ public class AttachemntService {
     @Autowired
     BondeCommandeRepository bondeCommandeRepository;
 
+
+
+// find all
+public List <Attachement>findAllAttachement( ){
+    return attachementRepo.findAll();
+
+}
+
+ public Optional <Attachement>findByID( Long id ){
+     return attachementRepo.findById(id);
+
+}
     public Attachement ajouterAttachement( Attachement attachement){
         return attachementRepo.save(attachement);
     }

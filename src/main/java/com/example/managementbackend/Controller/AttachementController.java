@@ -33,6 +33,14 @@ public class AttachementController {
     private AttachemntService attachementService;
 
 
+    // find all
+
+    @GetMapping("/allAttachement")
+    public List<Attachement> getAttachementByArticle( ){
+        return attachementService. findAllAttachement();
+    }
+
+
 //Nour
     @PostMapping("/addAttachement/{idBC}")
     public Attachement addAttachement(@RequestBody Attachement attachement, @PathVariable Long idBC){
@@ -65,6 +73,10 @@ public void   deleteAttachement( @PathVariable Long id){
     @GetMapping("/attachementsbetween/{date1}/{date2}")
     public List<Attachement> getbetween(@PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2) {
         return attachementService.getbetween(date1,date2);
+    }
+    @GetMapping("/findById/{id}")
+    public Optional <Attachement>findAttachementById(@PathVariable Long id ) {
+        return attachementService.findByID(id);
     }
 
 
