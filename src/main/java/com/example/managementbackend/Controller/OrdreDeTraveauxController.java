@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/admin")
 @RestController
@@ -26,8 +27,13 @@ public class OrdreDeTraveauxController {
         return ordreService.create(bondeCommandeId,ordreTraveaux);
     }
 
-    @GetMapping("/montantTotalOT")
-    public float getTotalMontantOT() {
-        return ordreService.geMontantTotalOT();
+    @GetMapping("/bondeCommande/{bcId}/montantTotalOT")
+    public float getTotalMontantOT(@PathVariable(value = "bcId") long bcId) {
+        return ordreService.geMontantTotalOT(bcId);
+    }
+
+    @GetMapping("/OT/codeOT/{codeOT}/bcId/{bcId}")
+    public Optional<OrdreDeTraveaux> getByCodeandBCId(@PathVariable(value = "codeOT") String codeOT, @PathVariable(value = "bcId") Long bcId) {
+        return ordreService.getOTByCodeandBCId(codeOT,bcId);
     }
 }

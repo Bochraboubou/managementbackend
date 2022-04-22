@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class OrdreDetraveauxService {
@@ -33,7 +34,12 @@ public class OrdreDetraveauxService {
         }).orElseThrow(() -> new ResourceNotFoundException("bondeCommandeId " + bondeCommandeId+ " not found"));
     }
 
-    public float geMontantTotalOT() {
-        return ordreRepo.getMontantTotalOT();
+    public float geMontantTotalOT(long bcId) {
+        return ordreRepo.getMontantTotalOT(bcId);
+    }
+
+
+    public Optional<OrdreDeTraveaux> getOTByCodeandBCId(String codeOrdre, long bcID) {
+        return ordreRepo.findByCodeOrdreAndBonDeCommandeId(codeOrdre,bcID).map(ordreDeTraveaux -> ordreRepo.findByCodeOrdreAndBonDeCommandeId(codeOrdre,bcID)).orElseThrow(() -> new ResourceNotFoundException("codeOrdre " + codeOrdre+ " not found or bcId "+bcID+" not found"));
     }
 }
