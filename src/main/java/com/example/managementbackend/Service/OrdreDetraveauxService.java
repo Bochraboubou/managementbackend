@@ -4,10 +4,7 @@ import com.example.managementbackend.Repository.AttachementRepository;
 import com.example.managementbackend.Repository.BondeCommandeRepository;
 import com.example.managementbackend.Repository.OrdreDeTraveauxRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
-import com.example.managementbackend.model.Article;
-import com.example.managementbackend.model.Attachement;
-import com.example.managementbackend.model.Metier;
-import com.example.managementbackend.model.OrdreDeTraveaux;
+import com.example.managementbackend.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +38,9 @@ public class OrdreDetraveauxService {
 
     public Optional<OrdreDeTraveaux> getOTByCodeandBCId(String codeOrdre, long bcID) {
         return ordreRepo.findByCodeOrdreAndBonDeCommandeId(codeOrdre,bcID).map(ordreDeTraveaux -> ordreRepo.findByCodeOrdreAndBonDeCommandeId(codeOrdre,bcID)).orElseThrow(() -> new ResourceNotFoundException("codeOrdre " + codeOrdre+ " not found or bcId "+bcID+" not found"));
+    }
+
+    public List<OrdreDeTraveaux> getAllBYBC(Long bcID) {
+        return ordreRepo.findByBonDeCommandeId(bcID);
     }
 }

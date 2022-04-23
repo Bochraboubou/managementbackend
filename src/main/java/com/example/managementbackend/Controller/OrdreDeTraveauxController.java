@@ -36,4 +36,10 @@ public class OrdreDeTraveauxController {
     public Optional<OrdreDeTraveaux> getByCodeandBCId(@PathVariable(value = "codeOT") String codeOT, @PathVariable(value = "bcId") Long bcId) {
         return ordreService.getOTByCodeandBCId(codeOT,bcId);
     }
+
+
+    @GetMapping("/bc/{bcId}/ots")
+    public List<OrdreDeTraveaux> getAllOTBybcID(@PathVariable(value = "bcId") Long bcId) {
+        return ordreService.getAllBYBC(bcId);
+    }
 }
