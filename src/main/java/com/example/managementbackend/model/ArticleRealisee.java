@@ -31,6 +31,7 @@ public class ArticleRealisee {
     @NotNull
     private long quantiteeRealisee;
 
+//partie bon de livraison
 
 
 

@@ -40,4 +40,8 @@ public class ArticleRealiseeMCService {
         }).orElseThrow(() -> new ResourceNotFoundException("attachementMCId " + attachementMCId + " not found"));
     }
 
+    // get liste article realisee IN MC By id attachement
+ public  List<ArticleRealiseeMC>ListRealiseeMCByAttaID(Long id ){
+        return articleRealiseeMCRepo.findByattachementMCId(id);
+ }
 }
