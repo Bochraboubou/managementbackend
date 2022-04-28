@@ -3,6 +3,7 @@ package com.example.managementbackend.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,7 +11,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "articlerealisee")
+@NoArgsConstructor
+@Table(name = "articlerealiseeMC")
 public class ArticleRealiseeMC {
     @EmbeddedId
     private  ArticleRealiseeMCId id;

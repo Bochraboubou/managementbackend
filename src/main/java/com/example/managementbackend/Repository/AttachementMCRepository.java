@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AttachementMCRepository extends JpaRepository<AttachementMC, Long> {
+    public AttachementMC findBycodeAttachementMC(String code );
 }

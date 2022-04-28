@@ -41,4 +41,9 @@ public class OrdreDefinitifService {
 
         }).orElseThrow(() -> new ResourceNotFoundException("ordreTraveauxId " + ordreTraveauxId + " not found"));
     }
+
+    // liste des ordres definitive dans OT
+    public List<OrdreDefinitif> ListeORDdefMC( Long id) {
+        return ordreDefintifRepo.findByordreDeTraveauxId(id);
+    }
 }

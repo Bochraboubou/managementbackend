@@ -22,4 +22,11 @@ public class OrdreDefinitifController {
                                                @Valid @RequestBody OrdreDefinitif ordreDefinitif) {
         return ordreDefinitifService.create(ordreTraveauxId, articleid,ordreDefinitif );
     }
+
+    // liste des ordre definitif by ordre de travail
+    @GetMapping("/listeOrdreDefByOTid/{id}")
+    public List<OrdreDefinitif>finbBYOTid( @PathVariable Long id ){
+        return  ordreDefinitifService.ListeORDdefMC(id);
+
+    }
 }

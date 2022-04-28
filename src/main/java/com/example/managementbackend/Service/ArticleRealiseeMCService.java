@@ -44,6 +44,12 @@ public class ArticleRealiseeMCService {
     }
 
 
+    // get liste article realisee IN MC By id attachement
+ public  List<ArticleRealiseeMC>ListRealiseeMCByAttaID(Long id ){
+        return articleRealiseeMCRepo.findByattachementMCId(id);
+ }
+
+
     public List<ArticleR> getArticlesRealiseesPrestationparPeriodeByOT(long otId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date2){
         return articleRealiseeMCRepo.getArticlesRealiseesPrestationByOTbyPeriode(otId,date1,date2);
     }
@@ -67,6 +73,7 @@ public class ArticleRealiseeMCService {
     public List<ArticleR> getArticlesRealiseesMFGlobalByOT(long otId){
         return articleRealiseeMCRepo.getArticlesRealiseesMFGlobalbyOT(otId);
     }
+
 
 
 }

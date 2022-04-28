@@ -28,11 +28,17 @@ public class ArticleRealiseeMCController {
     }
 
 
-    @PostMapping("/attachementMC/{attachementMCId}/article/{articleid}/articlerealiseeMC")
-    public ArticleRealiseeMC createArticleRealiseeMC(@PathVariable(value = "attachemenMCtId") Long attachementMCId, @PathVariable (value = "articleid") Long articleid,
+    @PostMapping("/attachementMC/{attachemenMCId}/article/{articleid}/articlerealiseeMC")
+    public ArticleRealiseeMC createArticleRealiseeMC(@PathVariable(value = "attachemenMCId") Long attachementMCId, @PathVariable (value = "articleid") Long articleid,
                                                  @Valid @RequestBody ArticleRealiseeMC articleRealiseeMC) {
         return articleRealiseeMCService.create(attachementMCId, articleid, articleRealiseeMC);
     }
+
+
+    // get liste of article realisee in one MC by attachement id
+    @GetMapping("/getARmcByAttachementId/{id}")
+    public  List<ArticleRealiseeMC>ARmcByAttachementId(@PathVariable Long id ){
+        return articleRealiseeMCService.ListRealiseeMCByAttaID(id);}
 
     @GetMapping("/articlesRealiseesJoinParPeriode/prestation/ot/{otId}/{date1}/{date2}")
     public List<ArticleR> getArticlesRealiseesPresbyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
@@ -64,5 +70,6 @@ public class ArticleRealiseeMCController {
     @GetMapping("/articlesRealiseesJoinGlobalbyBC/MF/ot/{otId}")
     public List<ArticleR> getArticlesRealiseesMFGlobalbyOT(@PathVariable(value = "otId") long otId){
         return articleRealiseeMCService.getArticlesRealiseesMFGlobalByOT(otId);
+
     }
 }

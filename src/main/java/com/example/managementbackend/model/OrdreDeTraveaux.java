@@ -57,5 +57,9 @@ public class OrdreDeTraveaux {
             mappedBy = "ordreTraveaux")
     private List<AttachementMC> attachementsMC = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "ordreDeTraveaux")
+    private List<BonLivraisonMC> bonLivraisonMCs = new ArrayList<>();
 
 }

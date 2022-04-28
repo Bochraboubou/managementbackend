@@ -7,6 +7,9 @@ import com.example.managementbackend.model.OrdreDefinitifId;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface OrdreDefintifRepository extends JpaRepository<OrdreDefinitif, OrdreDefinitifId> {
+    public List<OrdreDefinitif>findByordreDeTraveauxId( Long id);
 }

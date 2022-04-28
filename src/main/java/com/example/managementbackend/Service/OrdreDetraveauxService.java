@@ -1,12 +1,19 @@
 package com.example.managementbackend.Service;
 
-import com.example.managementbackend.Repository.AttachementRepository;
 import com.example.managementbackend.Repository.BondeCommandeRepository;
 import com.example.managementbackend.Repository.OrdreDeTraveauxRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
+
+import com.example.managementbackend.model.OrdreDeTraveaux;
+
 import com.example.managementbackend.model.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.List;
+import java.util.Optional;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,6 +30,10 @@ public class OrdreDetraveauxService {
         return ordreRepo.findAll();
     }
 
+    @GetMapping("/ordreById/{id}")
+    public Optional<OrdreDeTraveaux> getOrdreByID(Long id){
+        return ordreRepo.findById(id);
+    }
 
     public OrdreDeTraveaux create(Long bondeCommandeId, OrdreDeTraveaux ordreDeTraveaux) {
         return bondeCommandeRepo.findById(bondeCommandeId).map(bondeCommande -> {
@@ -31,6 +42,11 @@ public class OrdreDetraveauxService {
         }).orElseThrow(() -> new ResourceNotFoundException("bondeCommandeId " + bondeCommandeId+ " not found"));
     }
 
+
+    public List<OrdreDeTraveaux> findBYBCid(Long id ) {
+        return ordreRepo.findBybonDeCommandeId(id);
+
+    }
     public float geMontantTotalOT(long bcId) {
         return ordreRepo.getMontantTotalOT(bcId);
     }
@@ -42,5 +58,6 @@ public class OrdreDetraveauxService {
 
     public List<OrdreDeTraveaux> getAllBYBC(Long bcID) {
         return ordreRepo.findByBonDeCommandeId(bcID);
+
     }
 }
