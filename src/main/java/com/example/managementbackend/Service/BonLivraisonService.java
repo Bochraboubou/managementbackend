@@ -29,8 +29,7 @@ public class BonLivraisonService {
 
             bonLivraison.setBonDeCommande(bondeCommande);
 
-
-            return bonLivraisonRepository.save(bonLivraison);
+           return bonLivraisonRepository.save(bonLivraison);
         }).orElseThrow(() -> new ResourceNotFoundException("bondde commande  " + Bcid + " not found"));
 
     }

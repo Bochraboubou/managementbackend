@@ -22,6 +22,4 @@ public interface MarcheeRepository extends JpaRepository<Marchee, Long> {
 
     @Query("SELECT m FROM  Marchee m join  m.org o where o.id = :orgId and m.type = 'MC'")
     public List<Marchee> getAllMarcheeMCbyOrg(@Param("orgId") long orgId);
-
-
 }
