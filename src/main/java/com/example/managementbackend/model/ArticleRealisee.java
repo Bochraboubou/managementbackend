@@ -29,13 +29,13 @@ public class ArticleRealisee {
     private Article article;
 
     @NotNull
-    private long quantiteeRealisee;
+    private float quantiteeRealisee;
 
 //partie bon de livraison
 
 
 
-    public ArticleRealisee(Attachement attachement, Article article, long quantiteeRealisee) {
+    public ArticleRealisee(Attachement attachement, Article article, float quantiteeRealisee) {
         // create primary key
         this.id = new ArticleRealiseeId(attachement.getId(), article.getId());
 

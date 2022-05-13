@@ -3,17 +3,13 @@ package com.example.managementbackend.Service;
 import com.example.managementbackend.Repository.BondeCommandeRepository;
 import com.example.managementbackend.Repository.MarcheeRepository;
 import com.example.managementbackend.Repository.OrganisationRepository;
-import com.example.managementbackend.dto.ArticleR;
-import com.example.managementbackend.dto.BondeCommandeJoin;
+import com.example.managementbackend.dto.BondeCommandeDTO;
 import com.example.managementbackend.exception.ResourceNotFoundException;
-import com.example.managementbackend.model.Article;
 import com.example.managementbackend.model.BondeCommande;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,12 +24,12 @@ public class BondeCommandeService {
     @Autowired
     private OrganisationRepository organisationRepo;
 
-    public List<BondeCommandeJoin> getAllBondeCommandesJoin(long marcheeId){
+    public List<BondeCommandeDTO> getAllBondeCommandesJoin(long marcheeId){
         return bcRepo.getAllBondesCommandesJoin(marcheeId);
     }
 
 
-    public Optional<BondeCommandeJoin> getBondeCommandesJoin(long bcId){
+    public Optional<BondeCommandeDTO> getBondeCommandesJoin(long bcId){
         return bcRepo.getBondesCommandesJoin(bcId).map(bondeCommandeJoin -> bcRepo.getBondesCommandesJoin(bcId)).orElseThrow(() -> new ResourceNotFoundException("bonDeCommandeId " + bcId+ " not found"));
     }
 

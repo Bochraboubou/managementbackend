@@ -1,6 +1,5 @@
 package com.example.managementbackend.Repository;
 
-import com.example.managementbackend.dto.BondeCommandeJoin;
 import com.example.managementbackend.model.Marchee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

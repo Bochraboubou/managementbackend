@@ -1,14 +1,8 @@
 package com.example.managementbackend.Controller;
 
-import com.example.managementbackend.Repository.*;
 import com.example.managementbackend.Service.BondeCommandeService;
-import com.example.managementbackend.dto.ArticleR;
-import com.example.managementbackend.dto.BondeCommandeJoin;
-import com.example.managementbackend.exception.ResourceNotFoundException;
-import com.example.managementbackend.model.Article;
+import com.example.managementbackend.dto.BondeCommandeDTO;
 import com.example.managementbackend.model.BondeCommande;
-import com.example.managementbackend.model.Marchee;
-import com.example.managementbackend.model.Metier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,12 +20,12 @@ public class BondeCommandeController {
 
 
     @GetMapping("/AllbondeCommandesJoin/{marcheeId}")
-    public List<BondeCommandeJoin> getAllBondeCommandesJoin(@PathVariable long marcheeId){
+    public List<BondeCommandeDTO> getAllBondeCommandesJoin(@PathVariable long marcheeId){
         return bondeCommandeService.getAllBondeCommandesJoin(marcheeId);
     }
 
     @GetMapping("/bondeCommandesJoin/{bcId}")
-    public Optional<BondeCommandeJoin> getBondeCommandesJoin(@PathVariable long bcId){
+    public Optional<BondeCommandeDTO> getBondeCommandesJoin(@PathVariable long bcId){
         return bondeCommandeService.getBondeCommandesJoin(bcId);
     }
 
