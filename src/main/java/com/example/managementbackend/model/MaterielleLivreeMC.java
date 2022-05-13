@@ -27,4 +27,18 @@ public class MaterielleLivreeMC  {
     @JoinColumn(name = "article_id")
     private Article article;
 
+
+    public MaterielleLivreeMC(BonLivraisonMC bonLivraisonMC, Article article, float quantiteeLivreeMC, float prix) {
+        // create primary key
+        this.id = new MaterielLivreeMCId(bonLivraisonMC.getId(), article.getId());
+
+        // initialize attributes
+        this.bonLivraisonMC=bonLivraisonMC;
+        this.article = article;
+        this.quantiteeLivreeMC = quantiteeLivreeMC;
+        this.prix=prix;
+    }
+    public MaterielleLivreeMC(){
+
+    }
 }

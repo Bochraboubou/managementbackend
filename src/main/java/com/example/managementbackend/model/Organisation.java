@@ -104,6 +104,11 @@ public class Organisation {
 
 
 
+        @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+        @OneToOne
+        private Demande d  ;
+
+
 
 }
 

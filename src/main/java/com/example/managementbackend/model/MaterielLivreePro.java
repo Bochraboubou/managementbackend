@@ -29,4 +29,16 @@ public class MaterielLivreePro {
     @MapsId("article_id")
     @JoinColumn(name = "article_id")
     private Article article;
+
+ public MaterielLivreePro(BonLivraisonProjet bonLivraisonProjet, Article article, float quantiteeLivree, float prix) {
+  // create primary key
+  this.id = new MaterielLivreeId(bonLivraisonProjet.getBl_id(), article.getId());
+
+  // initialize attributes
+  this.bonLivraisonProjet=bonLivraisonProjet;
+  this.article = article;
+  this.quantiteeLivree = quantiteeLivree;
+  this.prix=prix;
+ }
+ public MaterielLivreePro(){}
 }
