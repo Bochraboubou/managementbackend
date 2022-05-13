@@ -2,13 +2,10 @@ package com.example.managementbackend.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-
-import javax.persistence.Column;
 
 @Data
 @AllArgsConstructor
@@ -16,7 +13,7 @@ import javax.persistence.Column;
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class ArticleR {
+public class ArticleDTO {
     private Long id;
 
     private String code;
@@ -29,15 +26,15 @@ public class ArticleR {
 
     private float prix;
 
-    private long quantitee;
+    private float quantitee;
 
-    private long quantiteeRealisee;
+    private double quantiteeRealisee;
 
     private  long idType;
 
     private  String typeLib;
 
-    public ArticleR(Long id, String code, String designation, String unitee,String classe, long idType, String typeLib) {
+    public ArticleDTO(Long id, String code, String designation, String unitee, String classe, long idType, String typeLib) {
         this.id = id;
         this.code = code;
         this.designation = designation;
@@ -47,7 +44,7 @@ public class ArticleR {
         this.typeLib = typeLib;
     }
 
-    public ArticleR(Long id, String code, String designation, String unitee, float prix, long quantitee, long idType, String typeLib) {
+    public ArticleDTO(Long id, String code, String designation, String unitee, float prix, float quantitee, long idType, String typeLib) {
         this.id = id;
         this.code = code;
         this.designation = designation;
@@ -58,7 +55,7 @@ public class ArticleR {
         this.typeLib = typeLib;
     }
 
-    public ArticleR(Long id, String code, String designation, String unitee, long quantiteeRealisee, long idType, String typeLib) {
+    public ArticleDTO(Long id, String code, String designation, String unitee, double quantiteeRealisee, long idType, String typeLib) {
         this.id = id;
         this.code = code;
         this.designation = designation;

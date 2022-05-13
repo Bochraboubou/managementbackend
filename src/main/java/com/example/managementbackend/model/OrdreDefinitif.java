@@ -31,10 +31,10 @@ public class OrdreDefinitif {
     private Article article;
 
     @NotNull
-    private long quantiteeOrderee;
+    private float quantiteeOrderee;
 
 
-    public OrdreDefinitif(OrdreDeTraveaux ordreDeTraveaux, Article article, long quantiteeOrderee) {
+    public OrdreDefinitif(OrdreDeTraveaux ordreDeTraveaux, Article article, float quantiteeOrderee) {
         // create primary key
         this.id = new OrdreDefinitifId(ordreDeTraveaux.getId(), article.getId());
 

@@ -2,7 +2,6 @@ package com.example.managementbackend.Service;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
 
-import com.example.managementbackend.dto.BondeCommandeJoin;
 import com.example.managementbackend.Repository.SecteurRepository;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.Organisation;

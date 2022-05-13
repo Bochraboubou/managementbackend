@@ -47,6 +47,10 @@ public class ArticleService {
         return articleRepo.findByCodeAndType_MetierId(code,metierId).map(article -> articleRepo.findByCodeAndType_MetierId(code,metierId)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found ou idMetier "+ metierId+"not found "));
     }
 
+    public Optional<Article> getArticledeclassePrestationandMaterielFournisseurbyCodeandMetier(String code,long metierId) {
+        return articleRepo.getArticlesByCodeAndMetier(code,metierId).map(article -> articleRepo.getArticlesByCodeAndMetier(code,metierId)).orElseThrow(() -> new ResourceNotFoundException("code " + code+ " not found ou idMetier "+ metierId+"not found "));
+    }
+
     public Article save( Article article,long typeId) {
             return typeRepo.findById(typeId).map(type -> {
                 article.setType(type);

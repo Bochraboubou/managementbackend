@@ -6,6 +6,8 @@ import com.example.managementbackend.model.BonLivraisonProjet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/admin")
 public class BonLivraisonMcController {
@@ -15,5 +17,10 @@ public class BonLivraisonMcController {
     @PostMapping("/addBonLivraisonMc/{idOT}")
     public BonLivraisonMC addBonLivraison(@RequestBody BonLivraisonMC bonLivraisonMC, @PathVariable Long idOT){
         return  bonLivraisonMcService.saveBonLaivraisonMc(idOT,bonLivraisonMC);
+    }
+
+    @GetMapping("/AllbonsdelivraisonsdeMC/{otId}")
+    public List<BonLivraisonMC> getAllbyOT(@PathVariable long otId){
+        return bonLivraisonMcService.getAllblsByOtID(otId);
     }
 }

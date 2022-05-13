@@ -4,11 +4,14 @@ import com.example.managementbackend.Repository.ArticleRepository;
 import com.example.managementbackend.Repository.BonLivraisonRepository;
 import com.example.managementbackend.Repository.BondeCommandeRepository;
 import com.example.managementbackend.Repository.MaterielLivreeProRepository;
+import com.example.managementbackend.dto.ArticleDTO;
 import com.example.managementbackend.exception.ResourceNotFoundException;
 import com.example.managementbackend.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -31,5 +34,9 @@ public class MaterielLivreeProService {
             }).orElseThrow(() -> new ResourceNotFoundException("articleId " + articleid + " not found"));
 
         }).orElseThrow(() -> new ResourceNotFoundException("bondelaivraison id  " + BLid + " not found"));
+    }
+
+    public List<ArticleDTO> getMaterielLivreeByBL(long blID){
+        return articleRepository.getMaterielsByBLdeProjet(blID);
     }
 }

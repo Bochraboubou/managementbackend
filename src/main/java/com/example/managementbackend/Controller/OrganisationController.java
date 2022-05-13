@@ -1,13 +1,8 @@
 package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Repository.OrganisationRepository;
-import com.example.managementbackend.dto.BondeCommandeJoin;
-import com.example.managementbackend.dto.organisationUserJoin;
-import com.example.managementbackend.exception.ResourceNotFoundException;
-import com.example.managementbackend.model.Demande;
 import com.example.managementbackend.model.Organisation;
 import com.example.managementbackend.model.Response;
-import com.example.managementbackend.model.Secteur;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;

@@ -1,10 +1,6 @@
 package com.example.managementbackend.Repository;
 
-import com.example.managementbackend.dto.ArticleR;
-import com.example.managementbackend.dto.UserR;
 import com.example.managementbackend.dto.organisationUserJoin;
-import com.example.managementbackend.model.Organisation;
-import com.example.managementbackend.model.Role;
 import com.example.managementbackend.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

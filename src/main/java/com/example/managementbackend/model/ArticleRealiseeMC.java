@@ -32,10 +32,10 @@ public class ArticleRealiseeMC {
     private Article article;
 
     @NotNull
-    private long quantiteeRealisee;
+    private float quantiteeRealisee;
 
 
-    public ArticleRealiseeMC(AttachementMC attachementMC, Article article, long quantiteeRealiseeMC) {
+    public ArticleRealiseeMC(AttachementMC attachementMC, Article article, float quantiteeRealiseeMC) {
         // create primary key
         this.id = new ArticleRealiseeMCId(attachementMC.getId(), article.getId());
 

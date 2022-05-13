@@ -1,8 +1,6 @@
 package com.example.managementbackend.Repository;
 
-import com.example.managementbackend.dto.ArticleR;
 import com.example.managementbackend.model.Attachement;
-import com.example.managementbackend.model.Metier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.format.annotation.DateTimeFormat;

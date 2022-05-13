@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class BonLivraisonMcService {
@@ -34,5 +36,9 @@ public class BonLivraisonMcService {
             return bonLivraisonMcRepository.save(bonLivraisonMC);
         }).orElseThrow(() -> new ResourceNotFoundException("ordre de traveaux   " + OTid + " not found"));
 
+    }
+
+    public List<BonLivraisonMC> getAllblsByOtID(Long OtID) {
+        return bonLivraisonMcRepository.findByOrdreDeTraveauxId(OtID);
     }
 }

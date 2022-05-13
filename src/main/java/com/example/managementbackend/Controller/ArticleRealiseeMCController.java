@@ -1,9 +1,7 @@
 package com.example.managementbackend.Controller;
 
 import com.example.managementbackend.Service.ArticleRealiseeMCService;
-import com.example.managementbackend.Service.ArticleRealiseeService;
-import com.example.managementbackend.dto.ArticleR;
-import com.example.managementbackend.model.ArticleRealisee;
+import com.example.managementbackend.dto.ArticleDTO;
 import com.example.managementbackend.model.ArticleRealiseeMC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,34 +39,34 @@ public class ArticleRealiseeMCController {
         return articleRealiseeMCService.ListRealiseeMCByAttaID(id);}
 
     @GetMapping("/articlesRealiseesJoinParPeriode/prestation/ot/{otId}/{date1}/{date2}")
-    public List<ArticleR> getArticlesRealiseesPresbyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
+    public List<ArticleDTO> getArticlesRealiseesPresbyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
         return articleRealiseeMCService.getArticlesRealiseesPrestationparPeriodeByOT(otId,date1,date2);
     }
 
 
     @GetMapping("/articlesRealiseesJoinbydate/prestation/ot/{otId}/date/{dateA}")
-    public List<ArticleR> getArticlesRealiseesPresbyDatebyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
+    public List<ArticleDTO> getArticlesRealiseesPresbyDatebyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
         return articleRealiseeMCService.getArticlesRealiseesPrestationbyDateByOT(otId,dateA);
     }
 
     @GetMapping("/articlesRealiseesJoinGlobalbyBC/prestation/ot/{otId}")
-    public List<ArticleR> getArticlesRealiseesPresGlobalbyOT(@PathVariable(value = "otId") long otId){
+    public List<ArticleDTO> getArticlesRealiseesPresGlobalbyOT(@PathVariable(value = "otId") long otId){
         return articleRealiseeMCService.getArticlesRealiseesPrestationGlobalByOT(otId);
     }
 
     @GetMapping("/articlesRealiseesJoinParPeriode/MF/ot/{otId}/{date1}/{date2}")
-    public List<ArticleR> getArticlesRealiseesMFbyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
+    public List<ArticleDTO> getArticlesRealiseesMFbyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
         return articleRealiseeMCService.getArticlesRealiseesMFparPeriodeByOT(otId,date1,date2);
     }
 
 
     @GetMapping("/articlesRealiseesJoinbydate/MF/ot/{otId}/date/{dateA}")
-    public List<ArticleR> getArticlesRealiseesMFbyDatebyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
+    public List<ArticleDTO> getArticlesRealiseesMFbyDatebyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
         return articleRealiseeMCService.getArticlesRealiseesMFbyDateByOT(otId,dateA);
     }
 
     @GetMapping("/articlesRealiseesJoinGlobalbyBC/MF/ot/{otId}")
-    public List<ArticleR> getArticlesRealiseesMFGlobalbyOT(@PathVariable(value = "otId") long otId){
+    public List<ArticleDTO> getArticlesRealiseesMFGlobalbyOT(@PathVariable(value = "otId") long otId){
         return articleRealiseeMCService.getArticlesRealiseesMFGlobalByOT(otId);
 
     }

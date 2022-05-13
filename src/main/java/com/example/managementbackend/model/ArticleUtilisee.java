@@ -3,10 +3,14 @@ package com.example.managementbackend.model;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "articleutilisee")
 public class ArticleUtilisee {
 
@@ -30,11 +34,11 @@ public class ArticleUtilisee {
 
 
     @NotNull
-    private long quantitee;
+    private float quantitee;
 
 
 
-    public ArticleUtilisee(BondeCommande bondecommande, Article article, float prix, long quantitee) {
+    public ArticleUtilisee(BondeCommande bondecommande, Article article, float prix, float quantitee) {
         // create primary key
         this.id = new AticleUtiliseeId(bondecommande.getId(), article.getId());
 
@@ -51,45 +55,6 @@ public class ArticleUtilisee {
     }
 
 
-    public AticleUtiliseeId getId() {
-        return id;
-    }
-
-    public void setId(AticleUtiliseeId id) {
-        this.id = id;
-    }
-
-    public BondeCommande getBondecommande() {
-        return bondecommande;
-    }
-
-    public void setBondecommande(BondeCommande bondecommande) {
-        this.bondecommande = bondecommande;
-    }
-
-    public Article getArticle() {
-        return article;
-    }
-
-    public void setArticle(Article article) {
-        this.article = article;
-    }
-
-    public float getPrix() {
-        return prix;
-    }
-
-    public void setPrix(float prix) {
-        this.prix = prix;
-    }
-
-    public long getQuantitee() {
-        return quantitee;
-    }
-
-    public void setQuantitee(long quantitee) {
-        this.quantitee = quantitee;
-    }
 
 
 }
