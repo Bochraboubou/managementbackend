@@ -60,6 +60,12 @@ public class MetierController {
         return metierService.delete(metierId);
     }
 
+    @GetMapping("/metierbyMarchee/{marcheeId}")
+    public Optional<Metier> getMetierbyMarchee(@PathVariable long marcheeId) {
+        return metierService.getMetierbyMarchee(marcheeId);
+    }
+
+
       /*  return metierRepo.findByIdAndSecteurId(metierId, secteurId).map(metier -> {
             metierRepo.delete(metier);
             return ResponseEntity.ok().build();
