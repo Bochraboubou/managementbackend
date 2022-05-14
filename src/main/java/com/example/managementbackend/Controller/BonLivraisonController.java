@@ -24,8 +24,8 @@ public class BonLivraisonController {
     }
 
     @GetMapping("/AllbonsdelivraisonsdeProjet/{bcId}")
-    public List<BonLivraisonProjet> getAllbyBC(@PathVariable long bcID){
-        return bonLivraisonService.getAllblsByBcID(bcID);
+    public List<BonLivraisonProjet> getAllbyBC(@PathVariable long bcId){
+        return bonLivraisonService.getAllblsByBcID(bcId);
     }
 
 }
