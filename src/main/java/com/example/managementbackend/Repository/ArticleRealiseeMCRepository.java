@@ -40,6 +40,17 @@ public interface ArticleRealiseeMCRepository extends JpaRepository<ArticleRealis
 
     @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttacheesMC at join a.type t where at.attachementMC.ordreTraveaux.id = :otId and a.classe='materielFournisseur' group by a")
     public List<ArticleDTO> getArticlesRealiseesMFGlobalbyOT(@Param("otId") long otId);
+
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttacheesMC at join a.type t where at.attachementMC.ordreTraveaux.id = :otId and a.classe='materiel En Regie' and at.attachementMC.dateAttachementMC between :date1 and :date2 group by a")
+    public List<ArticleDTO> getArticlesRealiseesMaterielByOTbyPeriode(@Param("otId") long otId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2);
+
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttacheesMC at join a.type t where at.attachementMC.ordreTraveaux.id = :otId and a.classe='materiel En Regie' and at.attachementMC.dateAttachementMC = :dateA group by a")
+    public List<ArticleDTO> getArticlesRealiseesMaterielByOTbyDate(@Param("otId") long otId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA);
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttacheesMC at join a.type t where at.attachementMC.ordreTraveaux.id = :otId and a.classe='materiel En Regie' group by a")
+    public List<ArticleDTO> getArticlesRealiseesMaterielGlobalbyOT(@Param("otId") long otId);
 }
 
 

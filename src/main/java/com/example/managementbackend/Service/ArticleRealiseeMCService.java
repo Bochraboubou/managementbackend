@@ -72,6 +72,19 @@ public class ArticleRealiseeMCService {
         return articleRealiseeMCRepo.getArticlesRealiseesMFGlobalbyOT(otId);
     }
 
+    public List<ArticleDTO> getArticlesRealiseesMaterielparPeriodeByOT(long otId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date2){
+        return articleRealiseeMCRepo.getArticlesRealiseesMaterielByOTbyPeriode(otId,date1,date2);
+    }
+
+    public List<ArticleDTO> getArticlesRealiseesMaterielbyDateByOT(long otId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate dateA){
+        return articleRealiseeMCRepo.getArticlesRealiseesMaterielByOTbyDate(otId,dateA);
+    }
+
+    public List<ArticleDTO> getArticlesRealiseesMaterielGlobalByOT(long otId){
+        return articleRealiseeMCRepo.getArticlesRealiseesMaterielGlobalbyOT(otId);
+    }
+
+
 
 
 }
