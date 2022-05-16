@@ -68,6 +68,21 @@ public class ArticleRealiseeMCController {
     @GetMapping("/articlesRealiseesJoinGlobalbyBC/MF/ot/{otId}")
     public List<ArticleDTO> getArticlesRealiseesMFGlobalbyOT(@PathVariable(value = "otId") long otId){
         return articleRealiseeMCService.getArticlesRealiseesMFGlobalByOT(otId);
+    }
 
+    @GetMapping("/articlesRealiseesJoinParPeriode/materiel/ot/{otId}/{date1}/{date2}")
+    public List<ArticleDTO> getArticlesRealiseesMaterielbyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
+        return articleRealiseeMCService.getArticlesRealiseesMaterielparPeriodeByOT(otId,date1,date2);
+    }
+
+
+    @GetMapping("/articlesRealiseesJoinbydate/materiel/ot/{otId}/date/{dateA}")
+    public List<ArticleDTO> getArticlesRealiseesMaterielbyDatebyOT(@PathVariable(value = "otId") long otId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
+        return articleRealiseeMCService.getArticlesRealiseesMaterielbyDateByOT(otId,dateA);
+    }
+
+    @GetMapping("/articlesRealiseesJoinGlobalbyBC/materiel/ot/{otId}")
+    public List<ArticleDTO> getArticlesRealiseesMaterielGlobalbyOT(@PathVariable(value = "otId") long otId){
+        return articleRealiseeMCService.getArticlesRealiseesMaterielGlobalByOT(otId);
     }
 }

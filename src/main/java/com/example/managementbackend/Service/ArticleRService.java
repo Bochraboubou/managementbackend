@@ -51,5 +51,17 @@ public class ArticleRService {
         return articleRepo.getArticlesRealiseesMFGlobalbyBC(bcId);
     }
 
+    public List<ArticleDTO> getArticlesRealiseesMaterielparPeriode(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date2){
+        return articleRepo.getArticlesRealiseesMaterieByBCbyPeriode(bcId,date1,date2);
+    }
+
+    public List<ArticleDTO> getArticlesRealiseesMaterielbyDate(long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate dateA){
+        return articleRepo.getArticlesRealiseesMaterielByBCbyDate(bcId,dateA);
+    }
+
+    public List<ArticleDTO> getArticlesRealiseesMaterielGlobalbyBC(long bcId){
+        return articleRepo.getArticlesRealiseesMaterielGlobalbyBC(bcId);
+    }
+
 
 }

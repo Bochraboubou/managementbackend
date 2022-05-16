@@ -72,6 +72,10 @@ public class MarcheeService {
         return marcheeRepo.findByMetierIdAndOrgId(metierId,organId).map(marchees -> marcheeRepo.findByMetierIdAndOrgId(metierId,organId)).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId+ " not found or idOrgan "+organId+" not found"));
     }
 
+    public List<Object[]> countMarcheebyMetier(long orgId) {
+        return marcheeRepo.countMarcheebyMetier(orgId);
+    }
+
 
 }
  

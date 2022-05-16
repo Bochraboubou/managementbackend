@@ -66,4 +66,20 @@ public class ArticleRController {
     public List<ArticleDTO> getArticlesRealiseesMFGlobalby(@PathVariable(value = "bcId") long bcId){
         return articleRealiseeService.getArticlesRealiseesMFGlobalbyBC(bcId);
     }
+
+    @GetMapping("/articlesRealiseesJoinParPeriode/Materiel/{bcId}/{date1}/{date2}")
+    public List<ArticleDTO> getArticlesRealiseesMaterielbyPeriode(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "date1") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @PathVariable(value = "date2") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2){
+        return articleRealiseeService.getArticlesRealiseesMaterielparPeriode(bcId,date1,date2);
+    }
+
+
+    @GetMapping("/articlesRealiseesJoinbydate/Materiel/{bcId}/date/{dateA}")
+    public List<ArticleDTO> getArticlesRealiseesMaterielbyDate(@PathVariable(value = "bcId") long bcId, @PathVariable(value = "dateA") @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA){
+        return articleRealiseeService.getArticlesRealiseesMaterielbyDate(bcId,dateA);
+    }
+
+    @GetMapping("/articlesRealiseesJoinGlobalbyBC/Materiel/{bcId}")
+    public List<ArticleDTO> getArticlesRealiseesMaterielGlobalby(@PathVariable(value = "bcId") long bcId){
+        return articleRealiseeService.getArticlesRealiseesMaterielGlobalbyBC(bcId);
+    }
 }
