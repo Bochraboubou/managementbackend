@@ -68,9 +68,24 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,mo.prix,mo.quantiteeLivreeMC,t.id,t.typeLib) FROM Article a JOIN a.materielsBCdeMC mo join a.type t where mo.bonLivraisonMC.id = :blId and a.classe='materiel En Regie'")
     public List<ArticleDTO> getMaterielsByBLdeMC(@Param("blId") long blId);
 
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='materiel En Regie' and at.attachement.dateAttachement between :date1 and :date2 group by a")
+    public List<ArticleDTO> getArticlesRealiseesMaterieByBCbyPeriode(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date2);
+
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='materiel En Regie' and at.attachement.dateAttachement = :dateA group by a")
+    public List<ArticleDTO> getArticlesRealiseesMaterielByBCbyDate(@Param("bcId") long bcId, @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate dateA);
+
+    @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,sum (at.quantiteeRealisee),t.id,t.typeLib) FROM Article a JOIN a.articlesAttachees at join a.type t where at.attachement.bonDeCommande.id = :bcId and a.classe='materiel En Regie' group by a")
+    public List<ArticleDTO> getArticlesRealiseesMaterielGlobalbyBC(@Param("bcId") long bcId);
+
+
+
+
     // trouver les articles by metier id where la classe est materiel
     @Query("SELECT a FROM Article a where  a.type.metier.id = :idMetier and (a.classe ='materielEnRegie' )")
     public List<Article> getArticlesByClasseAndMetier(@Param("idMetier") long idMetier);
 
+//bochra bochra bochra bochra
 
 }
