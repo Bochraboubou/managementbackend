@@ -41,4 +41,9 @@ public class BonLivraisonMcService {
     public List<BonLivraisonMC> getAllblsByOtID(Long OtID) {
         return bonLivraisonMcRepository.findByOrdreDeTraveauxId(OtID);
     }
+
+    public BonLivraisonMC findBLbyCode(String code){
+        return bonLivraisonMcRepository.findBycodeBonLivraisonMC(code);
+
+    }
 }

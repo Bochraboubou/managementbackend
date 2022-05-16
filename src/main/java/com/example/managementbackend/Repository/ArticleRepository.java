@@ -21,6 +21,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     List<Article> findByType_MetierId(long metierId);
 
 
+
+
+
+
     @Query("SELECT a FROM Article a where a.code = :code and a.type.metier.id = :idMetier and (a.classe ='prestation' or a.classe ='materielFournisseur')")
     public Optional<Article> getArticlesByCodeAndMetier(@Param("code") String code,@Param("idMetier") long idMetier);
 
@@ -63,5 +67,10 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     @Query("SELECT new com.example.managementbackend.dto.ArticleDTO(a.id, a.code,a.designation,a.unitee,mo.prix,mo.quantiteeLivreeMC,t.id,t.typeLib) FROM Article a JOIN a.materielsBCdeMC mo join a.type t where mo.bonLivraisonMC.id = :blId and a.classe='materiel En Regie'")
     public List<ArticleDTO> getMaterielsByBLdeMC(@Param("blId") long blId);
+
+    // trouver les articles by metier id where la classe est materiel
+    @Query("SELECT a FROM Article a where  a.type.metier.id = :idMetier and (a.classe ='materielEnRegie' )")
+    public List<Article> getArticlesByClasseAndMetier(@Param("idMetier") long idMetier);
+
 
 }
