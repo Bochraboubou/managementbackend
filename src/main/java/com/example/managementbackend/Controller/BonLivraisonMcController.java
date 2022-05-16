@@ -23,4 +23,8 @@ public class BonLivraisonMcController {
     public List<BonLivraisonMC> getAllbyOT(@PathVariable long otId){
         return bonLivraisonMcService.getAllblsByOtID(otId);
     }
+    @GetMapping("/getBLbyCode/{code}")
+    public BonLivraisonMC getBLbyCode(@PathVariable String code  ){
+        return bonLivraisonMcService.findBLbyCode(code);
+    }
 }

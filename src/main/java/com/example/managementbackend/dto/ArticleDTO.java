@@ -33,6 +33,18 @@ public class ArticleDTO {
     private  long idType;
 
     private  String typeLib;
+    // cet attribut pour
+    private  long id_Metier;
+
+
+    public ArticleDTO(Long id , String code , String unitee,  String designation,String classe, long id_Metier ){
+        this.id = id;
+        this.code = code;
+        this.designation = designation;
+        this.unitee = unitee;
+        this.classe=classe;
+        this.id_Metier=id_Metier;
+    }
 
     public ArticleDTO(Long id, String code, String designation, String unitee, String classe, long idType, String typeLib) {
         this.id = id;
