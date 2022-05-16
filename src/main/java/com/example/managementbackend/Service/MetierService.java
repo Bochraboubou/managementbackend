@@ -61,6 +61,10 @@ public class MetierService {
         }).orElseThrow(() -> new ResourceNotFoundException("metierId " + metierId + " not found"));
     }
 
+    public Optional<Metier> getMetierbyMarchee(long marcheeId) {
+        return metierRepo.findByMarcheesId(marcheeId).map(metier -> metierRepo.findByMarcheesId(marcheeId)).orElseThrow(() -> new ResourceNotFoundException("marcheeId " + marcheeId+ " not found"));
+    }
+
       /*  return metierRepo.findByIdAndSecteurId(metierId, secteurId).map(metier -> {
             metierRepo.delete(metier);
             return ResponseEntity.ok().build();
