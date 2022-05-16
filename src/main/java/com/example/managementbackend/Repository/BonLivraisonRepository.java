@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface BonLivraisonRepository  extends JpaRepository<BonLivraisonProjet,Long > {
     List<BonLivraisonProjet> findByBonDeCommandeId(long bcID);
+    BonLivraisonProjet findByCodeBonLivraisonProj( String code);
 }
