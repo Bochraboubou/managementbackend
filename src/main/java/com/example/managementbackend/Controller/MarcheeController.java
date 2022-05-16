@@ -73,6 +73,13 @@ public class MarcheeController {
         return marcheeService.getMarcheebyMetierandOrganisation(metierId,organId);
     }
 
+
+    @GetMapping("/nombresMarcheesParMetier/organisation/{orgId}")
+    public List<Object[]> getCountMarcheeByMetier(@PathVariable (value = "orgId") Long orgId) {
+        return marcheeService.countMarcheebyMetier(orgId);
+    }
+
+
 }
 
 
