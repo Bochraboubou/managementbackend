@@ -80,6 +80,12 @@ public class BondeCommande {
             mappedBy = "bonDeCommande")
     private List<Attachement> attachements = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "bonDeCommande")
+    private List<BonLivraisonProjet> bonDeLivraisonProjet = new ArrayList<>();
+
+
 
     public BondeCommande(String codebc, float montant, long delais, LocalDate dateDebutTraveaux, Organisation entreprise, Marchee marchee, List<ArticleUtilisee> articlesassociation, List<Attachement> attachements) {
         this.codebc = codebc;

@@ -32,6 +32,8 @@ public class BonLivraisonProjet {
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private LocalDate dateLivraisonBLProj;
 
+    private float montantBL;
+
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bondecommande_id", nullable = false)
