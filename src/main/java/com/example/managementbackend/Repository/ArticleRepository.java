@@ -83,7 +83,7 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 
     // trouver les articles by metier id where la classe est materiel
-    @Query("SELECT a FROM Article a where  a.type.metier.id = :idMetier and (a.classe ='materielEnRegie' )")
+    @Query("SELECT a FROM Article a where  a.type.metier.id = :idMetier and (a.classe ='materiel En Regie' )")
     public List<Article> getArticlesByClasseAndMetier(@Param("idMetier") long idMetier);
 
 //bochra bochra bochra bochra
