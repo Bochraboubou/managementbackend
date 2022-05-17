@@ -25,4 +25,7 @@ public interface MarcheeRepository extends JpaRepository<Marchee, Long> {
 
     @Query(value = "SELECT m.metier.nomMetier, COUNT(m.metier.nomMetier) FROM Marchee m where m.org.id = :orgId  GROUP BY m.metier.nomMetier")
     List<Object[]> countMarcheebyMetier(@Param("orgId") long orgId);
+
+    @Query(value = "SELECT m.type, COUNT(m.type) FROM Marchee m where m.org.id = :orgId  GROUP BY m.type")
+    List<Object[]> countMarcheeByType(@Param("orgId") long orgId);
 }

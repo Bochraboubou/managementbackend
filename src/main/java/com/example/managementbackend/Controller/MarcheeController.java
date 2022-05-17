@@ -78,6 +78,10 @@ public class MarcheeController {
     public List<Object[]> getCountMarcheeByMetier(@PathVariable (value = "orgId") Long orgId) {
         return marcheeService.countMarcheebyMetier(orgId);
     }
+    @GetMapping("/nombreMarchees/organisation/{orgId}")
+    public List<Object[]> getNombreMarcheesParType(@PathVariable (value = "orgId") long orgId) {
+        return marcheeService.nombreMarchees(orgId);
+    }
 
 
 }

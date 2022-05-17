@@ -76,6 +76,10 @@ public class MarcheeService {
         return marcheeRepo.countMarcheebyMetier(orgId);
     }
 
+    public List<Object[]> nombreMarchees(long orgId) {
+        return marcheeRepo.countMarcheeByType(orgId);
+    }
+
 
 }
  
