@@ -28,6 +28,7 @@ public class BonLivraisonMC {
     @NotNull
     @DateTimeFormat(pattern ="yyyy-MM-dd")
     private LocalDate dateLivraisonBLMC;
+    private float montantBL;
 
     @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
