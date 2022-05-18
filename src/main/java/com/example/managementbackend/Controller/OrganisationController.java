@@ -141,6 +141,11 @@ public class OrganisationController {
         return Files.readAllBytes(Paths.get(context.getRealPath("/Images/")+org.getFileName()));
     }
 
+    @GetMapping("/entreprises/organisation/{orgId}")
+    public List<Object[]> countEntreprises(@PathVariable long orgId) {
+        return organisationService.getCountEntreprise(orgId);
+    }
+
     /*
     @GetMapping("/firstJoinOrganisation")
     public List<organisationUserJoin> firstJOIN() {

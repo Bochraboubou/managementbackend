@@ -70,4 +70,8 @@ public class BondeCommandeService {
         }).orElseThrow(() -> new ResourceNotFoundException("bonde commande not found with id " + bcId+ " and marcheeId " + marcheeId));
     }
 
+    public List<Object[]> statistiquesBCs(long marcheeId) {
+        return bcRepo.statistiquesBCs(marcheeId);
+    }
+
 }
