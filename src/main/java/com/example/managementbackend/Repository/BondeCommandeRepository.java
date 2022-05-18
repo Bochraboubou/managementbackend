@@ -2,6 +2,7 @@ package com.example.managementbackend.Repository;
 
 import com.example.managementbackend.dto.BondeCommandeDTO;
 import com.example.managementbackend.model.Article;
+import com.example.managementbackend.model.BonLivraisonProjet;
 import com.example.managementbackend.model.BondeCommande;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,6 +18,7 @@ public interface BondeCommandeRepository extends JpaRepository<BondeCommande, Lo
     List<BondeCommande> findByMarcheeId(long marcheeId);
     Optional<BondeCommande> findByIdAndMarcheeId(long id, long marcheeId);
     Optional<BondeCommande> findByCodebc(String Codebc);
+
 
 
     @Query("SELECT new com.example.managementbackend.dto.BondeCommandeDTO(b.id,b.codebc,b.montant,b.delais,b.dateDebutTraveaux,e.id,e.nom) FROM  Marchee m  join m.bondes b join b.entreprise e where m.id = :marcheeId")
