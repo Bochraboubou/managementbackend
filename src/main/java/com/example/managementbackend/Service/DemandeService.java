@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -66,5 +67,16 @@ public class DemandeService {
         demande1.setFileName(demande.getFileName());
         demande1.setDemandeStatus(demande.isDemandeStatus());
          demandeRepository.save(demande1);
+    }
+    public List<Demande> gettAllEnAttenteDemande(){
+        List <Demande> enAttenteDemandes=new ArrayList<>();
+        List <Demande> demandes=getDemandes();
+      for( Demande d:demandes){
+          if(d.isDemandeStatus()==false){
+              enAttenteDemandes.add(d);
+          }
+      }
+      return  enAttenteDemandes;
+
     }
 }

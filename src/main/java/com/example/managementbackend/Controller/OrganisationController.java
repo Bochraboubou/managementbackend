@@ -145,7 +145,11 @@ public class OrganisationController {
     public List<Object[]> countEntreprises(@PathVariable long orgId) {
         return organisationService.getCountEntreprise(orgId);
     }
-
+// trouver tous les users d'une organisation
+    @GetMapping("/getOrgAndUsersCHART")
+    public List <Object>getOrgAndUsers(){
+        return  organisationService.getOrgAndUsers();
+ }
     /*
     @GetMapping("/firstJoinOrganisation")
     public List<organisationUserJoin> firstJOIN() {

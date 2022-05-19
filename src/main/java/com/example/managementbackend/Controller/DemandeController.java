@@ -125,5 +125,10 @@ public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile
         return Files.readAllBytes(Paths.get(context.getRealPath("/Images/")+demande.getFileName()));
     }
 
+//get all en attente demande
+    @GetMapping(path="/DemandesEnAttente")
+    public List<Demande>EnAttenteDemande(){
+        return   demandeService.gettAllEnAttenteDemande();
 
+    }
 }
