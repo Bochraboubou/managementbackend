@@ -64,6 +64,10 @@ public class BondeCommandeController {
         return bondeCommandeService.delete(marcheeId, bcId);
     }
 
+    @GetMapping("/statistiquesBCs/marchee/{marcheeId}")
+    public List<Object[]> getStatistiquesBCs(@PathVariable (value = "marcheeId") Long marcheeId) {
+        return bondeCommandeService.statistiquesBCs(marcheeId);
+    }
 
 
 }

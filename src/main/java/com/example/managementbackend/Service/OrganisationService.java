@@ -117,6 +117,9 @@ public class OrganisationService {
     public Optional<Organisation> getByUserName(String userName) {
         return organisationRepo.findByUsersUsername(userName).map(organisation -> organisationRepo.findByUsersUsername(userName)).orElseThrow(() -> new ResourceNotFoundException("userName " + userName+ " not found"));
     }
+    public List<Object[]> getCountEntreprise(long orgId) {
+        return organisationRepo.countEntreprises(orgId);
+    }
 
 
 
