@@ -123,6 +123,9 @@ public class OrganisationService {
 
 
 
+    public List<Object> getOrgAndUsers(){
+      return   organisationRepo.getUsersByOrganisation();
+    }
 
     }
 

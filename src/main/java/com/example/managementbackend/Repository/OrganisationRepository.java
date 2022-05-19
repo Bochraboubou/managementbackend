@@ -33,14 +33,13 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
     @Query("SELECT  new com.example.managementbackend.dto.organisationUserJoin (o.nom ,u.username ,o.adresse)FROM Organisation o JOIN o.users u")
     public List<organisationUserJoin> getInformationsOrganisation();
 
-
-
-
  */
+// trouver tous les organisation ainsi leurs users// pour le chart
+    @Query (value = "SELECT  o.nom , COUNT(u.id) FROM Organisation o , User u where o.id=u.organisation.id GROUP BY o.nom" )
+    public List<Object> getUsersByOrganisation();
 
 }
 
-       // User findByEmailAddress(String emailAddress);
 
 
 

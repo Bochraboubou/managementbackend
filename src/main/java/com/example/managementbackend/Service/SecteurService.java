@@ -56,4 +56,8 @@ public class SecteurService {
             return ResponseEntity.ok().build();
         }).orElseThrow(() -> new ResourceNotFoundException("organId " + secteurId + " not found"));
     }
+    public List<Object>  SecteurAndMetier(){
+        return secteurRepo.getSecteurByMetier();
+
+    }
 }

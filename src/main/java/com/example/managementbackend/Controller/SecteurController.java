@@ -45,6 +45,7 @@ public class SecteurController {
         return secteurService.createSecteur(secteur);
     }
 
+
     @PutMapping("/secteurs/{secteurId}")
     public Secteur updateSecteur(@PathVariable Long secteurId, @Valid @RequestBody Secteur secteurRequest) {
         return secteurService.updateSecteur(secteurId,secteurRequest);
@@ -55,5 +56,10 @@ public class SecteurController {
     public ResponseEntity<?> deleteSecteur(@PathVariable Long secteurId) {
         return secteurService.deleteSecteur(secteurId);
     }
+
+    @GetMapping("/secteurParMetier")
+    public List <Object>getOrgAndUsers(){
+        return  secteurService.SecteurAndMetier();}
+
 }
 
