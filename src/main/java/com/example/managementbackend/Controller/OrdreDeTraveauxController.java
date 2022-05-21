@@ -70,4 +70,14 @@ public Optional<OrdreDeTraveaux> geById(@PathVariable Long id ){
         return ordreService.getAllBYBC(bcId);
     }
 
+    @GetMapping("/marchee/{marcheeId}/ots")
+    public List<OrdreDeTraveaux> getAllOTByMarcheeId(@PathVariable(value = "marcheeId") Long marcheeId) {
+        return ordreService.getAllBYMarchee(marcheeId);
+    }
+
+    @GetMapping("/statistiquesOTs/marchee/{marcheeId}")
+    public List<Object[]> getStatistiquesOTs(@PathVariable (value = "marcheeId") Long marcheeId) {
+        return ordreService.statistiquesOTs(marcheeId);
+    }
+
 }
