@@ -32,4 +32,11 @@ public class AttachementMCController {
                                              @Valid @RequestBody AttachementMC attachementMC) {
         return attachementMCService.create(ordreTraveauxId,attachementMC);
     }
+
+    @GetMapping("/getAttachementMcByOT/{id}")
+    public List<AttachementMC>getListAttByOT(@PathVariable Long id){
+        return attachementMCService.getListeAttachementByOT(id);
+    }
+
+
 }

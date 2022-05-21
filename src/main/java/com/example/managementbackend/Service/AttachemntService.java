@@ -92,5 +92,7 @@ public void DeleteAttachement(Long id ){
     public List<Attachement> getbetween(@DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date1, @DateTimeFormat(pattern = "yyyy-MM-dd")LocalDate date2) {
         return attachementRepo.getbetweendate(date1,date2);
     }
-
+public List<Attachement>getAttachementByBCid(Long id ){
+    return  attachementRepo.findByBonDeCommandeId(id);
+}
 }

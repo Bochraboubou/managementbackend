@@ -19,15 +19,17 @@ public class MaterielLivreeMcController {
     MaterielLivreeMcService materielLivreeMcService;
 
 
+
     @PostMapping("/bondLivraisonMC/{blMCid}/article/{articleid}/MaterielLivreeMC")
     public MaterielleLivreeMC createArticleUtilisee(@PathVariable(value = "blMCid") Long blMCid, @PathVariable (value = "articleid") Long articleid,
                                                    @Valid @RequestBody MaterielleLivreeMC materielLivreeMC) {
         return materielLivreeMcService.create(blMCid, articleid, materielLivreeMC);
     }
 
-    @GetMapping("/materielLivreeJoinMCbyOT/ot/{otId}")
-    public List<ArticleDTO> getArticlesRealiseesByBLdeMC(@PathVariable(value = "otId") long otId){
-        return materielLivreeMcService.getMaterielLivreeByOT(otId);
+
+    @GetMapping("/materielLivreeJoinMCbyBL/bl/{blId}")
+    public List<ArticleDTO> getArticlesRealiseesByBLdeMC(@PathVariable(value = "blId") long blId){
+        return materielLivreeMcService.getMaterielLivreeByBLdeMC(blId);
 
     }
 }
