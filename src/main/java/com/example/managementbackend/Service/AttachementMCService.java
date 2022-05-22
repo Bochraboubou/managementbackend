@@ -38,5 +38,9 @@ public class AttachementMCService {
         }).orElseThrow(() -> new ResourceNotFoundException("ordreTravaeauxId " + ordreTraveauxId+ " not found"));
     }
 
+public List<AttachementMC>getListeAttachementByOT(Long id ){
+      return   attachementMCRepo.findByOrdreTraveauxId(id);
+}
+
 
 }

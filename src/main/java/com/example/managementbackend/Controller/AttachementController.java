@@ -80,4 +80,9 @@ public void   deleteAttachement( @PathVariable Long id){
     }
 
 
+    @GetMapping("/findByBCId/{id}")
+    public List <Attachement>findAttachementByBcId(@PathVariable Long id ) {
+    return attachementService.getAttachementByBCid(id);
+    }
+
 }

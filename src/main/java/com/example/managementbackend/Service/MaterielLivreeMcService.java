@@ -34,7 +34,7 @@ public class MaterielLivreeMcService {
 
         }).orElseThrow(() -> new ResourceNotFoundException("bondelaivraison id  " + BLmcId + " not found"));
     }
-    public List<ArticleDTO> getMaterielLivreeByOT(long otID){
-        return articleRepository.getMaterielsByBLdeMC(otID);
+    public List<ArticleDTO> getMaterielLivreeByBLdeMC(long blId){
+        return articleRepository.getMaterielsByBLdeMC(blId);
     }
 }
