@@ -58,6 +58,13 @@ public class OrdreDetraveauxService {
 
     public List<OrdreDeTraveaux> getAllBYBC(Long bcID) {
         return ordreRepo.findByBonDeCommandeId(bcID);
+    }
 
+    public List<OrdreDeTraveaux> getAllBYMarchee(Long marcheeId) {
+        return ordreRepo.findByBonDeCommandeMarcheeId(marcheeId);
+    }
+
+    public List<Object[]> statistiquesOTs(long marcheeId) {
+        return ordreRepo.statistiquesOTs(marcheeId);
     }
 }

@@ -35,8 +35,7 @@ public interface BondeCommandeRepository extends JpaRepository<BondeCommande, Lo
     @Query(value = "SELECT au.bondecommande.codebc,au.bondecommande.montant, sum (au.prix * ar.quantiteeRealisee) FROM ArticleUtilisee  au ,ArticleRealisee ar where au.bondecommande.id=ar.attachement.bonDeCommande.id and au.bondecommande.marchee.id=:marcheeId  GROUP BY au.bondecommande")
     List<Object[]> statistiquesBCs(@Param("marcheeId") long marcheeId);
 
-    @Query(value = "SELECT ar.attachementMC.ordreTraveaux.codeOrdre,ar.attachementMC.ordreTraveaux.montant, sum (au.prix * ar.quantiteeRealisee) FROM ArticleUtilisee  au ,ArticleRealiseeMC ar where au.bondecommande.id=ar.attachementMC.ordreTraveaux.bonDeCommande.id and au.bondecommande.marchee.id=:marcheeId  GROUP BY ar.attachementMC.ordreTraveaux")
-    List<Object[]> statistiquesOTs(@Param("marcheeId") long marcheeId);
+
 
 
 }
