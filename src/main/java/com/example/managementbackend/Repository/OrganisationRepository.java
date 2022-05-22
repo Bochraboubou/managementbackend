@@ -37,7 +37,9 @@ public interface OrganisationRepository extends JpaRepository<Organisation, Long
 // trouver tous les organisation ainsi leurs users// pour le chart
     @Query (value = "SELECT  o.nom , COUNT(u.id) FROM Organisation o , User u where o.id=u.organisation.id GROUP BY o.nom" )
     public List<Object> getUsersByOrganisation();
-
+// trouver le nombre  des marchees par organisation
+@Query (value = "SELECT  o.nom , COUNT(m.id) FROM Organisation o , Marchee m where o.id=m.org.id GROUP BY o.nom" )
+public List<Object> getMarcheeByOrganisation();
 }
 
 

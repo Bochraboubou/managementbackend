@@ -127,7 +127,12 @@ public class OrganisationService {
       return   organisationRepo.getUsersByOrganisation();
     }
 
+
+    public List<Object> getOrgAndMarchee(){
+        return   organisationRepo.getMarcheeByOrganisation();
     }
+
+}
 
 
 
