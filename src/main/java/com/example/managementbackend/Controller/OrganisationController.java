@@ -150,6 +150,12 @@ public class OrganisationController {
     public List <Object>getOrgAndUsers(){
         return  organisationService.getOrgAndUsers();
  }
+
+    @GetMapping("/getOrgAndMarcheeCHART")
+    public List <Object>getOrgAndMarchee(){
+        return  organisationService.getOrgAndMarchee();
+    }
+
     /*
     @GetMapping("/firstJoinOrganisation")
     public List<organisationUserJoin> firstJOIN() {
