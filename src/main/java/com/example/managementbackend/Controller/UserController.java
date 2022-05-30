@@ -298,8 +298,13 @@ public List <User> finduserByOrganisation(@PathVariable Long id ){
 
 
 
+// Delete All organisation's user
 
-
+    @DeleteMapping("/DeleteAllOrg_User/{idOrg}")
+    public void  DeleteAllOrg_users(@PathVariable  Long idOrg)
+    {
+        userService.DeleteAllOrg_User(idOrg);
+    }
 
 
 

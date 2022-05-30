@@ -79,4 +79,15 @@ public class DemandeService {
       return  enAttenteDemandes;
 
     }
+    public List<Demande> gettAllDemandeApprouvé(){
+        List <Demande> approuvéDemandes=new ArrayList<>();
+        List <Demande> demandes=getDemandes();
+        for( Demande d:demandes){
+            if(d.isDemandeStatus()==true){
+                approuvéDemandes.add(d);
+            }
+        }
+        return  approuvéDemandes;
+
+    }
 }

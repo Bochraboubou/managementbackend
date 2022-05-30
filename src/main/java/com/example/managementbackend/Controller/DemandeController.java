@@ -93,13 +93,23 @@ public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile
         new File (context.getRealPath("/Images/")).mkdir();
         System.out.println("mk dir.............");
     }
+    //logo
     String filename = file.getOriginalFilename();
     String newFileName = FilenameUtils.getBaseName(filename)+"."+FilenameUtils.getExtension(filename);
+    // document
+    String filename1 = file.getOriginalFilename();
+    String newFileName1 = FilenameUtils.getBaseName(filename1)+"."+FilenameUtils.getExtension(filename1);
+
+
+
+
     File serverFile = new File (context.getRealPath("/Images/"+File.separator+newFileName));
+    File serverFile2= new File (context.getRealPath("/Images/"+File.separator+newFileName1));
     try
     {
         System.out.println("Image");
         FileUtils.writeByteArrayToFile(serverFile,file.getBytes());
+        FileUtils.writeByteArrayToFile(serverFile2,file.getBytes());
 
     }catch(Exception e) {
         e.printStackTrace();
@@ -107,6 +117,8 @@ public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile
 
 
     demande1.setFileName(newFileName);
+    demande1.setDocumentpath(newFileName1);
+
     Demande art = demandeService.saveDemande(demande1);
     if (art != null)
     {
@@ -114,7 +126,7 @@ public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile
     }
     else
     {
-        return new ResponseEntity<Response>(new Response ("Article not saved"),HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<Response>(new Response ("Demande not saved"),HttpStatus.BAD_REQUEST);
     }
 }
 
@@ -124,11 +136,23 @@ public ResponseEntity<Response> savedemande (@RequestParam("file") MultipartFile
         Demande demande  = demandeRepository.findById(id).get();
         return Files.readAllBytes(Paths.get(context.getRealPath("/Images/")+demande.getFileName()));
     }
+    // get document
+    @GetMapping(path="/Documentdemande/{id}")
+    public byte[] getDocument(@PathVariable("id") Long id) throws Exception{
+
+        Demande demande  = demandeRepository.findById(id).get();
+        return Files.readAllBytes(Paths.get(context.getRealPath("/Images/")+demande.getDocumentpath()));
+    }
 
 //get all en attente demande
     @GetMapping(path="/DemandesEnAttente")
     public List<Demande>EnAttenteDemande(){
         return   demandeService.gettAllEnAttenteDemande();
+
+    }
+    @GetMapping(path="/DemandesApprouvee")
+    public List<Demande>DemandeApprouvee(){
+        return   demandeService.gettAllDemandeApprouvé();
 
     }
 }

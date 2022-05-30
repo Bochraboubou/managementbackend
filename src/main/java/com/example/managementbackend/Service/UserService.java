@@ -28,4 +28,5 @@ public interface UserService {
     public User addRole( String username, String role);
     public User updateUser(User user, Long id );
     public void DeleteAll();
+    public void DeleteAllOrg_User( Long id);
 }
