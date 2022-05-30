@@ -43,6 +43,24 @@ public class UserServiceImpl  implements UserService {
         userRepository.deleteAll();
     }
 
+// delete oll user of one organisation
+    @Override
+    public void DeleteAllOrg_User(Long idOrg) {
+
+        // get  all organisaton users by id_org
+        List<User> liste = userRepository.findByOrganisationId(idOrg);
+        for(User u :liste){
+           Long  id=u.getId();
+           Delete(id);
+       }
+
+        // delete all users
+
+
+
+
+    }
+
     @Override
     public User saveUser(Long organId, Long roleId, User user) {
         MultipartFile file = null;
@@ -197,4 +215,5 @@ public class UserServiceImpl  implements UserService {
         return userRepository.save(user1);
 
     }
+
 }
